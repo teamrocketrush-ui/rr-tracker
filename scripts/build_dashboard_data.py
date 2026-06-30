@@ -69,19 +69,7 @@ def relative_label(days):
     return f"{days} days ago"
 
 
-def build_client_view(client):
-    months = client.get("months", {})
-    month_key = current_month_key()
-    month = months.get(month_key)
-
-    if month is None and months:
-        # fall back to most recent month with data, so a client isn't blank
-        # just because nothing has synced yet for the new month
-        month_key = sorted(months.keys())[-1]
-        month = months[month_key]
-    if month is None:
-        month = {}
-
+def build_client_view(client, month_key, month, is_current_month):
     posts = month.get("posts", [])
     comments = month.get("comments", [])
     posts_target = month.get("postsTarget") or 0
@@ -90,17 +78,25 @@ def build_client_view(client):
     last_post_days = days_since(posts[0]["full_date"]) if posts else None
     last_comment_days = days_since(comments[0]["full_date"]) if comments else None
 
-    post_status, post_label, post_width = status_from_days(last_post_days)
-    comment_status, comment_label, comment_width = status_from_days(last_comment_days)
+    if is_current_month:
+        post_status, post_label, post_width = status_from_days(last_post_days)
+        comment_status, comment_label, comment_width = status_from_days(last_comment_days)
+    else:
+        # Past months are frozen historical records — no live overdue flag,
+        # just a neutral display so old months don't show misleading red/amber.
+        post_status, post_label, post_width = "neutral", "Past month", 100 if posts else 0
+        comment_status, comment_label, comment_width = "neutral", "Past month", 100 if comments else 0
 
-    # last 7 days of comment activity for the bar chart
+    # last 7 days of comment activity for the bar chart (only meaningful for
+    # the current month; past months show the full month's daily distribution
+    # instead of a rolling 7-day window)
     comment_days = [0] * 7
     today = date.today()
     for c in comments:
         try:
             cdate = datetime.strptime(c["full_date"], "%Y-%m-%d").date()
             offset = (today - cdate).days
-            if 0 <= offset < 7:
+            if is_current_month and 0 <= offset < 7:
                 comment_days[6 - offset] += 1
         except (ValueError, KeyError):
             continue
@@ -109,7 +105,9 @@ def build_client_view(client):
     color_idx = sum(ord(ch) for ch in client["id"]) % len(INITIAL_COLORS)
 
     flag_type = post_status
-    if post_status == STATUS_RED:
+    if not is_current_month:
+        flag_text = f"Historical record — {len(posts)} post(s) logged"
+    elif post_status == STATUS_RED:
         flag_text = f"Flagged — {post_label} (weekends excluded)"
     elif post_status == STATUS_AMBER:
         flag_text = "Watch — approaching threshold"
@@ -125,9 +123,9 @@ def build_client_view(client):
         "status": client.get("status", "active"),
         "writer": month.get("writer") or "Unassigned",
         "engager": month.get("engager") or "Unassigned",
-        "lastPost": relative_label(last_post_days),
+        "lastPost": relative_label(last_post_days) if is_current_month else (posts[0]["date"] if posts else "—"),
         "lastPostDate": posts[0]["date"] if posts else "—",
-        "lastComment": relative_label(last_comment_days),
+        "lastComment": relative_label(last_comment_days) if is_current_month else (comments[0]["date"] if comments else "—"),
         "lastCommentDate": comments[0]["date"] if comments else "—",
         "postStatus": post_status,
         "postLabel": post_label,
@@ -157,11 +155,99 @@ def build_js_array(clients_view):
     return "const clientData = [\n" + ",\n".join(entries) + "\n];"
 
 
+def month_label(month_key):
+    """'2026-06' -> 'June 2026'"""
+    try:
+        d = datetime.strptime(month_key, "%Y-%m")
+        return d.strftime("%B %Y")
+    except ValueError:
+        return month_key
+
+
+def build_month_data_js(clients_data):
+    """
+    Builds the monthData JS object covering EVERY month that appears across
+    ALL clients (a union of months), not just the current one. Each client
+    that has no record for a given month is simply omitted from that month's
+    array (so e.g. a brand-new client doesn't show up in past months).
+
+    Output shape:
+        const monthData = {
+          "2026-05": [ {client view}, {client view}, ... ],
+          "2026-06": [ {client view}, ... ]
+        };
+        const monthLabels = { "2026-05": "May 2026", "2026-06": "June 2026" };
+    """
+    today_key = current_month_key()
+    all_month_keys = set()
+    for client in clients_data.get("clients", []):
+        all_month_keys.update(client.get("months", {}).keys())
+    # Always include the current month even if nobody has synced yet,
+    # so the tab exists and the dashboard isn't blank on the 1st of a new month.
+    all_month_keys.add(today_key)
+
+    sorted_keys = sorted(all_month_keys)  # chronological, oldest first
+
+    month_data = {}
+    for month_key in sorted_keys:
+        is_current = (month_key == today_key)
+        views = []
+        for client in clients_data.get("clients", []):
+            if client.get("status") == "removed":
+                # Removed clients still show in months where they were active,
+                # but never appear in months added after their removal.
+                pass
+            months = client.get("months", {})
+            month = months.get(month_key)
+            if month is None:
+                continue  # this client has no record for this month — skip
+            views.append(build_client_view(client, month_key, month, is_current))
+        month_data[month_key] = views
+
+    labels = {k: month_label(k) for k in sorted_keys}
+
+    month_data_json = json.dumps(month_data, ensure_ascii=False, indent=2)
+    labels_json = json.dumps(labels, ensure_ascii=False, indent=2)
+
+    return (
+        f"const monthData = {month_data_json};\n"
+        f"const monthLabels = {labels_json};\n"
+        f"let activeMonth = \"{today_key}\";"
+    )
+
+
 def inject_into_dashboard(dashboard_html, new_data_block):
-    pattern = re.compile(r"const clientData = \[.*?\n\];", re.DOTALL)
-    if not pattern.search(dashboard_html):
-        raise ValueError("Could not find existing clientData block in dashboard HTML to replace.")
-    return pattern.sub(new_data_block, dashboard_html, count=1)
+    """
+    Replaces BOTH the old static clientData array AND the placeholder
+    monthData/monthLabels/activeMonth block (added by the dashboard template)
+    with the freshly generated monthData block. Order matters: clientData
+    is replaced first (collapsed to an empty array, since monthData is now
+    the single source of truth), then the monthData/monthLabels/activeMonth
+    trio is replaced with real generated data.
+    """
+    # 1. Neutralise the old static clientData array (kept only as a shape
+    #    reference in the template; the dashboard no longer reads it once
+    #    monthData below is populated).
+    client_data_pattern = re.compile(r"const clientData = \[.*?\n\];", re.DOTALL)
+    if not client_data_pattern.search(dashboard_html):
+        raise ValueError("Could not find clientData block in dashboard HTML.")
+    dashboard_html = client_data_pattern.sub("const clientData = [];", dashboard_html, count=1)
+
+    # 2. Replace the monthData/monthLabels/activeMonth placeholder trio.
+    month_block_pattern = re.compile(
+        r'const monthData = \{[^;]*?"__CURRENT__":\s*clientData\s*\};\s*'
+        r'const monthLabels = \{[^;]*?\};\s*'
+        r'let activeMonth = Object\.keys\(monthData\)\[0\];',
+        re.DOTALL,
+    )
+    if not month_block_pattern.search(dashboard_html):
+        raise ValueError(
+            "Could not find monthData placeholder block in dashboard HTML. "
+            "Make sure dashboard/tracker_template.html has the month-tabs update applied."
+        )
+    dashboard_html = month_block_pattern.sub(new_data_block, dashboard_html, count=1)
+
+    return dashboard_html
 
 
 def main():
@@ -172,21 +258,26 @@ def main():
     clients_path, template_path, output_path = sys.argv[1], sys.argv[2], sys.argv[3]
 
     clients_data = json.load(open(clients_path))
-    active_only_view = []
-    for client in clients_data.get("clients", []):
-        # Build view for all clients (paused included) so the toggle still
-        # shows them; sync logic elsewhere already skips paused for scraping.
-        active_only_view.append(build_client_view(client))
 
-    js_block = build_js_array(active_only_view)
+    month_data_block = build_month_data_js(clients_data)
 
     dashboard_html = Path(template_path).read_text()
-    updated_html = inject_into_dashboard(dashboard_html, js_block)
+    updated_html = inject_into_dashboard(dashboard_html, month_data_block)
     Path(output_path).write_text(updated_html)
 
-    print(f"Built dashboard with {len(active_only_view)} client(s) -> {output_path}")
-    for c in active_only_view:
-        print(f"  {c['name']} [{c['status']}]: {c['postsMTD']} posts, last post {c['lastPost']}")
+    # Summary print
+    today_key = current_month_key()
+    all_month_keys = set()
+    for client in clients_data.get("clients", []):
+        all_month_keys.update(client.get("months", {}).keys())
+    all_month_keys.add(today_key)
+    sorted_keys = sorted(all_month_keys)
+
+    print(f"Built dashboard with {len(sorted_keys)} month tab(s) -> {output_path}")
+    for mk in sorted_keys:
+        n_clients = sum(1 for c in clients_data.get("clients", []) if mk in c.get("months", {}))
+        marker = " (current)" if mk == today_key else ""
+        print(f"  {month_label(mk)}{marker}: {n_clients} client(s) with data")
 
 
 if __name__ == "__main__":
