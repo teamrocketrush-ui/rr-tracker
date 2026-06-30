@@ -452,9 +452,7 @@
         </button>
         <div class="filter-panel" id="filterPanel">
           <h5>Show clients for</h5>
-          <label class="filter-opt"><input type="checkbox" value="Riya"> Riya</label>
-          <label class="filter-opt"><input type="checkbox" value="Aman"> Aman</label>
-          <label class="filter-opt"><input type="checkbox" value="Sara"> Sara</label>
+          <div id="filterOptionsList"></div>
         </div>
       </div>
     </div>
@@ -588,6 +586,43 @@ const monthData = {
 const monthLabels = { "__CURRENT__": "This Month" };
 let activeMonth = Object.keys(monthData)[0];
 
+function getWritersForActiveMonth(){
+  const clients = monthData[activeMonth] || [];
+  const writers = new Set();
+  clients.forEach(c => {
+    if (c.writer && c.writer !== 'Unassigned') writers.add(c.writer);
+  });
+  return Array.from(writers).sort();
+}
+
+function renderFilterOptions(){
+  const wrap = document.getElementById('filterOptionsList');
+  if (!wrap) return;
+  const writers = getWritersForActiveMonth();
+  const previouslyChecked = new Set(getActiveFilters());
+
+  if (writers.length === 0) {
+    wrap.innerHTML = '<div style="font-size:12px;color:var(--muted);padding:6px 0;">No writers assigned this month</div>';
+    return;
+  }
+
+  wrap.innerHTML = writers.map(w => {
+    const checked = previouslyChecked.has(w) ? 'checked' : '';
+    return `<label class="filter-opt"><input type="checkbox" value="${w}" ${checked}> ${w}</label>`;
+  }).join('');
+
+  // Re-attach change listeners every time the list is rebuilt
+  wrap.querySelectorAll('.filter-opt input').forEach(chk=>{
+    chk.addEventListener('change', ()=>{
+      activeWriters = Array.from(document.querySelectorAll('.filter-opt input:checked')).map(i=>i.value);
+      const countEl = document.getElementById('filterCount');
+      if(activeWriters.length){ countEl.style.display='flex'; countEl.textContent = activeWriters.length; }
+      else { countEl.style.display='none'; }
+      render(activeWriters, document.getElementById('searchInput').value);
+    });
+  });
+}
+
 function renderMonthTabs(){
   const wrap = document.getElementById('monthTabs');
   if (!wrap) return;
@@ -601,6 +636,7 @@ function renderMonthTabs(){
     btn.addEventListener('click', () => {
       activeMonth = btn.dataset.month;
       renderMonthTabs();
+      renderFilterOptions();
       render(getActiveFilters(), searchInput ? searchInput.value : '');
     });
   });
@@ -805,21 +841,13 @@ document.addEventListener('click', (e)=>{
 });
 
 let activeWriters = [];
-document.querySelectorAll('.filter-opt input').forEach(chk=>{
-  chk.addEventListener('change', ()=>{
-    activeWriters = Array.from(document.querySelectorAll('.filter-opt input:checked')).map(i=>i.value);
-    const countEl = document.getElementById('filterCount');
-    if(activeWriters.length){ countEl.style.display='flex'; countEl.textContent = activeWriters.length; }
-    else { countEl.style.display='none'; }
-    render(activeWriters, document.getElementById('searchInput').value);
-  });
-});
 
 document.getElementById('searchInput').addEventListener('input', (e)=>{
   render(activeWriters, e.target.value);
 });
 
 renderMonthTabs();
+renderFilterOptions();
 render([], '');
 </script>
 
