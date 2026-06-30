@@ -452,9 +452,7 @@
         </button>
         <div class="filter-panel" id="filterPanel">
           <h5>Show clients for</h5>
-          <label class="filter-opt"><input type="checkbox" value="Riya"> Riya</label>
-          <label class="filter-opt"><input type="checkbox" value="Aman"> Aman</label>
-          <label class="filter-opt"><input type="checkbox" value="Sara"> Sara</label>
+          <div id="filterOptionsList"></div>
         </div>
       </div>
     </div>
@@ -509,92 +507,6 @@ const clientData = [];
 // only as a fallback shape reference and is not used directly below.
 const monthData = {
   "2026-06": [
-    {
-      "id": "c1",
-      "name": "Alphastar Technologies",
-      "initials": "AT",
-      "color": "#4A6670",
-      "sub": "Pilot · target 12/mo",
-      "status": "removed",
-      "writer": "Riya",
-      "engager": "Karan",
-      "lastPost": "Today",
-      "lastPostDate": "Jun 30",
-      "lastComment": "1 day ago",
-      "lastCommentDate": "Jun 29",
-      "postStatus": "green",
-      "postLabel": "On time",
-      "postWidth": 90,
-      "commentStatus": "green",
-      "commentLabel": "On time",
-      "commentWidth": 90,
-      "postsMTD": "4 / 12",
-      "commentsMTD": "2 / 20",
-      "flag": {
-        "type": "green",
-        "text": "On track — today"
-      },
-      "target": "Target: 12 posts/mo · 20 comments/mo",
-      "posts": [
-        {
-          "date": "Jun 30",
-          "full_date": "2026-06-30",
-          "title": "India built 50,000+ km of national highways in the last decade. Nobody told the auto industry that this would change wha",
-          "likes": 2,
-          "comments": 0,
-          "url": "https://www.linkedin.com/posts/anckursama_india-built-50000-km-of-national-highways-activity-7477615242533847040-zIr3",
-          "post_type": "regular"
-        },
-        {
-          "date": "Jun 26",
-          "full_date": "2026-06-26",
-          "title": "For 30 years, one company decided what car India drove.",
-          "likes": 18,
-          "comments": 1,
-          "url": "https://www.linkedin.com/posts/anckursama_for-30-years-one-company-decided-what-car-activity-7476129615758123008-ed0H",
-          "post_type": "regular"
-        },
-        {
-          "date": "Jun 25",
-          "full_date": "2026-06-25",
-          "title": "Indian car buyers today spend an average of 3+ months researching before walking into a showroom.",
-          "likes": 17,
-          "comments": 0,
-          "url": "https://www.linkedin.com/posts/anckursama_indian-car-buyers-today-spend-an-average-activity-7475767253070778368-30Dp",
-          "post_type": "regular"
-        },
-        {
-          "date": "Jun 3",
-          "full_date": "2026-06-03",
-          "title": "Every year, Unnati brings us together to reflect on our journey, recognize outstanding contributions, and celebrate the ",
-          "likes": 15,
-          "comments": 0,
-          "url": "https://www.linkedin.com/posts/anckursama_unnati-is-more-than-an-event-its-a-celebration-activity-7467938802204864513-y1Fv",
-          "post_type": "quote"
-        }
-      ],
-      "commentDays": [
-        0,
-        0,
-        0,
-        1,
-        0,
-        1,
-        0
-      ],
-      "commentLog": [
-        {
-          "date": "Jun 29",
-          "full_date": "2026-06-29",
-          "text": "2 comments posted"
-        },
-        {
-          "date": "Jun 27",
-          "full_date": "2026-06-27",
-          "text": "1 comment posted"
-        }
-      ]
-    },
     {
       "id": "c3",
       "name": "Prasoon",
@@ -1248,6 +1160,43 @@ const monthLabels = {
 };
 let activeMonth = "2026-06";
 
+function getWritersForActiveMonth(){
+  const clients = monthData[activeMonth] || [];
+  const writers = new Set();
+  clients.forEach(c => {
+    if (c.writer && c.writer !== 'Unassigned') writers.add(c.writer);
+  });
+  return Array.from(writers).sort();
+}
+
+function renderFilterOptions(){
+  const wrap = document.getElementById('filterOptionsList');
+  if (!wrap) return;
+  const writers = getWritersForActiveMonth();
+  const previouslyChecked = new Set(getActiveFilters());
+
+  if (writers.length === 0) {
+    wrap.innerHTML = '<div style="font-size:12px;color:var(--muted);padding:6px 0;">No writers assigned this month</div>';
+    return;
+  }
+
+  wrap.innerHTML = writers.map(w => {
+    const checked = previouslyChecked.has(w) ? 'checked' : '';
+    return `<label class="filter-opt"><input type="checkbox" value="${w}" ${checked}> ${w}</label>`;
+  }).join('');
+
+  // Re-attach change listeners every time the list is rebuilt
+  wrap.querySelectorAll('.filter-opt input').forEach(chk=>{
+    chk.addEventListener('change', ()=>{
+      activeWriters = Array.from(document.querySelectorAll('.filter-opt input:checked')).map(i=>i.value);
+      const countEl = document.getElementById('filterCount');
+      if(activeWriters.length){ countEl.style.display='flex'; countEl.textContent = activeWriters.length; }
+      else { countEl.style.display='none'; }
+      render(activeWriters, document.getElementById('searchInput').value);
+    });
+  });
+}
+
 function renderMonthTabs(){
   const wrap = document.getElementById('monthTabs');
   if (!wrap) return;
@@ -1261,6 +1210,7 @@ function renderMonthTabs(){
     btn.addEventListener('click', () => {
       activeMonth = btn.dataset.month;
       renderMonthTabs();
+      renderFilterOptions();
       render(getActiveFilters(), searchInput ? searchInput.value : '');
     });
   });
@@ -1465,21 +1415,13 @@ document.addEventListener('click', (e)=>{
 });
 
 let activeWriters = [];
-document.querySelectorAll('.filter-opt input').forEach(chk=>{
-  chk.addEventListener('change', ()=>{
-    activeWriters = Array.from(document.querySelectorAll('.filter-opt input:checked')).map(i=>i.value);
-    const countEl = document.getElementById('filterCount');
-    if(activeWriters.length){ countEl.style.display='flex'; countEl.textContent = activeWriters.length; }
-    else { countEl.style.display='none'; }
-    render(activeWriters, document.getElementById('searchInput').value);
-  });
-});
 
 document.getElementById('searchInput').addEventListener('input', (e)=>{
   render(activeWriters, e.target.value);
 });
 
 renderMonthTabs();
+renderFilterOptions();
 render([], '');
 </script>
 
