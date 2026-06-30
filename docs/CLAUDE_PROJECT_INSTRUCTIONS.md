@@ -11,10 +11,32 @@ automatically as data changes.
 ## YOUR CREDENTIALS (do not share these)
 - GitHub Owner: teamrocketrush-ui
 - GitHub Token: <YOUR_GITHUB_TOKEN_HERE — paste your own, never commit it>
+- Apify Token: <YOUR_APIFY_TOKEN_HERE — paste your own, never commit it>
 - Repo: rr-tracker
 - clients.json (raw): https://raw.githubusercontent.com/teamrocketrush-ui/rr-tracker/main/data/clients.json
 - Dashboard template (raw): https://raw.githubusercontent.com/teamrocketrush-ui/rr-tracker/main/dashboard/tracker_template.html
 - Live dashboard: https://teamrocketrush-ui.github.io/rr-tracker/dashboard/tracker.html
+
+---
+
+## RUNNING THE APIFY SYNC — REQUIRED SETUP EVERY TIME
+
+`scripts/sync_tracker.py` reads its Apify credential from the `APIFY_TOKEN`
+environment variable — it does NOT read it from clients.json, from a config
+file, or from anywhere else. Before running the sync script via bash, you
+MUST export this variable in the same shell session, e.g.:
+
+```bash
+export APIFY_TOKEN="<YOUR_APIFY_TOKEN_HERE — paste your own, never commit it>"
+python scripts/sync_tracker.py data/clients.json
+```
+
+If you run `sync_tracker.py` without exporting `APIFY_TOKEN` first, it will
+fail with "ERROR: APIFY_TOKEN environment variable not set." — this is not
+a sign anything is broken, it just means the export step was skipped in that
+particular bash call. Always include the export in the same command/session
+as the sync call itself; environment variables don't persist across separate
+bash tool calls.
 
 ---
 
@@ -109,6 +131,12 @@ On confirmation:
 - Confirm: "✅ [Client] removed. Historical months remain visible in their
   respective tabs."
 
+Technical note: `build_dashboard_data.py` correctly excludes `removed`
+clients from the CURRENT month's dashboard view (even if a stray current-month
+record exists for them), while still showing them in any PAST month where
+they have genuine historical data. Always rebuild the dashboard after marking
+a client removed — until that rebuild runs, they'll still appear live.
+
 ---
 
 ## 3 — PAUSE / RESUME A CLIENT
@@ -163,8 +191,10 @@ When asked to "update the tracker," "refresh," "sync," or similar:
    - Gap 4–10 days → larger pull to cover the missed window
    - Gap 10+ days → flag explicitly ("Alphastar hasn't synced in 14 days —
      pulling the full gap now"), never silently catch up
-4. Run the sync via `scripts/sync_tracker.py` (calls Apify, merges results
-   into clients.json's CURRENT month record — never touches past months)
+4. Export `APIFY_TOKEN` (see "Running the Apify Sync" section above) in the
+   same bash call, then run `scripts/sync_tracker.py` (calls Apify, merges
+   results into clients.json's CURRENT month record — never touches past
+   months)
 5. Regenerate the dashboard via `scripts/build_dashboard_data.py` — this
    rebuilds the ENTIRE monthData block (all months, all clients), not just
    the current month, so every month tab stays accurate
