@@ -4,7 +4,7 @@
       "id": "c1",
       "name": "Alphastar Technologies",
       "linkedinUrl": "https://www.linkedin.com/in/anckursama/",
-      "status": "active",
+      "status": "removed",
       "months": {
         "2026-06": {
           "writer": "Riya",
@@ -71,8 +71,314 @@
       "id": "c2",
       "name": "Nikhil Mishra",
       "linkedinUrl": "https://www.linkedin.com/in/nikhil-mishra-example/",
-      "status": "paused",
+      "status": "removed",
       "months": {}
+    },
+    {
+      "id": "c3",
+      "name": "Prasoon",
+      "linkedinUrl": "https://www.linkedin.com/in/prasoongupta/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Garvita",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "name": "Dhawal",
+      "linkedinUrl": "https://www.linkedin.com/in/dhawalphadke/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "8",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "name": "Rajiv",
+      "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Rohit",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "150",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "name": "Abhishek",
+      "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Bhawana",
+          "engager": "NA",
+          "postsTarget": "12-16",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "name": "Praveen",
+      "linkedinUrl": "https://www.linkedin.com/in/praveenkumardk/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "name": "Michail",
+      "linkedinUrl": "https://www.linkedin.com/in/michail-chopra-856a0335/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "4",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "name": "Shruti",
+      "linkedinUrl": "https://www.linkedin.com/in/shrutiagrawalcfa/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "name": "Piyush",
+      "linkedinUrl": "https://www.linkedin.com/in/piyush-kumar-a748b527/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c11",
+      "name": "Arun Maira",
+      "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c12",
+      "name": "Harish",
+      "linkedinUrl": "https://www.linkedin.com/in/harishmenon/",
+      "status": "active",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Kanishka",
+          "engager": "Chirag",
+          "postsTarget": "20",
+          "commentsTarget": "250",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c13",
+      "name": "Ashish",
+      "linkedinUrl": "https://www.linkedin.com/in/ashish-padiyar-59608914/",
+      "status": "active",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "90",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c14",
+      "name": "Ashok",
+      "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
+      "status": "active",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Rohit",
+          "engager": "Adee",
+          "postsTarget": "12-16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c15",
+      "name": "Yashpal",
+      "linkedinUrl": "https://www.linkedin.com/in/yashpal-singh-parmar-473976b7/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c16",
+      "name": "Bharat Rungta",
+      "linkedinUrl": "https://www.linkedin.com/in/bharat-rungta-041b654/",
+      "status": "paused",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c17",
+      "name": "Manvi Bansal",
+      "linkedinUrl": "https://www.linkedin.com/in/manvibansal99/",
+      "status": "paused",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Bhawana",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c18",
+      "name": "Snehal Bandekar",
+      "linkedinUrl": "https://www.linkedin.com/in/snehal-bandekar-706b5558/",
+      "status": "paused",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
+    },
+    {
+      "id": "c19",
+      "name": "Janak Mehta",
+      "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
+      "status": "active",
+      "engagementType": "Retainer",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-06": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
     }
   ]
 }
