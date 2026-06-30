@@ -1,0 +1,78 @@
+{
+  "clients": [
+    {
+      "id": "c1",
+      "name": "Alphastar Technologies",
+      "linkedinUrl": "https://www.linkedin.com/in/anckursama/",
+      "status": "active",
+      "months": {
+        "2026-06": {
+          "writer": "Riya",
+          "engager": "Karan",
+          "postsTarget": 12,
+          "commentsTarget": 20,
+          "comments": [
+            {
+              "date": "Jun 29",
+              "full_date": "2026-06-29",
+              "text": "2 comments posted"
+            },
+            {
+              "date": "Jun 27",
+              "full_date": "2026-06-27",
+              "text": "1 comment posted"
+            }
+          ],
+          "posts": [
+            {
+              "date": "Jun 30",
+              "full_date": "2026-06-30",
+              "title": "India built 50,000+ km of national highways in the last decade. Nobody told the auto industry that this would change wha",
+              "likes": 2,
+              "comments": 0,
+              "url": "https://www.linkedin.com/posts/anckursama_india-built-50000-km-of-national-highways-activity-7477615242533847040-zIr3",
+              "post_type": "regular"
+            },
+            {
+              "date": "Jun 26",
+              "full_date": "2026-06-26",
+              "title": "For 30 years, one company decided what car India drove.",
+              "likes": 18,
+              "comments": 1,
+              "url": "https://www.linkedin.com/posts/anckursama_for-30-years-one-company-decided-what-car-activity-7476129615758123008-ed0H",
+              "post_type": "regular"
+            },
+            {
+              "date": "Jun 25",
+              "full_date": "2026-06-25",
+              "title": "Indian car buyers today spend an average of 3+ months researching before walking into a showroom.",
+              "likes": 17,
+              "comments": 0,
+              "url": "https://www.linkedin.com/posts/anckursama_indian-car-buyers-today-spend-an-average-activity-7475767253070778368-30Dp",
+              "post_type": "regular"
+            },
+            {
+              "date": "Jun 3",
+              "full_date": "2026-06-03",
+              "title": "Every year, Unnati brings us together to reflect on our journey, recognize outstanding contributions, and celebrate the ",
+              "likes": 15,
+              "comments": 0,
+              "url": "https://www.linkedin.com/posts/anckursama_unnati-is-more-than-an-event-its-a-celebration-activity-7467938802204864513-y1Fv",
+              "post_type": "quote"
+            }
+          ],
+          "posts_count": 4
+        }
+      },
+      "lastSyncedAt": "2026-06-30 09:42:00",
+      "engagementType": "Pilot"
+    },
+    {
+      "id": "c2",
+      "name": "Nikhil Mishra",
+      "linkedinUrl": "https://www.linkedin.com/in/nikhil-mishra-example/",
+      "status": "paused",
+      "months": {}
+    }
+  ]
+}
