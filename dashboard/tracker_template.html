@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RocketRush — Client Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --frame:#3A4A40;
+    --frame-dark:#2E3B33;
+    --page:#FAFAF8;
+    --card:#FFFFFF;
+    --ink:#1E2420;
+    --muted:#6B7280;
+    --line:#ECEAE4;
+    --line-soft:#F1EFEA;
+    --red:#E8473B;
+    --red-soft:#FCE9E7;
+    --amber:#D4A843;
+    --amber-soft:#FBF3E1;
+    --green:#4A7A5C;
+    --green-soft:#E7F0EA;
+    --track:#EDEBE5;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+    --shadow:0 1px 2px rgba(30,36,32,0.04), 0 8px 24px -12px rgba(30,36,32,0.10);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--frame);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    padding:28px;
+    min-height:100vh;
+  }
+  .shell{
+    max-width:1280px;
+    margin:0 auto;
+    background:var(--page);
+    border-radius:28px;
+    padding:28px 28px 40px;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,0.45);
+  }
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand .name{font-family:'Poppins',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.01em;color:var(--frame);}
+
+  .who{display:flex;align-items:center;gap:10px;}
+  .who .label{
+    font-size:12px;font-weight:600;color:var(--muted);
+    background:var(--card);border:1px solid var(--line);
+    padding:7px 13px;border-radius:999px;box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:7px;
+  }
+  .who .label i{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;}
+
+  /* ---------- hero ---------- */
+  .hero{margin-bottom:26px;}
+  .hero h1{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:34px;
+    line-height:1.12;
+    letter-spacing:-0.02em;
+    margin:0 0 6px;
+  }
+  .hero p{color:var(--muted);font-size:14.5px;margin:0;}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:14px;margin-bottom:18px;flex-wrap:wrap;
+  }
+  .toolbar-left{display:flex;gap:10px;flex-wrap:wrap;flex:1;}
+  .search{
+    flex:1;min-width:240px;max-width:340px;
+    display:flex;align-items:center;gap:10px;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:10px 16px;
+    box-shadow:var(--shadow);
+  }
+  .search input{
+    border:none;outline:none;font-size:13.5px;width:100%;
+    background:transparent;color:var(--ink);font-family:'Inter',sans-serif;
+  }
+  .search input::placeholder{color:#A4A89E;}
+  .search svg{flex-shrink:0;color:#A4A89E;}
+
+  .filter-wrap{position:relative;}
+  .filter-btn{
+    display:flex;align-items:center;gap:8px;
+    border:1px solid var(--line);background:var(--card);
+    border-radius:999px;padding:0 16px;height:38px;
+    font-size:13.5px;font-weight:600;color:var(--ink);
+    cursor:pointer;box-shadow:var(--shadow);white-space:nowrap;
+  }
+  .filter-btn .count{
+    background:var(--frame);color:#fff;
+    font-size:10.5px;font-weight:700;
+    width:18px;height:18px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .filter-panel{
+    display:none;
+    position:absolute;top:calc(100% + 8px);left:0;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:14px;min-width:220px;z-index:20;
+    box-shadow:var(--shadow);
+  }
+  .filter-panel.show{display:block;}
+  .filter-panel h5{
+    margin:0 0 10px;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--muted);font-weight:700;
+  }
+  .filter-opt{
+    display:flex;align-items:center;gap:9px;
+    padding:6px 2px;font-size:13px;cursor:pointer;
+  }
+  .filter-opt input{accent-color:var(--frame);width:14px;height:14px;}
+
+  /* ---------- table card ---------- */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .table-wrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;min-width:1060px;}
+  thead th{
+    text-align:left;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--muted);
+    font-weight:600;
+    padding:16px 18px;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+
+  tbody tr.row{
+    border-bottom:1px solid var(--line-soft);
+    cursor:pointer;
+    transition:background .12s ease;
+  }
+  tbody tr.row:hover{background:#FBFAF7;}
+  tbody tr.row.open{background:#FBFAF7;}
+  tbody tr.row td{padding:14px 18px;font-size:13.5px;vertical-align:middle;}
+
+  .chev{
+    width:22px;height:22px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);transition:transform .18s ease;
+    background:var(--line-soft);
+  }
+  tr.row.open .chev{transform:rotate(90deg);color:var(--ink);background:#EFEDE6;}
+
+  .client-cell{display:flex;align-items:center;gap:10px;}
+  .client-avatar{
+    width:32px;height:32px;border-radius:9px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;
+    color:#fff;
+  }
+  .client-name{font-weight:600;font-size:13.5px;line-height:1.2;}
+  .client-sub{font-size:11.5px;color:var(--muted);}
+
+  .writer{display:flex;align-items:center;gap:8px;}
+  .writer .dot{
+    width:24px;height:24px;border-radius:50%;
+    background:var(--track);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;color:var(--frame);
+    font-family:'Space Grotesk',sans-serif;
+  }
+
+  .since{font-weight:600;}
+  .since small{display:block;font-weight:400;color:var(--muted);font-size:11px;margin-top:1px;}
+
+  .status-wrap{display:flex;align-items:center;gap:8px;min-width:108px;}
+  .status-track{
+    flex:1;height:6px;border-radius:99px;background:var(--track);overflow:hidden;
+  }
+  .status-fill{height:100%;border-radius:99px;}
+  .status-fill.green{background:var(--green);}
+  .status-fill.amber{background:var(--amber);}
+  .status-fill.red{background:var(--red);}
+  .status-text{font-size:11px;font-weight:600;white-space:nowrap;}
+  .status-text.green{color:var(--green);}
+  .status-text.amber{color:#B5841F;}
+  .status-text.red{color:var(--red);}
+
+  .tally{font-weight:600;}
+  .tally small{display:block;font-weight:400;color:var(--muted);font-size:11px;}
+
+  /* active/paused toggle */
+  .toggle-wrap{display:flex;align-items:center;gap:8px;}
+  .toggle-switch{
+    position:relative;width:36px;height:20px;
+    background:var(--track);border-radius:999px;
+    cursor:pointer;transition:background .15s ease;flex-shrink:0;
+  }
+  .toggle-switch.on{background:var(--green);}
+  .toggle-switch .knob{
+    position:absolute;top:2px;left:2px;
+    width:16px;height:16px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.25);
+    transition:transform .15s ease;
+  }
+  .toggle-switch.on .knob{transform:translateX(16px);}
+  .toggle-label{font-size:11px;font-weight:600;color:var(--muted);min-width:46px;}
+  .toggle-label.active{color:var(--green);}
+  tr.row.is-paused{opacity:0.55;}
+  tr.row.is-paused .client-name::after{
+    content:" (Paused)";
+    font-weight:500;color:var(--muted);font-size:11px;
+  }
+
+  /* ---------- expanded panel ---------- */
+  tr.panel-row td{padding:0;border-bottom:1px solid var(--line-soft);}
+  .panel{
+    display:none;
+    padding:0 18px 26px 56px;
+    background:#FBFAF7;
+  }
+  tr.panel-row.show .panel{display:block;}
+
+  .panel-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 0 16px;
+    flex-wrap:wrap;gap:10px;
+  }
+  .panel-head .flag{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:999px;
+  }
+  .flag.red{background:var(--red-soft);color:var(--red);}
+  .flag.amber{background:var(--amber-soft);color:#9A6F16;}
+  .flag.green{background:var(--green-soft);color:var(--green);}
+  .panel-head .target{font-size:12px;color:var(--muted);}
+
+  .panel-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:18px;
+  }
+  @media (max-width:880px){.panel-grid{grid-template-columns:1fr;}}
+
+  .subcard{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:16px 16px 8px;
+  }
+  .subcard h4{
+    margin:0 0 4px;font-size:12.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .subcard h4 small{font-weight:600;color:var(--ink);text-transform:none;letter-spacing:0;font-size:11.5px;}
+
+  .post-list{display:flex;flex-direction:column;max-height:260px;overflow-y:auto;margin-top:8px;}
+  .post-item{
+    display:grid;
+    grid-template-columns:64px 1fr 50px 50px 26px;
+    align-items:center;
+    gap:10px;
+    padding:9px 0;
+    border-bottom:1px solid var(--line-soft);
+    font-size:12.5px;
+  }
+  .post-item:last-child{border-bottom:none;}
+  .post-item .pdate{color:var(--muted);font-weight:600;font-size:11.5px;}
+  .post-item .ptitle{
+    font-weight:500;color:var(--ink);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .post-item .pmetric{color:var(--muted);font-size:11.5px;text-align:right;}
+  .post-item .plink{
+    width:22px;height:22px;border-radius:6px;background:var(--line-soft);
+    display:flex;align-items:center;justify-content:center;color:var(--frame);
+  }
+  .post-foot{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 0;font-size:11.5px;color:var(--muted);font-weight:600;
+    border-top:1px solid var(--line-soft);margin-top:2px;
+  }
+  .view-more{
+    text-align:center;font-size:11.5px;font-weight:600;
+    color:var(--frame);padding:8px 0 2px;cursor:pointer;
+    text-decoration:underline;text-underline-offset:2px;
+  }
+
+  .chart-rows{display:flex;flex-direction:column;gap:2px;margin-top:4px;}
+  .bars{
+    display:flex;align-items:flex-end;gap:3px;
+    height:108px;padding:18px 2px 0;
+  }
+  .bar-col{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+    height:100%;position:relative;
+  }
+  .bar{
+    width:100%;
+    background:var(--green);
+    border-radius:3px 3px 0 0;
+    min-height:2px;
+  }
+  .bar.zero{background:var(--track);min-height:2px;}
+  .bar-count{
+    position:absolute;top:-15px;font-size:9px;font-weight:700;color:var(--frame);
+  }
+  .bar-axis{
+    display:flex;gap:3px;padding:4px 2px 0;
+  }
+  .bar-axis span{flex:1;text-align:center;font-size:8.5px;color:#B6B9AE;}
+  .comment-log{margin-top:14px;max-height:170px;overflow-y:auto;}
+  .comment-log h5{
+    font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+    margin:0 0 8px;font-weight:700;
+  }
+  .clog-item{
+    display:flex;justify-content:space-between;
+    font-size:12px;padding:6px 0;border-bottom:1px solid var(--line-soft);
+  }
+  .clog-item:last-child{border-bottom:none;}
+  .clog-item .cdate{color:var(--ink);font-weight:600;}
+  .clog-item .ctext{color:var(--muted);}
+
+  .legend{
+    display:flex;gap:18px;align-items:center;
+    padding:14px 18px 4px;font-size:11.5px;color:var(--muted);
+    flex-wrap:wrap;
+  }
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .legend i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+  .legend i.green{background:var(--green);}
+  .legend i.amber{background:var(--amber);}
+  .legend i.red{background:var(--red);}
+
+  /* ---------- mobile card view ---------- */
+  .mobile-list{display:none;}
+  @media (max-width:720px){
+    body{padding:14px;}
+    .shell{padding:18px 16px 30px;border-radius:20px;}
+    .table-wrap{display:none;}
+    .mobile-list{display:block;}
+    .mcard{
+      background:var(--card);border:1px solid var(--line);
+      border-radius:var(--radius-md);
+      margin-bottom:14px;padding:14px;
+      box-shadow:var(--shadow);
+    }
+    .mcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;cursor:pointer;}
+    .mcard-meta{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;}
+    .mcard-meta div{font-size:11.5px;}
+    .mcard-meta div b{display:block;font-size:13px;}
+    .mcard-status{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;}
+    .mcard .panel{display:none;padding:14px 0 0;margin-top:12px;border-top:1px solid var(--line);background:transparent;}
+    .mcard .panel.show{display:block;}
+    .mcard .panel-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="name">RocketRush</div>
+    </div>
+    <div class="who">
+      <div class="label"><i></i>Synced today, 9:42 AM</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Client Activity Tracker</h1>
+    <p>Live status of every client's last post and last comment, sorted by what needs attention.</p>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <div class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input placeholder="Search by client or writer name…" id="searchInput" />
+      </div>
+      <div class="filter-wrap">
+        <button class="filter-btn" id="filterBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+          Filter by writer
+          <span class="count" id="filterCount" style="display:none;">0</span>
+        </button>
+        <div class="filter-panel" id="filterPanel">
+          <h5>Show clients for</h5>
+          <label class="filter-opt"><input type="checkbox" value="Riya"> Riya</label>
+          <label class="filter-opt"><input type="checkbox" value="Aman"> Aman</label>
+          <label class="filter-opt"><input type="checkbox" value="Sara"> Sara</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:32px;"></th>
+            <th>Client</th>
+            <th>Writer</th>
+            <th>Engagement</th>
+            <th>Last Post</th>
+            <th>Last Comment</th>
+            <th>Post Status</th>
+            <th>Comment Status</th>
+            <th>Posts MTD</th>
+            <th>Comments MTD</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><i class="green"></i>On time</span>
+      <span><i class="amber"></i>Watch — 2–3 days since last activity</span>
+      <span><i class="red"></i>Flagged — 3+ days overdue (weekends excluded)</span>
+    </div>
+  </div>
+
+  <div class="mobile-list" id="mobileList"></div>
+
+</div>
+
+<script>
+const clientData = [
+  {
+    id:"c1", name:"Alphastar Technologies", initials:"AT", color:"#3A4A40", sub:"Pilot · 3x/week target", status:"active",
+    writer:"Riya", engager:"Karan", lastPost:"1 day ago", lastPostDate:"Jun 29", lastComment:"Today", lastCommentDate:"Jun 30",
+    postStatus:"green", postLabel:"On time", postWidth:88,
+    commentStatus:"green", commentLabel:"On time", commentWidth:95,
+    postsMTD:"8 / 12", commentsMTD:"15 / 20",
+    flag:{type:"green", text:"On track — last post 1 day ago"},
+    target:"Target: 3 posts/week · 5 comments/week",
+    posts:[
+      {date:"Jun 29", title:"Why most founders get hiring wrong", likes:142, comments:18},
+      {date:"Jun 25", title:"The 6am habit that changed my year", likes:89, comments:9},
+      {date:"Jun 22", title:"We lost our biggest client. Here's why.", likes:201, comments:27},
+      {date:"Jun 18", title:"Hiring is not a funnel, it's a relationship", likes:76, comments:6},
+      {date:"Jun 14", title:"What I tell every first-time founder", likes:65, comments:5},
+      {date:"Jun 10", title:"The slide that closed our Series A", likes:188, comments:21},
+      {date:"Jun 6", title:"Culture isn't ping pong tables", likes:54, comments:3},
+      {date:"Jun 2", title:"My biggest hiring mistake in 2025", likes:97, comments:12}
+    ],
+    commentDays:[2,0,3,1,0,4,5],
+    commentLog:[
+      {date:"Jun 30", text:"5 comments posted"},
+      {date:"Jun 29", text:"4 comments posted"},
+      {date:"Jun 27", text:"1 comment posted"},
+      {date:"Jun 26", text:"3 comments posted"},
+      {date:"Jun 24", text:"2 comments posted"}
+    ]
+  },
+  {
+    id:"c2", name:"Nikhil Mishra", initials:"NM", color:"#8A6D3B", sub:"Retainer · 3x/week target", status:"paused",
+    writer:"Aman", engager:"Aman", lastPost:"4 days ago", lastPostDate:"Jun 26", lastComment:"2 days ago", lastCommentDate:"Jun 28",
+    postStatus:"red", postLabel:"4d overdue", postWidth:30,
+    commentStatus:"amber", commentLabel:"Slightly late", commentWidth:55,
+    postsMTD:"5 / 12", commentsMTD:"10 / 20",
+    flag:{type:"red", text:"Flagged — 4 days overdue (weekends excluded)"},
+    target:"Target: 3 posts/week · 5 comments/week",
+    posts:[
+      {date:"Jun 26", title:"What 3 failed startups taught me", likes:64, comments:7},
+      {date:"Jun 20", title:"Stop hiring for culture fit", likes:112, comments:14},
+      {date:"Jun 15", title:"The board meeting that changed everything", likes:58, comments:5},
+      {date:"Jun 10", title:"Why I fired myself as CEO", likes:140, comments:19},
+      {date:"Jun 4", title:"Revenue isn't traction", likes:42, comments:2}
+    ],
+    commentDays:[0,1,0,2,0,0,0],
+    commentLog:[
+      {date:"Jun 28", text:"2 comments posted"},
+      {date:"Jun 25", text:"1 comment posted"},
+      {date:"Jun 19", text:"3 comments posted"}
+    ]
+  },
+  {
+    id:"c3", name:"Quality Renaissance — Janak Mehta", initials:"QR", color:"#5C7A68", sub:"Retainer · 2x/week target", status:"active",
+    writer:"Sara", engager:"Karan", lastPost:"2 days ago", lastPostDate:"Jun 28", lastComment:"1 day ago", lastCommentDate:"Jun 29",
+    postStatus:"amber", postLabel:"Slightly late", postWidth:60,
+    commentStatus:"green", commentLabel:"On time", commentWidth:90,
+    postsMTD:"7 / 8", commentsMTD:"12 / 14",
+    flag:{type:"amber", text:"Watch — approaching 3-day threshold"},
+    target:"Target: 2 posts/week · 4 comments/week",
+    posts:[
+      {date:"Jun 28", title:"Inside the Nasik quality movement, 1986", likes:98, comments:11},
+      {date:"Jun 24", title:"What Elgi Equipments got right early", likes:71, comments:8},
+      {date:"Jun 19", title:"Manufacturing isn't a back-office function", likes:130, comments:19},
+      {date:"Jun 14", title:"Lucas TVS and the quiet quality war", likes:84, comments:10},
+      {date:"Jun 9", title:"Why Indian manufacturing needed this", likes:102, comments:14},
+      {date:"Jun 4", title:"The 1980s shift nobody talks about", likes:67, comments:6},
+      {date:"May 30", title:"Quality is a habit, not a department", likes:115, comments:13}
+    ],
+    commentDays:[1,2,0,3,1,2,0],
+    commentLog:[
+      {date:"Jun 29", text:"2 comments posted"},
+      {date:"Jun 28", text:"1 comment posted"},
+      {date:"Jun 27", text:"3 comments posted"},
+      {date:"Jun 25", text:"1 comment posted"}
+    ]
+  }
+];
+
+const tableBody = document.getElementById('tableBody');
+const mobileList = document.getElementById('mobileList');
+
+function statusWrap(status,label,width){
+  return `<div class="status-wrap">
+    <div class="status-track"><div class="status-fill ${status}" style="width:${width}%;"></div></div>
+    <div class="status-text ${status}">${label}</div>
+  </div>`;
+}
+
+function postListHTML(posts, limit){
+  const shown = limit ? posts.slice(0,limit) : posts;
+  return shown.map(p=>`
+    <div class="post-item">
+      <span class="pdate">${p.date}</span>
+      <span class="ptitle" title="${p.title}">${p.title}</span>
+      <span class="pmetric">${p.likes} ❤</span>
+      <span class="pmetric">${p.comments} 💬</span>
+      <span class="plink">↗</span>
+    </div>`).join('');
+}
+
+function barsHTML(days){
+  const max = Math.max(...days,1);
+  const labels = ["Jun 24","25","26","27","28","29","30"];
+  const bars = days.map((c)=>{
+    const h = c===0 ? 4 : Math.max(14,(c/max)*100);
+    return `<div class="bar-col"><span class="bar-count" style="color:${c===0?'#B6B9AE':'#3A4A40'};">${c}</span><div class="bar ${c===0?'zero':''}" style="height:${h}%;"></div></div>`;
+  }).join('');
+  const axis = labels.map(l=>`<span>${l}</span>`).join('');
+  return `<div class="bars">${bars}</div><div class="bar-axis">${axis}</div>`;
+}
+
+function commentLogHTML(log){
+  return log.map(c=>`<div class="clog-item"><span class="cdate">${c.date}</span><span class="ctext">${c.text}</span></div>`).join('');
+}
+
+function panelHTML(c){
+  const initialLimit = 5;
+  const needsMore = c.posts.length > initialLimit;
+  return `
+    <div class="panel-head">
+      <span class="flag ${c.flag.type}">● ${c.flag.text}</span>
+      <span class="target">${c.target}</span>
+    </div>
+    <div class="panel-grid">
+      <div class="subcard">
+        <h4>Posts — June 2026 <small>${c.postsMTD}</small></h4>
+        <div class="post-list" id="postlist-${c.id}">
+          ${postListHTML(c.posts, initialLimit)}
+        </div>
+        ${needsMore ? `<div class="view-more" data-id="${c.id}">View all ${c.posts.length} posts</div>` : ''}
+        <div class="post-foot"><span>${c.postsMTD.split('/')[0].trim()} of ${c.postsMTD.split('/')[1].trim()} posted</span><span>Streak tracked daily</span></div>
+      </div>
+      <div class="subcard">
+        <h4>Comments this month</h4>
+        ${barsHTML(c.commentDays)}
+        <div class="comment-log">
+          <h5>Latest entries</h5>
+          ${commentLogHTML(c.commentLog)}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function render(filterWriters, query){
+  tableBody.innerHTML = '';
+  mobileList.innerHTML = '';
+  const q = (query||'').toLowerCase();
+
+  clientData.forEach(c=>{
+    if(filterWriters && filterWriters.length && !filterWriters.includes(c.writer)) return;
+    if(q && !(c.name.toLowerCase().includes(q) || c.writer.toLowerCase().includes(q) || c.engager.toLowerCase().includes(q))) return;
+
+    const row = document.createElement('tr');
+    row.className = 'row' + (c.status === 'paused' ? ' is-paused' : '');
+    row.dataset.target = 'p-'+c.id;
+    const isActive = c.status !== 'paused';
+    row.innerHTML = `
+      <td><div class="chev"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div></td>
+      <td><div class="client-cell"><div class="client-avatar" style="background:${c.color};">${c.initials}</div><div><div class="client-name">${c.name}</div><div class="client-sub">${c.sub}</div></div></div></td>
+      <td><div class="writer"><div class="dot">${c.writer[0]}</div>${c.writer}</div></td>
+      <td><div class="writer"><div class="dot">${c.engager[0]}</div>${c.engager}</div></td>
+      <td><div class="since">${c.lastPost}<small>${c.lastPostDate}</small></div></td>
+      <td><div class="since">${c.lastComment}<small>${c.lastCommentDate}</small></div></td>
+      <td>${statusWrap(c.postStatus,c.postLabel,c.postWidth)}</td>
+      <td>${statusWrap(c.commentStatus,c.commentLabel,c.commentWidth)}</td>
+      <td><div class="tally">${c.postsMTD}<small>posts</small></div></td>
+      <td><div class="tally">${c.commentsMTD}<small>comments</small></div></td>
+      <td>
+        <div class="toggle-wrap" data-toggle="${c.id}">
+          <div class="toggle-switch ${isActive ? 'on' : ''}"><div class="knob"></div></div>
+          <span class="toggle-label ${isActive ? 'active' : ''}">${isActive ? 'Active' : 'Paused'}</span>
+        </div>
+      </td>
+    `;
+    const panelRow = document.createElement('tr');
+    panelRow.className = 'panel-row';
+    panelRow.id = 'p-'+c.id;
+    panelRow.innerHTML = `<td colspan="11"><div class="panel">${panelHTML(c)}</div></td>`;
+
+    tableBody.appendChild(row);
+    tableBody.appendChild(panelRow);
+
+    const mcard = document.createElement('div');
+    mcard.className = 'mcard';
+    mcard.innerHTML = `
+      <div class="mcard-top" data-target="m-${c.id}">
+        <div class="client-cell"><div class="client-avatar" style="background:${c.color};">${c.initials}</div><div><div class="client-name">${c.name}</div><div class="client-sub">${c.writer} · ${c.sub}</div></div></div>
+        <div class="chev"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+      <div class="mcard-meta">
+        <div>Writer<b>${c.writer}</b></div>
+        <div>Engagement<b>${c.engager}</b></div>
+        <div>Last post<b>${c.lastPost}</b></div>
+        <div>Last comment<b>${c.lastComment}</b></div>
+        <div>Posts MTD<b>${c.postsMTD}</b></div>
+        <div>Comments MTD<b>${c.commentsMTD}</b></div>
+      </div>
+      <div class="mcard-status">
+        ${statusWrap(c.postStatus,c.postLabel,c.postWidth)}
+        ${statusWrap(c.commentStatus,c.commentLabel,c.commentWidth)}
+      </div>
+      <div class="panel" id="m-${c.id}">${panelHTML(c)}</div>
+    `;
+    mobileList.appendChild(mcard);
+  });
+
+  attachHandlers();
+}
+
+function attachHandlers(){
+  document.querySelectorAll('tr.row').forEach(row => {
+    row.addEventListener('click', () => {
+      const id = row.getAttribute('data-target');
+      const panel = document.getElementById(id);
+      const isOpen = panel.classList.contains('show');
+      document.querySelectorAll('tr.panel-row').forEach(p => p.classList.remove('show'));
+      document.querySelectorAll('tr.row').forEach(r => r.classList.remove('open'));
+      if(!isOpen){ panel.classList.add('show'); row.classList.add('open'); }
+    });
+  });
+
+  document.querySelectorAll('[data-toggle]').forEach(toggle=>{
+    toggle.addEventListener('click', (e)=>{
+      e.stopPropagation(); // don't trigger row expand/collapse
+      const id = toggle.dataset.toggle;
+      const c = clientData.find(x=>x.id===id);
+      if(!c) return;
+      c.status = (c.status === 'paused') ? 'active' : 'paused';
+      // NOTE: this only updates the in-memory view. Persisting this change
+      // back to clients.json happens through the Claude Project chat flow,
+      // not by editing the dashboard directly.
+      render(activeWriters, document.getElementById('searchInput').value);
+    });
+  });
+
+  document.querySelectorAll('.mcard-top').forEach(top=>{
+    top.addEventListener('click', ()=>{
+      const id = top.getAttribute('data-target');
+      const panel = document.getElementById(id);
+      const card = top.closest('.mcard');
+      const wasOpen = panel.classList.contains('show');
+      document.querySelectorAll('.mcard .panel').forEach(p=>p.classList.remove('show'));
+      if(!wasOpen){ panel.classList.add('show'); }
+    });
+  });
+
+  document.querySelectorAll('.view-more').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      const c = clientData.find(x=>x.id===id);
+      const list = document.querySelectorAll('#postlist-'+id);
+      list.forEach(el=>{ el.innerHTML = postListHTML(c.posts, null); });
+      document.querySelectorAll(`.view-more[data-id="${id}"]`).forEach(b=>b.style.display='none');
+    });
+  });
+}
+
+const filterBtn = document.getElementById('filterBtn');
+const filterPanel = document.getElementById('filterPanel');
+filterBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  filterPanel.classList.toggle('show');
+});
+document.addEventListener('click', (e)=>{
+  if(!filterPanel.contains(e.target) && e.target!==filterBtn){
+    filterPanel.classList.remove('show');
+  }
+});
+
+let activeWriters = [];
+document.querySelectorAll('.filter-opt input').forEach(chk=>{
+  chk.addEventListener('change', ()=>{
+    activeWriters = Array.from(document.querySelectorAll('.filter-opt input:checked')).map(i=>i.value);
+    const countEl = document.getElementById('filterCount');
+    if(activeWriters.length){ countEl.style.display='flex'; countEl.textContent = activeWriters.length; }
+    else { countEl.style.display='none'; }
+    render(activeWriters, document.getElementById('searchInput').value);
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', (e)=>{
+  render(activeWriters, e.target.value);
+});
+
+render([], '');
+</script>
+
+</body>
+</html>
