@@ -193,12 +193,17 @@ def build_month_data_js(clients_data):
         is_current = (month_key == today_key)
         views = []
         for client in clients_data.get("clients", []):
-            if client.get("status") == "removed":
-                # Removed clients still show in months where they were active,
-                # but never appear in months added after their removal.
-                pass
             months = client.get("months", {})
             month = months.get(month_key)
+
+            if client.get("status") == "removed":
+                # Removed clients stay visible in months where they genuinely
+                # had data (so the historical record isn't erased), but never
+                # appear in the current month or any month going forward —
+                # even if a stray record exists there, we suppress it.
+                if month is None or is_current:
+                    continue
+
             if month is None:
                 continue  # this client has no record for this month — skip
             views.append(build_client_view(client, month_key, month, is_current))
@@ -275,8 +280,16 @@ def main():
 
     print(f"Built dashboard with {len(sorted_keys)} month tab(s) -> {output_path}")
     for mk in sorted_keys:
-        n_clients = sum(1 for c in clients_data.get("clients", []) if mk in c.get("months", {}))
-        marker = " (current)" if mk == today_key else ""
+        is_current = (mk == today_key)
+        n_clients = 0
+        for c in clients_data.get("clients", []):
+            has_month = mk in c.get("months", {})
+            if not has_month:
+                continue
+            if c.get("status") == "removed" and is_current:
+                continue  # matches build_month_data_js suppression logic
+            n_clients += 1
+        marker = " (current)" if is_current else ""
         print(f"  {month_label(mk)}{marker}: {n_clients} client(s) with data")
 
 
