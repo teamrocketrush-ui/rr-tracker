@@ -80,6 +80,14 @@
   .hero p{color:var(--muted);font-size:14.5px;margin:0;}
 
   /* ---------- toolbar ---------- */
+  .month-tabs{display:flex;gap:6px;margin:18px 0 4px;flex-wrap:wrap;}
+  .month-tab{
+    padding:7px 16px;border-radius:8px;font-size:12.5px;font-weight:600;
+    color:var(--muted);background:var(--card,#fff);border:1px solid var(--line,#e5e7eb);
+    cursor:pointer;transition:all .12s;
+  }
+  .month-tab:hover{color:var(--ink,#111);border-color:#cbd5e1;}
+  .month-tab.active{background:#111111;color:#fff;border-color:#111111;}
   .toolbar{
     display:flex;align-items:center;justify-content:space-between;
     gap:14px;margin-bottom:18px;flex-wrap:wrap;
@@ -201,10 +209,12 @@
   .status-fill.green{background:var(--green);}
   .status-fill.amber{background:var(--amber);}
   .status-fill.red{background:var(--red);}
+  .status-fill.neutral{background:#9CA3AF;}
   .status-text{font-size:11px;font-weight:600;white-space:nowrap;}
   .status-text.green{color:var(--green);}
   .status-text.amber{color:#B5841F;}
   .status-text.red{color:var(--red);}
+  .status-text.neutral{color:#6B7280;}
 
   .tally{font-weight:600;}
   .tally small{display:block;font-weight:400;color:var(--muted);font-size:11px;}
@@ -253,6 +263,7 @@
   .flag.red{background:var(--red-soft);color:var(--red);}
   .flag.amber{background:var(--amber-soft);color:#9A6F16;}
   .flag.green{background:var(--green-soft);color:var(--green);}
+  .flag.neutral{background:#F1F2F4;color:#6B7280;}
   .panel-head .target{font-size:12px;color:var(--muted);}
 
   .panel-grid{
@@ -397,6 +408,8 @@
     <p>Live status of every client's last post and last comment, sorted by what needs attention.</p>
   </div>
 
+  <div class="month-tabs" id="monthTabs"></div>
+
   <div class="toolbar">
     <div class="toolbar-left">
       <div class="search">
@@ -453,10 +466,129 @@
 </div>
 
 <script>
-const clientData = [
-{"id": "c1", "name": "Alphastar Technologies", "initials": "AT", "color": "#4A6670", "sub": "Pilot · target 12/mo", "status": "active", "writer": "Riya", "engager": "Karan", "lastPost": "Today", "lastPostDate": "Jun 30", "lastComment": "1 day ago", "lastCommentDate": "Jun 29", "postStatus": "green", "postLabel": "On time", "postWidth": 90, "commentStatus": "green", "commentLabel": "On time", "commentWidth": 90, "postsMTD": "4 / 12", "commentsMTD": "2 / 20", "flag": {"type": "green", "text": "On track — today"}, "target": "Target: 12 posts/mo · 20 comments/mo", "posts": [{"date": "Jun 30", "full_date": "2026-06-30", "title": "India built 50,000+ km of national highways in the last decade. Nobody told the auto industry that this would change wha", "likes": 2, "comments": 0, "url": "https://www.linkedin.com/posts/anckursama_india-built-50000-km-of-national-highways-activity-7477615242533847040-zIr3", "post_type": "regular"}, {"date": "Jun 26", "full_date": "2026-06-26", "title": "For 30 years, one company decided what car India drove.", "likes": 18, "comments": 1, "url": "https://www.linkedin.com/posts/anckursama_for-30-years-one-company-decided-what-car-activity-7476129615758123008-ed0H", "post_type": "regular"}, {"date": "Jun 25", "full_date": "2026-06-25", "title": "Indian car buyers today spend an average of 3+ months researching before walking into a showroom.", "likes": 17, "comments": 0, "url": "https://www.linkedin.com/posts/anckursama_indian-car-buyers-today-spend-an-average-activity-7475767253070778368-30Dp", "post_type": "regular"}, {"date": "Jun 3", "full_date": "2026-06-03", "title": "Every year, Unnati brings us together to reflect on our journey, recognize outstanding contributions, and celebrate the ", "likes": 15, "comments": 0, "url": "https://www.linkedin.com/posts/anckursama_unnati-is-more-than-an-event-its-a-celebration-activity-7467938802204864513-y1Fv", "post_type": "quote"}], "commentDays": [0, 0, 0, 1, 0, 1, 0], "commentLog": [{"date": "Jun 29", "full_date": "2026-06-29", "text": "2 comments posted"}, {"date": "Jun 27", "full_date": "2026-06-27", "text": "1 comment posted"}]},
-{"id": "c2", "name": "Nikhil Mishra", "initials": "NM", "color": "#7A5C4A", "sub": "Retainer · target 0/mo", "status": "paused", "writer": "Unassigned", "engager": "Unassigned", "lastPost": "No activity yet", "lastPostDate": "—", "lastComment": "No activity yet", "lastCommentDate": "—", "postStatus": "red", "postLabel": "No activity", "postWidth": 15, "commentStatus": "red", "commentLabel": "No activity", "commentWidth": 15, "postsMTD": "0 / 0", "commentsMTD": "0 / 0", "flag": {"type": "red", "text": "Flagged — No activity (weekends excluded)"}, "target": "Target: 0 posts/mo · 0 comments/mo", "posts": [], "commentDays": [0, 0, 0, 0, 0, 0, 0], "commentLog": []}
-];
+const clientData = [];
+
+// ── MONTH DATA ──────────────────────────────────────────────
+// monthData maps "YYYY-MM" -> array of client view objects for that month
+// (same shape each client object already had). build_dashboard_data.py
+// generates this whole block; the single clientData array above is kept
+// only as a fallback shape reference and is not used directly below.
+const monthData = {
+  "2026-06": [
+    {
+      "id": "c1",
+      "name": "Alphastar Technologies",
+      "initials": "AT",
+      "color": "#4A6670",
+      "sub": "Pilot · target 12/mo",
+      "status": "active",
+      "writer": "Riya",
+      "engager": "Karan",
+      "lastPost": "Today",
+      "lastPostDate": "Jun 30",
+      "lastComment": "1 day ago",
+      "lastCommentDate": "Jun 29",
+      "postStatus": "green",
+      "postLabel": "On time",
+      "postWidth": 90,
+      "commentStatus": "green",
+      "commentLabel": "On time",
+      "commentWidth": 90,
+      "postsMTD": "4 / 12",
+      "commentsMTD": "2 / 20",
+      "flag": {
+        "type": "green",
+        "text": "On track — today"
+      },
+      "target": "Target: 12 posts/mo · 20 comments/mo",
+      "posts": [
+        {
+          "date": "Jun 30",
+          "full_date": "2026-06-30",
+          "title": "India built 50,000+ km of national highways in the last decade. Nobody told the auto industry that this would change wha",
+          "likes": 2,
+          "comments": 0,
+          "url": "https://www.linkedin.com/posts/anckursama_india-built-50000-km-of-national-highways-activity-7477615242533847040-zIr3",
+          "post_type": "regular"
+        },
+        {
+          "date": "Jun 26",
+          "full_date": "2026-06-26",
+          "title": "For 30 years, one company decided what car India drove.",
+          "likes": 18,
+          "comments": 1,
+          "url": "https://www.linkedin.com/posts/anckursama_for-30-years-one-company-decided-what-car-activity-7476129615758123008-ed0H",
+          "post_type": "regular"
+        },
+        {
+          "date": "Jun 25",
+          "full_date": "2026-06-25",
+          "title": "Indian car buyers today spend an average of 3+ months researching before walking into a showroom.",
+          "likes": 17,
+          "comments": 0,
+          "url": "https://www.linkedin.com/posts/anckursama_indian-car-buyers-today-spend-an-average-activity-7475767253070778368-30Dp",
+          "post_type": "regular"
+        },
+        {
+          "date": "Jun 3",
+          "full_date": "2026-06-03",
+          "title": "Every year, Unnati brings us together to reflect on our journey, recognize outstanding contributions, and celebrate the ",
+          "likes": 15,
+          "comments": 0,
+          "url": "https://www.linkedin.com/posts/anckursama_unnati-is-more-than-an-event-its-a-celebration-activity-7467938802204864513-y1Fv",
+          "post_type": "quote"
+        }
+      ],
+      "commentDays": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "commentLog": [
+        {
+          "date": "Jun 29",
+          "full_date": "2026-06-29",
+          "text": "2 comments posted"
+        },
+        {
+          "date": "Jun 27",
+          "full_date": "2026-06-27",
+          "text": "1 comment posted"
+        }
+      ]
+    }
+  ]
+};
+const monthLabels = {
+  "2026-06": "June 2026"
+};
+let activeMonth = "2026-06";
+
+function renderMonthTabs(){
+  const wrap = document.getElementById('monthTabs');
+  if (!wrap) return;
+  const keys = Object.keys(monthData).sort(); // chronological, oldest first
+  wrap.innerHTML = keys.map(k => {
+    const label = monthLabels[k] || k;
+    const cls = k === activeMonth ? 'month-tab active' : 'month-tab';
+    return `<button class="${cls}" data-month="${k}">${label}</button>`;
+  }).join('');
+  wrap.querySelectorAll('.month-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeMonth = btn.dataset.month;
+      renderMonthTabs();
+      render(getActiveFilters(), searchInput ? searchInput.value : '');
+    });
+  });
+}
+
+function getActiveFilters(){
+  return Array.from(document.querySelectorAll('.filter-opt input:checked')).map(i => i.value);
+}
 
 const tableBody = document.getElementById('tableBody');
 const mobileList = document.getElementById('mobileList');
@@ -528,8 +660,9 @@ function render(filterWriters, query){
   tableBody.innerHTML = '';
   mobileList.innerHTML = '';
   const q = (query||'').toLowerCase();
+  const currentClientData = monthData[activeMonth] || [];
 
-  clientData.forEach(c=>{
+  currentClientData.forEach(c=>{
     if(filterWriters && filterWriters.length && !filterWriters.includes(c.writer)) return;
     if(q && !(c.name.toLowerCase().includes(q) || c.writer.toLowerCase().includes(q) || c.engager.toLowerCase().includes(q))) return;
 
@@ -606,7 +739,7 @@ function attachHandlers(){
     toggle.addEventListener('click', (e)=>{
       e.stopPropagation(); // don't trigger row expand/collapse
       const id = toggle.dataset.toggle;
-      const c = clientData.find(x=>x.id===id);
+      const c = (monthData[activeMonth]||[]).find(x=>x.id===id);
       if(!c) return;
       c.status = (c.status === 'paused') ? 'active' : 'paused';
       // NOTE: this only updates the in-memory view. Persisting this change
@@ -631,7 +764,7 @@ function attachHandlers(){
     btn.addEventListener('click', (e)=>{
       e.stopPropagation();
       const id = btn.dataset.id;
-      const c = clientData.find(x=>x.id===id);
+      const c = (monthData[activeMonth]||[]).find(x=>x.id===id);
       const list = document.querySelectorAll('#postlist-'+id);
       list.forEach(el=>{ el.innerHTML = postListHTML(c.posts, null); });
       document.querySelectorAll(`.view-more[data-id="${id}"]`).forEach(b=>b.style.display='none');
@@ -666,6 +799,7 @@ document.getElementById('searchInput').addEventListener('input', (e)=>{
   render(activeWriters, e.target.value);
 });
 
+renderMonthTabs();
 render([], '');
 </script>
 
