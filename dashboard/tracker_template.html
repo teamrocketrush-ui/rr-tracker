@@ -29,16 +29,18 @@
     --shadow:0 1px 2px rgba(30,36,32,0.04), 0 8px 24px -12px rgba(30,36,32,0.10);
   }
   *{box-sizing:border-box;}
+  html{overflow-x:hidden;}
   body{
     margin:0;
     background:var(--frame);
     font-family:'Inter',sans-serif;
     color:var(--ink);
-    padding:28px;
+    padding:20px;
     min-height:100vh;
+    overflow-x:hidden;
   }
   .shell{
-    max-width:1280px;
+    max-width:1480px;
     margin:0 auto;
     background:var(--page);
     border-radius:28px;
@@ -80,11 +82,17 @@
   .hero p{color:var(--muted);font-size:14.5px;margin:0;}
 
   /* ---------- toolbar ---------- */
-  .month-tabs{display:flex;gap:6px;margin:18px 0 4px;flex-wrap:wrap;}
+  .month-tabs-wrap{margin:20px 0 6px;}
+  .month-tabs-label{
+    font-size:10.5px;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:0.06em;
+    margin-bottom:8px;
+  }
+  .month-tabs{display:flex;gap:6px;flex-wrap:wrap;}
   .month-tab{
     padding:7px 16px;border-radius:8px;font-size:12.5px;font-weight:600;
     color:var(--muted);background:var(--card,#fff);border:1px solid var(--line,#e5e7eb);
-    cursor:pointer;transition:all .12s;
+    cursor:pointer;transition:all .12s;box-shadow:var(--shadow);
   }
   .month-tab:hover{color:var(--ink,#111);border-color:#cbd5e1;}
   .month-tab.active{background:#111111;color:#fff;border-color:#111111;}
@@ -149,15 +157,15 @@
     overflow:hidden;
   }
   .table-wrap{overflow-x:auto;}
-  table{width:100%;border-collapse:collapse;min-width:1060px;}
+  table{width:100%;border-collapse:collapse;}
   thead th{
     text-align:left;
-    font-size:11.5px;
+    font-size:11px;
     text-transform:uppercase;
-    letter-spacing:0.04em;
+    letter-spacing:0.03em;
     color:var(--muted);
     font-weight:600;
-    padding:16px 18px;
+    padding:16px 10px;
     border-bottom:1px solid var(--line);
     white-space:nowrap;
   }
@@ -169,7 +177,7 @@
   }
   tbody tr.row:hover{background:#FBFAF7;}
   tbody tr.row.open{background:#FBFAF7;}
-  tbody tr.row td{padding:14px 18px;font-size:13.5px;vertical-align:middle;}
+  tbody tr.row td{padding:14px 10px;font-size:13px;vertical-align:middle;}
 
   .chev{
     width:22px;height:22px;border-radius:6px;
@@ -201,9 +209,10 @@
   .since{font-weight:600;}
   .since small{display:block;font-weight:400;color:var(--muted);font-size:11px;margin-top:1px;}
 
-  .status-wrap{display:flex;align-items:center;gap:8px;min-width:108px;}
+  .status-wrap{display:flex;align-items:center;gap:6px;min-width:78px;}
   .status-track{
     flex:1;height:6px;border-radius:99px;background:var(--track);overflow:hidden;
+    max-width:46px;
   }
   .status-fill{height:100%;border-radius:99px;}
   .status-fill.green{background:var(--green);}
@@ -364,6 +373,7 @@
   .legend i.green{background:var(--green);}
   .legend i.amber{background:var(--amber);}
   .legend i.red{background:var(--red);}
+  .legend-mobile{display:none;}
 
   /* ---------- mobile card view ---------- */
   .mobile-list{display:none;}
@@ -371,7 +381,22 @@
     body{padding:14px;}
     .shell{padding:18px 16px 30px;border-radius:20px;}
     .table-wrap{display:none;}
-    .mobile-list{display:block;}
+    .legend-desktop{display:none;}
+    .legend-mobile{
+      display:flex;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius-md);
+      box-shadow:var(--shadow);
+      padding:14px 16px;
+      margin:0 0 16px;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:9px;
+    }
+    .legend-mobile span{gap:8px;}
+    .legend-mobile i{width:9px;height:9px;flex-shrink:0;}
+    .mobile-list{display:block;margin-top:4px;}
     .mcard{
       background:var(--card);border:1px solid var(--line);
       border-radius:var(--radius-md);
@@ -408,7 +433,10 @@
     <p>Live status of every client's last post and last comment, sorted by what needs attention.</p>
   </div>
 
-  <div class="month-tabs" id="monthTabs"></div>
+  <div class="month-tabs-wrap">
+    <div class="month-tabs-label">Viewing Month</div>
+    <div class="month-tabs" id="monthTabs"></div>
+  </div>
 
   <div class="toolbar">
     <div class="toolbar-left">
@@ -454,11 +482,17 @@
         </tbody>
       </table>
     </div>
-    <div class="legend">
+    <div class="legend legend-desktop">
       <span><i class="green"></i>On time</span>
       <span><i class="amber"></i>Watch — 2–3 days since last activity</span>
       <span><i class="red"></i>Flagged — 3+ days overdue (weekends excluded)</span>
     </div>
+  </div>
+
+  <div class="legend legend-mobile">
+    <span><i class="green"></i>On time</span>
+    <span><i class="amber"></i>Watch — 2–3 days since last activity</span>
+    <span><i class="red"></i>Flagged — 3+ days overdue (weekends excluded)</span>
   </div>
 
   <div class="mobile-list" id="mobileList"></div>
