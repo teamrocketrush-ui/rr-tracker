@@ -1,0 +1,28 @@
+name: Sync Tracker
+on:
+  workflow_dispatch:
+    inputs:
+      client_id:
+        description: 'Client ID to sync (leave empty for all)'
+        required: false
+        default: ''
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install apify-client
+      - name: Run sync
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          CLIENT_ID: ${{ github.event.inputs.client_id }}
+        run: |
+          if [ -n "$CLIENT_ID" ]; then
+            python scripts/sync_tracker.py --client "$CLIENT_ID"
+          else
+            python scripts/sync_tracker.py
+          fi
