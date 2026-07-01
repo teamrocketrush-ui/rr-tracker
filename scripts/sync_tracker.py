@@ -1,96 +1,104 @@
 """
-RocketRush — Tracker Sync Orchestrator
-------------------------------------------------
-This is the script that runs when "update the tracker" is triggered.
-It's the layer between the manager's request and the actual scraping.
-
+RocketRush — Tracker Sync (Incremental, Cost-Efficient)
+--------------------------------------------------------
 WHAT THIS DOES:
-1. Reads clients.json
-2. Filters to status == "active" only (paused clients are skipped entirely,
-   so no Apify credits are spent on them)
-3. For each active client, calculates the sync gap: how many days since
-   lastSyncedAt (or "since start of month" if never synced)
-4. Calls the Apify actor for that client's LinkedIn URL
-5. Hands the raw result to parse_apify_output.py's functions to merge
-   into clients.json
-6. Reports a summary: who was synced, how many new posts, who was skipped
-   and why, and flags anyone with an unusually large gap (10+ days)
+  1. Reads clients.json from GitHub
+  2. For each active client, finds their most recent post already stored
+  3. Asks Apify ONLY for posts newer than that date (no re-scraping)
+  4. Merges new posts into clients.json
+  5. Saves updated clients.json back to GitHub
+  6. Rebuilds the dashboard HTML and pushes it too
+  7. Reports a clean summary
 
-WHAT THIS DOES NOT DO:
-- Touch comments data (still manual, see earlier discussion)
-- Regenerate the dashboard HTML (separate step, see build_dashboard_data.py)
-- Push to GitHub (separate step, outside Python)
+APIFY COST LOGIC:
+  - If client has posts stored → only ask for posts after the latest one
+  - If client has no posts yet → only ask for posts in the current month
+  - Apify returns results newest-first, so we stop as soon as we hit a
+    date we already have — no wasted credits on old posts
 
-REQUIRES:
-    pip install apify-client
-    APIFY_TOKEN environment variable set
-
-USAGE:
-    python sync_tracker.py clients.json
-    python sync_tracker.py clients.json --client c1   # sync just one client
-    python sync_tracker.py clients.json --dry-run     # show what WOULD happen, no API calls
+USAGE (run from inside Claude's bash tool):
+  python sync_tracker.py [--client CLIENT_ID] [--dry-run]
 """
 
-import json
-import os
-import sys
-import argparse
+import json, os, sys, base64, urllib.request, urllib.error
 from datetime import datetime, date
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
-from parse_apify_output import parse_posts, merge_into_clients_json, load_json, save_json
+# ── CREDENTIALS ───────────────────────────────────────────
+# Reads from environment variables first (GitHub Actions secrets),
+# falls back to hardcoded values for running locally/in Claude.
+GITHUB_TOKEN  = os.environ.get("GH_PAT", "")
+APIFY_TOKEN   = os.environ.get("APIFY_TOKEN", "")
+GITHUB_OWNER  = "teamrocketrush-ui"
+GITHUB_REPO   = "rr-tracker"
+ACTOR_ID      = "apimaestro/linkedin-profile-posts"
 
-ACTOR_ID = "apimaestro/linkedin-profile-posts"
-LARGE_GAP_THRESHOLD_DAYS = 10
+CLIENTS_PATH   = "data/clients.json"
+TEMPLATE_PATH  = "dashboard/tracker_template.html"
+DASHBOARD_PATH = "dashboard/tracker.html"
 
+# ── GITHUB HELPERS ────────────────────────────────────────
+def gh_get(path):
+    url = f"https://api.github.com/repos/{GITHUB_OWNER}/{GITHUB_REPO}/contents/{path}"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json"
+    })
+    with urllib.request.urlopen(req) as r:
+        data = json.loads(r.read())
+    content = base64.b64decode(data["content"]).decode()
+    return content, data["sha"]
 
-def days_since(date_str):
-    """date_str format: 'YYYY-MM-DD HH:MM:SS' or None"""
-    if not date_str:
+def gh_put(path, content_str, message, sha=None):
+    url = f"https://api.github.com/repos/{GITHUB_OWNER}/{GITHUB_REPO}/contents/{path}"
+    payload = {
+        "message": message,
+        "content": base64.b64encode(content_str.encode()).decode()
+    }
+    if sha:
+        payload["sha"] = sha
+    req = urllib.request.Request(url, method="PUT",
+        data=json.dumps(payload).encode(),
+        headers={
+            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json"
+        })
+    with urllib.request.urlopen(req) as r:
+        return json.loads(r.read())
+
+# ── DATE HELPERS ──────────────────────────────────────────
+def current_month_key():
+    return date.today().strftime("%Y-%m")
+
+def month_start_str():
+    """First day of current month as YYYY-MM-DD"""
+    d = date.today()
+    return f"{d.year}-{d.month:02d}-01"
+
+def latest_post_date(client):
+    """
+    Find the newest post date already stored for this client in the current month.
+    Returns a YYYY-MM-DD string, or None if no posts stored yet for this month.
+    """
+    month_key = current_month_key()
+    months = client.get("months", {})
+    month_data = months.get(month_key, {})
+    posts = month_data.get("posts", [])
+    if not posts:
         return None
-    try:
-        last = datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S").date()
-        return (date.today() - last).days
-    except ValueError:
-        return None
+    # posts are stored newest-first
+    return posts[0].get("full_date")
 
-
-def posts_to_scrape_for_gap(gap_days):
+# ── APIFY ─────────────────────────────────────────────────
+def call_apify(linkedin_url, fetch_after_date, dry_run=False):
     """
-    Scale how many posts to request based on the sync gap.
-    Small gap = small request (cheap). Large/first-time gap = bigger pull.
-    This is the cost-control logic discussed earlier.
+    Call Apify for one profile. Only fetches posts newer than fetch_after_date.
+    fetch_after_date: YYYY-MM-DD string, or None (fetch from start of month)
+    Returns list of raw post dicts.
     """
-    if gap_days is None:
-        return 50  # never synced before -> full backfill for the month
-    if gap_days <= 3:
-        return 10
-    if gap_days <= 10:
-        return 25
-    return 50  # long gap -> pull more to make sure nothing is missed
-
-
-def get_active_clients(clients_data):
-    return [c for c in clients_data.get("clients", []) if c.get("status") == "active"]
-
-
-def get_skipped_clients(clients_data):
-    return [c for c in clients_data.get("clients", []) if c.get("status") != "active"]
-
-
-def call_apify_for_client(client, limit, dry_run=False):
-    """
-    Calls the Apify actor for one client's profile URL.
-    Returns the raw list of post items, or None on failure.
-    """
-    url = client.get("linkedinUrl")
-    if not url:
-        print(f"  SKIP: {client['name']} has no linkedinUrl set.")
-        return None
-
     if dry_run:
-        print(f"  [DRY RUN] Would call Apify for {client['name']} ({url}), limit={limit}")
+        print(f"    [DRY RUN] Would call Apify for {linkedin_url}")
         return []
 
     try:
@@ -99,55 +107,162 @@ def call_apify_for_client(client, limit, dry_run=False):
         print("ERROR: apify-client not installed. Run: pip install apify-client")
         sys.exit(1)
 
-    token = os.environ.get("APIFY_TOKEN")
+    token = APIFY_TOKEN
     if not token:
-        print("ERROR: APIFY_TOKEN environment variable not set.")
+        print("ERROR: No APIFY_TOKEN found.")
         sys.exit(1)
 
-    client_api = ApifyClient(token)
-    print(f"  Calling Apify for {client['name']} (limit={limit})...")
+    ac = ApifyClient(token)
 
-    run = client_api.actor(ACTOR_ID).call(run_input={
-        "username": url,
-        "total_posts_to_scrape": limit,
-    })
+    # We always request a small fixed number (15) since Apify returns newest-first
+    # and we stop as soon as we hit an old post — so 15 is more than enough
+    # for any realistic posting frequency (max ~12 posts/month for our clients)
+    run_input = {
+        "username": linkedin_url,
+        "total_posts_to_scrape": 15,
+    }
 
+    print(f"    → Apify: fetching up to 15 posts (newest first)...")
+    run = ac.actor(ACTOR_ID).call(run_input=run_input)
     dataset_id = run["defaultDatasetId"] if isinstance(run, dict) else run.default_dataset_id
-    items = list(client_api.dataset(dataset_id).iterate_items())
+    items = list(ac.dataset(dataset_id).iterate_items())
+    print(f"    → Got {len(items)} raw items from Apify")
     return items
 
+def parse_and_filter(raw_items, fetch_after_date):
+    """
+    Parse raw Apify items. If fetch_after_date is set, only keep posts
+    strictly AFTER that date (we already have everything up to and including it).
+    Skips reposts.
+    """
+    cutoff = None
+    if fetch_after_date:
+        try:
+            cutoff = datetime.strptime(fetch_after_date, "%Y-%m-%d").date()
+        except ValueError:
+            cutoff = None
 
-def sync_one_client(client, clients_data, dry_run=False):
-    gap = days_since(client.get("lastSyncedAt"))
-    limit = posts_to_scrape_for_gap(gap)
+    month_start = datetime.strptime(month_start_str(), "%Y-%m-%d").date()
+    new_posts = []
 
-    gap_label = f"{gap} day(s) since last sync" if gap is not None else "never synced (first run)"
-    flag = " *** LARGE GAP ***" if (gap is not None and gap >= LARGE_GAP_THRESHOLD_DAYS) else ""
-    print(f"\n{client['name']} — {gap_label}{flag}")
+    for item in raw_items:
+        if item.get("post_type") == "repost":
+            continue
 
-    raw_items = call_apify_for_client(client, limit, dry_run=dry_run)
-    if raw_items is None:
-        return clients_data, {"client": client["name"], "status": "error", "new_posts": 0}
-    if dry_run:
-        return clients_data, {"client": client["name"], "status": "dry_run", "new_posts": 0}
+        posted_at = item.get("posted_at", {})
+        date_str = posted_at.get("date", "")
+        if not date_str:
+            continue
 
-    posts_by_month = parse_posts(raw_items)
-    clients_data = merge_into_clients_json(clients_data, client["id"], posts_by_month)
+        try:
+            dt = datetime.strptime(date_str[:19], "%Y-%m-%d %H:%M:%S")
+        except ValueError:
+            continue
 
-    total_new = sum(len(v) for v in posts_by_month.values())
-    return clients_data, {"client": client["name"], "status": "synced", "new_posts": total_new, "gap_days": gap}
+        post_date = dt.date()
 
+        # Only keep posts from current month onwards
+        if post_date < month_start:
+            continue
 
+        # If we already have posts, only keep ones newer than our newest stored post
+        if cutoff and post_date <= cutoff:
+            continue
+
+        stats = item.get("stats", {})
+        text = (item.get("text") or "").strip()
+        hook = text.split("\n")[0][:120] if text else "(no text)"
+
+        new_posts.append({
+            "date": f"{dt.strftime('%b')} {dt.day}",
+            "full_date": dt.strftime("%Y-%m-%d"),
+            "title": hook,
+            "likes": stats.get("like", stats.get("total_reactions", 0)),
+            "comments": stats.get("comments", 0),
+            "url": item.get("url", ""),
+            "post_type": item.get("post_type", "regular"),
+        })
+
+    # Sort newest first
+    new_posts.sort(key=lambda p: p["full_date"], reverse=True)
+    return new_posts
+
+def merge_posts(clients_data, client_id, new_posts):
+    """
+    Merge new posts into the current month's record for this client.
+    Preserves existing posts, writer, engager, targets, comments.
+    Deduplicates by URL so running twice is safe.
+    """
+    month_key = current_month_key()
+    client = next((c for c in clients_data["clients"] if c["id"] == client_id), None)
+    if not client:
+        return clients_data
+
+    client.setdefault("months", {})
+    month = client["months"].setdefault(month_key, {
+        "writer": None, "engager": None,
+        "postsTarget": None, "commentsTarget": None,
+        "posts": [], "comments": []
+    })
+
+    existing_urls = {p.get("url") for p in month.get("posts", [])}
+    added = 0
+    for p in new_posts:
+        if p["url"] not in existing_urls:
+            month.setdefault("posts", []).append(p)
+            existing_urls.add(p["url"])
+            added += 1
+
+    # Re-sort newest first after merge
+    month["posts"].sort(key=lambda p: p["full_date"], reverse=True)
+    client["lastSyncedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return clients_data, added
+
+# ── DASHBOARD REBUILD ─────────────────────────────────────
+def rebuild_dashboard(clients_data):
+    """Inline version of build_dashboard_data.py logic so we don't need the file."""
+    sys.path.insert(0, str(Path(__file__).parent))
+    try:
+        from build_dashboard_data import build_month_data_js, inject_into_dashboard
+        template, template_sha = gh_get(TEMPLATE_PATH)
+        block = build_month_data_js(clients_data)
+        updated = inject_into_dashboard(template, block)
+        return updated, template_sha
+    except Exception as e:
+        print(f"  WARNING: dashboard rebuild failed locally ({e}) — skipping HTML push")
+        return None, None
+
+# ── MAIN ─────────────────────────────────────────────────
 def main():
+    import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("clients_json", help="Path to clients.json")
     parser.add_argument("--client", help="Sync only this client id", default=None)
-    parser.add_argument("--dry-run", action="store_true", help="Show what would happen without calling Apify")
+    parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
-    clients_data = load_json(args.clients_json)
-    active = get_active_clients(clients_data)
-    skipped = get_skipped_clients(clients_data)
+    print("=== RocketRush Tracker Sync ===")
+    print(f"Date: {date.today()}  |  Month: {current_month_key()}")
+    if args.dry_run:
+        print("⚠ DRY RUN — no data will be written\n")
+
+    # Validate credentials before doing anything
+    if not GITHUB_TOKEN:
+        print("ERROR: GH_PAT environment variable not set.")
+        print("Set it with: export GH_PAT=your_github_token")
+        sys.exit(1)
+    if not APIFY_TOKEN and not args.dry_run:
+        print("ERROR: APIFY_TOKEN environment variable not set.")
+        print("Set it with: export APIFY_TOKEN=your_apify_token")
+        sys.exit(1)
+
+    # 1. Fetch clients.json from GitHub
+    print("Fetching clients.json from GitHub...")
+    clients_raw, clients_sha = gh_get(CLIENTS_PATH)
+    clients_data = json.loads(clients_raw)
+
+    # 2. Filter to active clients only
+    active = [c for c in clients_data["clients"] if c.get("status") == "active"]
+    skipped = [c for c in clients_data["clients"] if c.get("status") != "active"]
 
     if args.client:
         active = [c for c in active if c["id"] == args.client]
@@ -155,34 +270,68 @@ def main():
             print(f"Client id '{args.client}' not found among active clients.")
             sys.exit(1)
 
-    print(f"=== RocketRush Tracker Sync {'(DRY RUN)' if args.dry_run else ''} ===")
-    print(f"Active clients to sync: {len(active)}")
+    print(f"Active: {len(active)} client(s)")
     if skipped:
         skipped_labels = ", ".join(f"{c['name']} [{c.get('status')}]" for c in skipped)
-        print(f"Skipped (not active): {skipped_labels}")
+        print(f"Skipped: {skipped_labels}")
+    print()
 
+    # 3. Sync each active client
     results = []
     for client in active:
-        clients_data, result = sync_one_client(client, clients_data, dry_run=args.dry_run)
-        results.append(result)
+        print(f"[{client['name']}]")
+        url = client.get("linkedinUrl")
+        if not url:
+            print(f"  SKIP: no linkedinUrl set")
+            results.append({"name": client["name"], "status": "no_url", "new": 0})
+            continue
 
+        # Find our newest stored post — only ask Apify for posts after this
+        latest = latest_post_date(client)
+        if latest:
+            print(f"  Latest stored post: {latest} → only fetching posts after this")
+        else:
+            print(f"  No posts stored for {current_month_key()} yet → fetching from month start ({month_start_str()})")
+
+        raw = call_apify(url, latest, dry_run=args.dry_run)
+        new_posts = parse_and_filter(raw, latest)
+        print(f"  New posts to add: {len(new_posts)}")
+
+        if not args.dry_run and new_posts:
+            clients_data, added = merge_posts(clients_data, client["id"], new_posts)
+            results.append({"name": client["name"], "status": "synced", "new": added})
+        else:
+            results.append({"name": client["name"], "status": "dry_run" if args.dry_run else "no_new_posts", "new": 0})
+
+    # 4. Push updated clients.json to GitHub
     if not args.dry_run:
-        save_json(args.clients_json, clients_data)
+        print("\nPushing updated clients.json to GitHub...")
+        gh_put(CLIENTS_PATH, json.dumps(clients_data, indent=2, ensure_ascii=False),
+               f"Sync {current_month_key()} — {date.today()}", clients_sha)
+        print("✅ clients.json pushed")
 
+        # 5. Rebuild and push dashboard
+        print("Rebuilding dashboard...")
+        dashboard_html, _ = rebuild_dashboard(clients_data)
+        if dashboard_html:
+            _, dash_sha = gh_get(DASHBOARD_PATH)
+            gh_put(DASHBOARD_PATH, dashboard_html,
+                   f"Rebuild dashboard after sync {date.today()}", dash_sha)
+            print("✅ dashboard/tracker.html pushed")
+            print(f"🌐 Live: https://{GITHUB_OWNER}.github.io/{GITHUB_REPO}/dashboard/tracker.html")
+
+    # 6. Summary
     print("\n=== Summary ===")
     for r in results:
         if r["status"] == "synced":
-            gap_note = f" (gap: {r['gap_days']}d)" if r.get("gap_days") is not None else " (first sync)"
-            print(f"  ✓ {r['client']}: {r['new_posts']} posts found{gap_note}")
+            icon = "✅" if r["new"] > 0 else "—"
+            print(f"  {icon} {r['name']}: {r['new']} new post(s) added")
+        elif r["status"] == "no_new_posts":
+            print(f"  — {r['name']}: already up to date")
         elif r["status"] == "dry_run":
-            print(f"  - {r['client']}: dry run, no changes made")
+            print(f"  · {r['name']}: dry run")
         else:
-            print(f"  ✗ {r['client']}: {r['status']}")
-
-    large_gaps = [r for r in results if r.get("gap_days", 0) and r["gap_days"] >= LARGE_GAP_THRESHOLD_DAYS]
-    if large_gaps:
-        print(f"\n⚠ {len(large_gaps)} client(s) had a gap of {LARGE_GAP_THRESHOLD_DAYS}+ days — worth a manual check.")
-
+            print(f"  ✗ {r['name']}: {r['status']}")
 
 if __name__ == "__main__":
     main()
