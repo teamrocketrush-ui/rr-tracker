@@ -91,10 +91,10 @@
           "comments": []
         },
         "2026-07": {
-          "writer": null,
-          "engager": null,
-          "postsTarget": null,
-          "commentsTarget": null,
+          "writer": "Garvita",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
           "posts": [
             {
               "date": "Jul 1",
@@ -125,6 +125,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-07": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "8",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -145,10 +153,10 @@
           "comments": []
         },
         "2026-07": {
-          "writer": null,
-          "engager": null,
-          "postsTarget": null,
-          "commentsTarget": null,
+          "writer": "Rohit",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "150",
           "posts": [
             {
               "date": "Jul 1",
@@ -179,6 +187,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-07": {
+          "writer": "Bhawana",
+          "engager": "NA",
+          "postsTarget": "12-16",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -191,6 +207,14 @@
       "lastSyncedAt": null,
       "months": {
         "2026-06": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        },
+        "2026-07": {
           "writer": "Manasvi",
           "engager": "NA",
           "postsTarget": "12",
@@ -215,6 +239,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-07": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "4",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -227,6 +259,14 @@
       "lastSyncedAt": null,
       "months": {
         "2026-06": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
+        },
+        "2026-07": {
           "writer": "Bhawana",
           "engager": "Garvita",
           "postsTarget": "16",
@@ -251,6 +291,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-07": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -263,6 +311,14 @@
       "lastSyncedAt": null,
       "months": {
         "2026-06": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        },
+        "2026-07": {
           "writer": "Kanishka",
           "engager": "NA",
           "postsTarget": "12",
@@ -287,6 +343,14 @@
           "commentsTarget": "250",
           "posts": [],
           "comments": []
+        },
+        "2026-07": {
+          "writer": "Kanishka",
+          "engager": "Chirag",
+          "postsTarget": "20",
+          "commentsTarget": "250",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -299,6 +363,14 @@
       "lastSyncedAt": null,
       "months": {
         "2026-06": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "90",
+          "posts": [],
+          "comments": []
+        },
+        "2026-07": {
           "writer": "Bhawana",
           "engager": "Garvita",
           "postsTarget": "12",
@@ -325,10 +397,10 @@
           "comments": []
         },
         "2026-07": {
-          "writer": null,
-          "engager": null,
-          "postsTarget": null,
-          "commentsTarget": null,
+          "writer": "Rohit",
+          "engager": "Adee",
+          "postsTarget": "12-16",
+          "commentsTarget": "100",
           "posts": [
             {
               "date": "Jul 1",
@@ -359,6 +431,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-07": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -371,6 +451,14 @@
       "lastSyncedAt": null,
       "months": {
         "2026-06": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        },
+        "2026-07": {
           "writer": "Manasvi",
           "engager": "NA",
           "postsTarget": "12",
@@ -395,6 +483,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-07": {
+          "writer": "Bhawana",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -407,6 +503,14 @@
       "lastSyncedAt": null,
       "months": {
         "2026-06": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        },
+        "2026-07": {
           "writer": "Manasvi",
           "engager": "NA",
           "postsTarget": "10",
@@ -433,10 +537,10 @@
           "comments": []
         },
         "2026-07": {
-          "writer": null,
-          "engager": null,
-          "postsTarget": null,
-          "commentsTarget": null,
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
           "posts": [
             {
               "date": "Jul 1",
