@@ -144,9 +144,11 @@ def apify_client():
         sys.exit(1)
     return ApifyClient(APIFY_TOKEN)
 
+BATCH_SIZE = 10  # harvestapi/linkedin-post-search hard limit
+
 def call_apify_search(active_clients, cutoff_date, dry_run=False):
     """
-    ONE batch call for all active clients using their profile URLs.
+    Calls the actor in batches of BATCH_SIZE (actor limit: 10 profiles/call).
     Returns dict: { username: [raw_post_item, ...] }
     """
     author_urls = [c["linkedinUrl"] for c in active_clients if c.get("linkedinUrl")]
@@ -154,42 +156,47 @@ def call_apify_search(active_clients, cutoff_date, dry_run=False):
         return {}
 
     if dry_run:
-        print(f"  [DRY RUN] Would call {ACTOR_ID} for {len(author_urls)} profiles, "
-              f"cutoff={cutoff_date}, maxPosts={MAX_POSTS_PER_PROFILE}")
+        batches = [author_urls[i:i+BATCH_SIZE] for i in range(0, len(author_urls), BATCH_SIZE)]
+        print(f"  [DRY RUN] Would call {ACTOR_ID} in {len(batches)} batch(es) "
+              f"for {len(author_urls)} profiles, cutoff={cutoff_date}, "
+              f"maxPosts={MAX_POSTS_PER_PROFILE}")
         return {}
 
     ac = apify_client()
-    run_input = {
-        "authorUrls":               author_urls,
-        "maxPosts":                 MAX_POSTS_PER_PROFILE,
-        "postedLimitDate":          cutoff_date,
-        "sortBy":                   "date",
-        "scrapeComments":           False,
-        "scrapeReactions":          False,
-        "postNestedComments":       False,
-        "postNestedReactions":      False,
-        "profileScraperMode":       "short",
-        "commentsProfileScraperMode": "short",
-        "reactionsProfileScraperMode": "short",
-        # Reposts excluded — verified in user's manual test that turning
-        # this off filters them out before they reach the output at all.
-        "includeReposts":           False,
-        "includeQuotePosts":        False,
-    }
-
-    print(f"  → Apify: {len(author_urls)} profiles, cutoff={cutoff_date}, "
-          f"max {MAX_POSTS_PER_PROFILE}/profile")
-    run = ac.actor(ACTOR_ID).call(run_input=run_input)
-    dataset_id = (run["defaultDatasetId"] if isinstance(run, dict)
-                  else run.default_dataset_id)
-    items = list(ac.dataset(dataset_id).iterate_items())
-    print(f"  → Got {len(items)} posts total")
-
     by_username = {}
-    for item in items:
-        author = item.get("author", {}).get("publicIdentifier", "")
-        if author:
-            by_username.setdefault(author, []).append(item)
+    batches = [author_urls[i:i+BATCH_SIZE] for i in range(0, len(author_urls), BATCH_SIZE)]
+
+    for batch_num, batch_urls in enumerate(batches, 1):
+        run_input = {
+            "authorUrls":                  batch_urls,
+            "maxPosts":                    MAX_POSTS_PER_PROFILE,
+            "postedLimitDate":             cutoff_date,
+            "sortBy":                      "date",
+            "scrapeComments":              False,
+            "scrapeReactions":             False,
+            "postNestedComments":          False,
+            "postNestedReactions":         False,
+            "profileScraperMode":          "short",
+            "commentsProfileScraperMode":  "short",
+            "reactionsProfileScraperMode": "short",
+            "includeReposts":              False,
+            "includeQuotePosts":           False,
+        }
+        print(f"  → Apify batch {batch_num}/{len(batches)}: "
+              f"{len(batch_urls)} profiles, cutoff={cutoff_date}, "
+              f"max {MAX_POSTS_PER_PROFILE}/profile")
+        run = ac.actor(ACTOR_ID).call(run_input=run_input)
+        dataset_id = (run["defaultDatasetId"] if isinstance(run, dict)
+                      else run.default_dataset_id)
+        items = list(ac.dataset(dataset_id).iterate_items())
+        print(f"  → Batch {batch_num}: got {len(items)} posts")
+        for item in items:
+            author = item.get("author", {}).get("publicIdentifier", "")
+            if author:
+                by_username.setdefault(author, []).append(item)
+
+    total = sum(len(v) for v in by_username.values())
+    print(f"  → Total across all batches: {total} posts")
     return by_username
 
 def parse_post(item):
