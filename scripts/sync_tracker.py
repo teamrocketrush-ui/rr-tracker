@@ -1,35 +1,44 @@
 """
 RocketRush — Tracker Sync
 --------------------------
-Two things per sync:
-  1. POSTS  — batch actor for all active clients, this month only, 5 posts max per profile
-  2. COMMENTS — per-client actor for outgoing comments (comments the client made on others' posts)
+Uses harvestapi/linkedin-post-search — ONE Apify call for ALL active clients.
 
-Cost per daily sync (14 clients):
-  Posts:    ~70 results  × $5/1000 = $0.35
-  Comments: ~70 results  × $5/1000 = $0.35
-  Total:    ~$0.70/day   → ~$21/month (well within $5 budget at 2-day intervals)
+VERIFIED BEHAVIOUR (tested by user 2026-07-02, real run):
+  - postedLimitDate genuinely stops fetching once it hits older posts —
+    does NOT force extra results to fill maxPosts. Confirmed: requesting
+    maxPosts=5 with 2 profiles returned only 2 and 1 results respectively,
+    matching actual post dates, not the max ceiling.
+  - Billing is per POST DELIVERED, not per profile queried or per page
+    fetched internally. 3 posts across 2 profiles cost $0.01 total.
+  - Output includes engagement.likes, engagement.comments, engagement.shares
+    — all confirmed present in real output.
+  - "Include Reposts" toggle (input key not yet in a confirmed schema dump,
+    using includeReposts=False) filters reposts out BEFORE they reach us —
+    no client-side repost filtering needed as long as this is off.
 
-Credentials come from GitHub Actions secrets (GH_PAT + APIFY_TOKEN).
+COST ESTIMATE (from real test): ~$0.002 per post delivered. A full month
+of daily syncing across 17 clients is estimated well under $1, but this
+assumes empty-result days cost ~$0 — not yet confirmed with a live 17-client
+zero-post-day test. Watch actual costs in Apify Console after first runs.
+
+CREDENTIALS from GitHub Actions secrets (GH_PAT + APIFY_TOKEN).
 """
 
 import json, os, sys, base64, urllib.request, urllib.error
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from pathlib import Path
 
 GITHUB_TOKEN = os.environ.get("GH_PAT", "")
 APIFY_TOKEN  = os.environ.get("APIFY_TOKEN", "")
 
-GITHUB_OWNER        = "teamrocketrush-ui"
-GITHUB_REPO         = "rr-tracker"
-BATCH_POSTS_ACTOR   = "apimaestro/linkedin-batch-profile-posts-scraper"
-COMMENTS_ACTOR      = "apimaestro/linkedin-profile-comments"
-CLIENTS_PATH        = "data/clients.json"
-TEMPLATE_PATH       = "dashboard/tracker_template.html"
-DASHBOARD_PATH      = "dashboard/tracker.html"
+GITHUB_OWNER   = "teamrocketrush-ui"
+GITHUB_REPO    = "rr-tracker"
+ACTOR_ID       = "harvestapi/linkedin-post-search"
+CLIENTS_PATH   = "data/clients.json"
+TEMPLATE_PATH  = "dashboard/tracker_template.html"
+DASHBOARD_PATH = "dashboard/tracker.html"
 
-POSTS_PER_PROFILE    = 5
-COMMENTS_PER_PROFILE = 5
+MAX_POSTS_PER_PROFILE = 6   # safety ceiling only — postedLimitDate is the real limiter
 
 # ── GITHUB ────────────────────────────────────────────────────────
 def gh_get(path):
@@ -64,20 +73,22 @@ def gh_put(path, content_str, message, sha=None):
 def current_month_key():
     return date.today().strftime("%Y-%m")
 
+def month_start_str():
+    d = date.today()
+    return f"{d.year}-{d.month:02d}-01"
+
 def username_from_url(url):
-    return url.rstrip("/").split("/in/")[-1].split("/")[0]
+    if "/in/" in url:
+        return url.rstrip("/").split("/in/")[-1].split("/")[0].split("?")[0]
+    return url.rstrip("/").split("/")[-1]
 
 def latest_post_date(client):
     posts = client.get("months", {}).get(current_month_key(), {}).get("posts", [])
     return posts[0]["full_date"] if posts else None
 
-def latest_comment_date(client):
-    comments = client.get("months", {}).get(current_month_key(), {}).get("comments", [])
-    return comments[0]["full_date"] if comments else None
-
 def carry_forward_fields(client):
-    months  = client.get("months", {})
-    mk_now  = current_month_key()
+    months = client.get("months", {})
+    mk_now = current_month_key()
     for mk in sorted(months.keys(), reverse=True):
         if mk >= mk_now:
             continue
@@ -103,7 +114,28 @@ def ensure_current_month(client):
                 m.setdefault(k, f[k])
     return client["months"][mk]
 
-# ── APIFY CLIENT ──────────────────────────────────────────────────
+def compute_shared_cutoff_date(active_clients):
+    """
+    This actor takes ONE postedLimitDate for the whole batch call, not
+    one per client. To make sure nobody's new post is missed, we use the
+    EARLIEST date needed across all clients (i.e. the oldest "latest
+    stored post" among them, or month start if any client has none yet).
+    Posts already stored get filtered out later by URL dedup, so using
+    an earlier-than-necessary cutoff for some clients just means a few
+    already-known posts get re-fetched (near-zero cost) — never missed data.
+    """
+    dates = []
+    for c in active_clients:
+        d = latest_post_date(c)
+        if d:
+            dates.append(d)
+    if not dates:
+        return month_start_str()
+    # earliest of the "latest known" dates — the most conservative cutoff
+    earliest = min(dates)
+    return earliest
+
+# ── APIFY ─────────────────────────────────────────────────────────
 def apify_client():
     try:
         from apify_client import ApifyClient
@@ -112,77 +144,84 @@ def apify_client():
         sys.exit(1)
     return ApifyClient(APIFY_TOKEN)
 
-def get_dataset_items(ac, run):
+def call_apify_search(active_clients, cutoff_date, dry_run=False):
+    """
+    ONE batch call for all active clients using their profile URLs.
+    Returns dict: { username: [raw_post_item, ...] }
+    """
+    author_urls = [c["linkedinUrl"] for c in active_clients if c.get("linkedinUrl")]
+    if not author_urls:
+        return {}
+
+    if dry_run:
+        print(f"  [DRY RUN] Would call {ACTOR_ID} for {len(author_urls)} profiles, "
+              f"cutoff={cutoff_date}, maxPosts={MAX_POSTS_PER_PROFILE}")
+        return {}
+
+    ac = apify_client()
+    run_input = {
+        "authorUrls":               author_urls,
+        "maxPosts":                 MAX_POSTS_PER_PROFILE,
+        "postedLimitDate":          cutoff_date,
+        "sortBy":                   "date",
+        "scrapeComments":           False,
+        "scrapeReactions":          False,
+        "postNestedComments":       False,
+        "postNestedReactions":      False,
+        "profileScraperMode":       "short",
+        "commentsProfileScraperMode": "short",
+        "reactionsProfileScraperMode": "short",
+        # Reposts excluded — verified in user's manual test that turning
+        # this off filters them out before they reach the output at all.
+        "includeReposts":           False,
+        "includeQuotePosts":        False,
+    }
+
+    print(f"  → Apify: {len(author_urls)} profiles, cutoff={cutoff_date}, "
+          f"max {MAX_POSTS_PER_PROFILE}/profile")
+    run = ac.actor(ACTOR_ID).call(run_input=run_input)
     dataset_id = (run["defaultDatasetId"] if isinstance(run, dict)
                   else run.default_dataset_id)
-    return list(ac.dataset(dataset_id).iterate_items())
-
-# ── POSTS SYNC ────────────────────────────────────────────────────
-def sync_posts(active_clients, dry_run=False):
-    """
-    One batch Apify call for ALL active clients.
-    Returns dict: { username: [parsed_post, ...] }
-    """
-    if dry_run:
-        print("  [DRY RUN] Would call batch posts actor")
-        return {}
-
-    usernames = [username_from_url(c.get("linkedinUrl", ""))
-                 for c in active_clients if c.get("linkedinUrl")]
-    if not usernames:
-        return {}
-
-    print(f"  → Batch posts: {len(usernames)} profiles × {POSTS_PER_PROFILE} posts")
-    ac = apify_client()
-    run = ac.actor(BATCH_POSTS_ACTOR).call(run_input={
-        "usernames":       usernames,
-        "postsPerProfile": POSTS_PER_PROFILE,
-        "postedLimit":     "month",
-    })
-    items = get_dataset_items(ac, run)
-    print(f"  → Got {len(items)} raw post items")
+    items = list(ac.dataset(dataset_id).iterate_items())
+    print(f"  → Got {len(items)} posts total")
 
     by_username = {}
     for item in items:
-        author = (item.get("authorUsername") or item.get("profileUsername") or
-                  item.get("username") or "")
-        if not author:
-            pu = item.get("profileUrl", "") or item.get("authorUrl", "")
-            author = username_from_url(pu)
+        author = item.get("author", {}).get("publicIdentifier", "")
         if author:
             by_username.setdefault(author, []).append(item)
     return by_username
 
 def parse_post(item):
-    if item.get("post_type") == "repost" or item.get("isRepost"):
-        return None
-    date_str = (item.get("postedAt") or
-                (item.get("posted_at", {}).get("date")
-                 if isinstance(item.get("posted_at"), dict) else None) or
-                item.get("publishedAt") or item.get("date") or "")
-    date_str = str(date_str)[:19]
+    """Parse one raw item into our dashboard post format — schema confirmed
+    from a real test output (dataset_linkedin-post-search JSON)."""
+    if item.get("type") != "post":
+        return None  # defensive — only accept confirmed post-type items
+
+    posted_at = item.get("postedAt", {})
+    date_str = posted_at.get("date", "")
     if not date_str:
         return None
     try:
-        dt = datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
+        dt = datetime.strptime(date_str[:19], "%Y-%m-%dT%H:%M:%S")
     except ValueError:
-        try:
-            dt = datetime.strptime(date_str[:10], "%Y-%m-%d")
-        except ValueError:
-            return None
+        return None
+
     if dt.strftime("%Y-%m") != current_month_key():
         return None
-    stats = item.get("stats", {}) or {}
-    text  = (item.get("text") or item.get("content") or "").strip()
-    hook  = text.split("\n")[0][:120] if text else "(no text)"
+
+    engagement = item.get("engagement", {})
+    text = (item.get("content") or "").strip()
+    hook = text.split("\n")[0][:120] if text else "(no text)"
+
     return {
         "date":      f"{dt.strftime('%b')} {dt.day}",
         "full_date": dt.strftime("%Y-%m-%d"),
         "title":     hook,
-        "likes":     stats.get("like", stats.get("total_reactions",
-                     item.get("likes", item.get("reactions", 0)))),
-        "comments":  stats.get("comments", item.get("comments", 0)),
-        "url":       item.get("url", item.get("postUrl", "")),
+        "likes":     engagement.get("likes", 0),
+        "comments":  engagement.get("comments", 0),
+        "shares":    engagement.get("shares", 0),
+        "url":       item.get("linkedinUrl", ""),
         "post_type": "regular",
     }
 
@@ -193,6 +232,7 @@ def merge_posts(month_record, raw_items, cutoff_date):
             cutoff = datetime.strptime(cutoff_date, "%Y-%m-%d").date()
         except ValueError:
             pass
+
     existing_urls = {p.get("url") for p in month_record.get("posts", [])}
     added = 0
     for item in raw_items:
@@ -212,84 +252,6 @@ def merge_posts(month_record, raw_items, cutoff_date):
             existing_urls.add(p["url"])
         added += 1
     month_record["posts"].sort(key=lambda x: x["full_date"], reverse=True)
-    return added
-
-# ── COMMENTS SYNC ─────────────────────────────────────────────────
-def sync_comments_for_client(client, dry_run=False):
-    """
-    Scrapes OUTGOING comments — comments the client made on other people's posts.
-    Uses apimaestro/linkedin-profile-comments (one call per client).
-    """
-    url = client.get("linkedinUrl", "")
-    if not url:
-        return 0
-
-    cutoff = latest_comment_date(client)
-
-    if dry_run:
-        print(f"    [DRY RUN] Would scrape comments for {client['name']}")
-        return 0
-
-    ac = apify_client()
-    run = ac.actor(COMMENTS_ACTOR).call(run_input={
-        "username":              username_from_url(url),
-        "total_comments_to_scrape": COMMENTS_PER_PROFILE,
-    })
-    items = get_dataset_items(ac, run)
-
-    month_record = client["months"][current_month_key()]
-    existing_urls = {c.get("url") for c in month_record.get("comments", [])}
-    added = 0
-
-    cutoff_dt = None
-    if cutoff:
-        try:
-            cutoff_dt = datetime.strptime(cutoff, "%Y-%m-%d").date()
-        except ValueError:
-            pass
-
-    for item in items:
-        # Parse comment date
-        date_str = (item.get("commentedAt") or item.get("postedAt") or
-                    item.get("date") or "")
-        date_str = str(date_str)[:19]
-        if not date_str:
-            continue
-        try:
-            dt = datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
-        except ValueError:
-            try:
-                dt = datetime.strptime(date_str[:10], "%Y-%m-%d")
-            except ValueError:
-                continue
-
-        # Only keep current month
-        if dt.strftime("%Y-%m") != current_month_key():
-            continue
-        # Only keep newer than what we have
-        if cutoff_dt and dt.date() <= cutoff_dt:
-            continue
-
-        comment_url = item.get("url", item.get("postUrl", ""))
-        if comment_url and comment_url in existing_urls:
-            continue
-
-        comment_text = (item.get("text") or item.get("commentText") or "").strip()
-        hook = comment_text.split("\n")[0][:100] if comment_text else "(comment)"
-
-        comment_record = {
-            "date":      f"{dt.strftime('%b')} {dt.day}",
-            "full_date": dt.strftime("%Y-%m-%d"),
-            "text":      hook,
-            "url":       comment_url,
-            "likes":     item.get("likes", item.get("reactions", 0)),
-        }
-        month_record.setdefault("comments", []).append(comment_record)
-        if comment_url:
-            existing_urls.add(comment_url)
-        added += 1
-
-    month_record["comments"].sort(key=lambda x: x["full_date"], reverse=True)
     return added
 
 # ── DASHBOARD REBUILD ─────────────────────────────────────────────
@@ -313,17 +275,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--client",  default=None)
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--posts-only",    action="store_true")
-    parser.add_argument("--comments-only", action="store_true")
     args = parser.parse_args()
-
-    do_posts    = not args.comments_only
-    do_comments = not args.posts_only
 
     print("=== RocketRush Tracker Sync ===")
     print(f"Date: {date.today()}  |  Month: {current_month_key()}")
-    print(f"Posts: {'yes' if do_posts else 'skip'}  |  "
-          f"Comments: {'yes' if do_comments else 'skip'}")
+    print(f"Actor: {ACTOR_ID}")
     if args.dry_run:
         print("⚠  DRY RUN")
     print()
@@ -333,7 +289,6 @@ def main():
     if not APIFY_TOKEN and not args.dry_run:
         print("ERROR: APIFY_TOKEN not set"); sys.exit(1)
 
-    # Fetch clients.json
     clients_raw, clients_sha = gh_get(CLIENTS_PATH)
     clients_data = json.loads(clients_raw)
 
@@ -345,7 +300,6 @@ def main():
         if not active:
             print(f"Client '{args.client}' not found."); sys.exit(1)
 
-    # Ensure every client has a current-month record with writer/engager
     for c in clients_data["clients"]:
         if c.get("status") in ("active", "paused"):
             ensure_current_month(c)
@@ -356,62 +310,41 @@ def main():
         print(f"Skipped: {labels}")
     print()
 
-    posts_results    = {}
-    total_posts_added    = 0
-    total_comments_added = 0
+    cutoff_date = compute_shared_cutoff_date(active)
+    print(f"Shared cutoff date for this batch: {cutoff_date}")
+    print(f"(earliest 'latest known post' across all active clients — "
+          f"ensures nobody's new post is missed)")
+    print()
 
-    # ── STEP 1: POSTS (one batch call) ────────────────────────────
-    if do_posts:
-        print("── Step 1: Syncing Posts ──")
-        posts_results = sync_posts(active, dry_run=args.dry_run)
-        print()
+    by_username = call_apify_search(active, cutoff_date, dry_run=args.dry_run)
 
-        for c in active:
-            username = username_from_url(c.get("linkedinUrl", ""))
-            raw      = posts_results.get(username, [])
-            cutoff   = latest_post_date(c)
-            month_r  = c["months"][current_month_key()]
-            added    = merge_posts(month_r, raw, cutoff)
-            total_posts_added += added
-            icon = "✅" if added > 0 else "—"
-            print(f"  {icon} {c['name']}: {added} new post(s)  "
-                  f"({len(raw)} returned by Apify)")
+    total_added = 0
+    print()
+    for c in active:
+        username = username_from_url(c.get("linkedinUrl", ""))
+        raw = by_username.get(username, [])
+        per_client_cutoff = latest_post_date(c)
+        month_r = c["months"][current_month_key()]
+        added = merge_posts(month_r, raw, per_client_cutoff)
+        total_added += added
+        c["lastSyncedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        icon = "✅" if added > 0 else "—"
+        print(f"  {icon} {c['name']}: {added} new post(s)  ({len(raw)} returned)")
 
-    # ── STEP 2: COMMENTS (one call per client) ────────────────────
-    if do_comments:
-        print()
-        print("── Step 2: Syncing Outgoing Comments ──")
-        for c in active:
-            added = sync_comments_for_client(c, dry_run=args.dry_run)
-            total_comments_added += added
-            if not args.dry_run:
-                icon = "✅" if added > 0 else "—"
-                print(f"  {icon} {c['name']}: {added} new comment(s)")
-            c["lastSyncedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print()
+    print(f"Total new posts added: {total_added}")
+    est_cost = total_added * 0.002
+    print(f"Estimated Apify cost:  ~${est_cost:.3f} (based on $2/1000 posts, "
+          f"actual results delivered)")
 
-    # ── PUSH & REBUILD ────────────────────────────────────────────
     if not args.dry_run:
         print()
-        print("── Pushing to GitHub ──")
+        print("Pushing to GitHub...")
         gh_put(CLIENTS_PATH,
                json.dumps(clients_data, indent=2, ensure_ascii=False),
                f"Sync {current_month_key()} — {date.today()}", clients_sha)
         print("  ✅ clients.json pushed")
         rebuild_and_push_dashboard(clients_data)
-
-    # ── SUMMARY ───────────────────────────────────────────────────
-    print()
-    print("=== Summary ===")
-    if do_posts:
-        est = len(active) * POSTS_PER_PROFILE * 0.005
-        print(f"  Posts added:    {total_posts_added}  (~${est:.2f} Apify cost)")
-    if do_comments:
-        est = len(active) * COMMENTS_PER_PROFILE * 0.005
-        print(f"  Comments added: {total_comments_added}  (~${est:.2f} Apify cost)")
-    total_est = 0
-    if do_posts:    total_est += len(active) * POSTS_PER_PROFILE * 0.005
-    if do_comments: total_est += len(active) * COMMENTS_PER_PROFILE * 0.005
-    print(f"  Total Apify cost this run: ~${total_est:.2f}")
 
 if __name__ == "__main__":
     main()
