@@ -347,4 +347,24 @@ def main():
         rebuild_and_push_dashboard(clients_data)
 
 if __name__ == "__main__":
-    main()
+    import traceback
+    try:
+        main()
+    except Exception as exc:
+        err_text = traceback.format_exc()
+        print("\n=== FATAL ERROR ===")
+        print(err_text)
+        # Write debug log to repo so it can be read even after failure
+        if GITHUB_TOKEN:
+            try:
+                try:
+                    existing, log_sha = gh_get("docs/sync_debug.log")
+                except Exception:
+                    existing, log_sha = "", None
+                msg = f"=== Sync failure {date.today()} ===\n{err_text}"
+                gh_put("docs/sync_debug.log", msg,
+                       f"Debug: sync error {date.today()}", log_sha)
+                print("Error log pushed to docs/sync_debug.log")
+            except Exception as push_err:
+                print(f"Could not push error log: {push_err}")
+        raise
