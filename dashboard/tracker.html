@@ -477,6 +477,17 @@
           <div id="filterOptionsList"></div>
         </div>
       </div>
+      <div class="filter-wrap">
+        <button class="filter-btn" id="activityFilterBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+          Filter by activity
+          <span class="count" id="activityFilterCount" style="display:none;">0</span>
+        </button>
+        <div class="filter-panel" id="activityFilterPanel">
+          <h5>Show clients whose last post was</h5>
+          <div id="activityFilterOptionsList"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -529,96 +540,6 @@ const clientData = [];
 // only as a fallback shape reference and is not used directly below.
 const monthData = {
   "2026-06": [
-    {
-      "id": "c1",
-      "name": "Alphastar Technologies",
-      "initials": "AT",
-      "color": "#4A6670",
-      "sub": "Pilot · target 12/mo",
-      "status": "removed",
-      "writer": "Riya",
-      "engager": "Karan",
-      "isCurrentMonth": false,
-      "monthLabel": "June 2026",
-      "lastPost": "Jun 30",
-      "lastPostDate": "Jun 30",
-      "lastPostFullDate": "2026-06-30",
-      "lastComment": "Jun 29",
-      "lastCommentDate": "Jun 29",
-      "lastCommentFullDate": "2026-06-29",
-      "postStatus": "neutral",
-      "postLabel": "Past month",
-      "postWidth": 100,
-      "commentStatus": "neutral",
-      "commentLabel": "Past month",
-      "commentWidth": 100,
-      "postsMTD": "4 / 12",
-      "commentsMTD": "2 / 20",
-      "flag": {
-        "type": "neutral",
-        "text": "Historical record — 4 post(s) logged"
-      },
-      "target": "Target: 12 posts/mo · 20 comments/mo",
-      "posts": [
-        {
-          "date": "Jun 30",
-          "full_date": "2026-06-30",
-          "title": "India built 50,000+ km of national highways in the last decade. Nobody told the auto industry that this would change wha",
-          "likes": 2,
-          "comments": 0,
-          "url": "https://www.linkedin.com/posts/anckursama_india-built-50000-km-of-national-highways-activity-7477615242533847040-zIr3",
-          "post_type": "regular"
-        },
-        {
-          "date": "Jun 26",
-          "full_date": "2026-06-26",
-          "title": "For 30 years, one company decided what car India drove.",
-          "likes": 18,
-          "comments": 1,
-          "url": "https://www.linkedin.com/posts/anckursama_for-30-years-one-company-decided-what-car-activity-7476129615758123008-ed0H",
-          "post_type": "regular"
-        },
-        {
-          "date": "Jun 25",
-          "full_date": "2026-06-25",
-          "title": "Indian car buyers today spend an average of 3+ months researching before walking into a showroom.",
-          "likes": 17,
-          "comments": 0,
-          "url": "https://www.linkedin.com/posts/anckursama_indian-car-buyers-today-spend-an-average-activity-7475767253070778368-30Dp",
-          "post_type": "regular"
-        },
-        {
-          "date": "Jun 3",
-          "full_date": "2026-06-03",
-          "title": "Every year, Unnati brings us together to reflect on our journey, recognize outstanding contributions, and celebrate the ",
-          "likes": 15,
-          "comments": 0,
-          "url": "https://www.linkedin.com/posts/anckursama_unnati-is-more-than-an-event-its-a-celebration-activity-7467938802204864513-y1Fv",
-          "post_type": "quote"
-        }
-      ],
-      "commentDays": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "commentLog": [
-        {
-          "date": "Jun 29",
-          "full_date": "2026-06-29",
-          "text": "2 comments posted"
-        },
-        {
-          "date": "Jun 27",
-          "full_date": "2026-06-27",
-          "text": "1 comment posted"
-        }
-      ]
-    },
     {
       "id": "c3",
       "name": "Prasoon",
@@ -1166,6 +1087,48 @@ const monthData = {
       "commentLog": []
     },
     {
+      "id": "c19",
+      "name": "Janak Mehta",
+      "initials": "JM",
+      "color": "#8A6D3B",
+      "sub": "Retainer · target 12/mo",
+      "status": "active",
+      "writer": "Nikhil",
+      "engager": "NA",
+      "isCurrentMonth": false,
+      "monthLabel": "June 2026",
+      "lastPost": "—",
+      "lastPostDate": "—",
+      "lastPostFullDate": null,
+      "lastComment": "—",
+      "lastCommentDate": "—",
+      "lastCommentFullDate": null,
+      "postStatus": "neutral",
+      "postLabel": "Past month",
+      "postWidth": 0,
+      "commentStatus": "neutral",
+      "commentLabel": "Past month",
+      "commentWidth": 0,
+      "postsMTD": "0 / 12",
+      "commentsMTD": "0 / NA",
+      "flag": {
+        "type": "neutral",
+        "text": "Historical record — 0 post(s) logged"
+      },
+      "target": "Target: 12 posts/mo · NA comments/mo",
+      "posts": [],
+      "commentDays": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "commentLog": []
+    },
+    {
       "id": "c16",
       "name": "Bharat Rungta",
       "initials": "BR",
@@ -1292,36 +1255,73 @@ const monthData = {
       "commentLog": []
     },
     {
-      "id": "c19",
-      "name": "Janak Mehta",
-      "initials": "JM",
-      "color": "#8A6D3B",
-      "sub": "Retainer · target 12/mo",
-      "status": "active",
-      "writer": "Nikhil",
-      "engager": "NA",
+      "id": "c1",
+      "name": "Alphastar Technologies",
+      "initials": "AT",
+      "color": "#4A6670",
+      "sub": "Pilot · target 12/mo",
+      "status": "removed",
+      "writer": "Riya",
+      "engager": "Karan",
       "isCurrentMonth": false,
       "monthLabel": "June 2026",
-      "lastPost": "—",
-      "lastPostDate": "—",
-      "lastPostFullDate": null,
-      "lastComment": "—",
-      "lastCommentDate": "—",
-      "lastCommentFullDate": null,
+      "lastPost": "Jun 30",
+      "lastPostDate": "Jun 30",
+      "lastPostFullDate": "2026-06-30",
+      "lastComment": "Jun 29",
+      "lastCommentDate": "Jun 29",
+      "lastCommentFullDate": "2026-06-29",
       "postStatus": "neutral",
       "postLabel": "Past month",
-      "postWidth": 0,
+      "postWidth": 100,
       "commentStatus": "neutral",
       "commentLabel": "Past month",
-      "commentWidth": 0,
-      "postsMTD": "0 / 12",
-      "commentsMTD": "0 / NA",
+      "commentWidth": 100,
+      "postsMTD": "4 / 12",
+      "commentsMTD": "2 / 20",
       "flag": {
         "type": "neutral",
-        "text": "Historical record — 0 post(s) logged"
+        "text": "Historical record — 4 post(s) logged"
       },
-      "target": "Target: 12 posts/mo · NA comments/mo",
-      "posts": [],
+      "target": "Target: 12 posts/mo · 20 comments/mo",
+      "posts": [
+        {
+          "date": "Jun 30",
+          "full_date": "2026-06-30",
+          "title": "India built 50,000+ km of national highways in the last decade. Nobody told the auto industry that this would change wha",
+          "likes": 2,
+          "comments": 0,
+          "url": "https://www.linkedin.com/posts/anckursama_india-built-50000-km-of-national-highways-activity-7477615242533847040-zIr3",
+          "post_type": "regular"
+        },
+        {
+          "date": "Jun 26",
+          "full_date": "2026-06-26",
+          "title": "For 30 years, one company decided what car India drove.",
+          "likes": 18,
+          "comments": 1,
+          "url": "https://www.linkedin.com/posts/anckursama_for-30-years-one-company-decided-what-car-activity-7476129615758123008-ed0H",
+          "post_type": "regular"
+        },
+        {
+          "date": "Jun 25",
+          "full_date": "2026-06-25",
+          "title": "Indian car buyers today spend an average of 3+ months researching before walking into a showroom.",
+          "likes": 17,
+          "comments": 0,
+          "url": "https://www.linkedin.com/posts/anckursama_indian-car-buyers-today-spend-an-average-activity-7475767253070778368-30Dp",
+          "post_type": "regular"
+        },
+        {
+          "date": "Jun 3",
+          "full_date": "2026-06-03",
+          "title": "Every year, Unnati brings us together to reflect on our journey, recognize outstanding contributions, and celebrate the ",
+          "likes": 15,
+          "comments": 0,
+          "url": "https://www.linkedin.com/posts/anckursama_unnati-is-more-than-an-event-its-a-celebration-activity-7467938802204864513-y1Fv",
+          "post_type": "quote"
+        }
+      ],
       "commentDays": [
         0,
         0,
@@ -1331,7 +1331,18 @@ const monthData = {
         0,
         0
       ],
-      "commentLog": []
+      "commentLog": [
+        {
+          "date": "Jun 29",
+          "full_date": "2026-06-29",
+          "text": "2 comments posted"
+        },
+        {
+          "date": "Jun 27",
+          "full_date": "2026-06-27",
+          "text": "1 comment posted"
+        }
+      ]
     }
   ],
   "2026-07": [
@@ -1990,6 +2001,59 @@ const monthData = {
       "commentLog": []
     },
     {
+      "id": "c19",
+      "name": "Janak Mehta",
+      "initials": "JM",
+      "color": "#8A6D3B",
+      "sub": "Retainer · target 12/mo",
+      "status": "active",
+      "writer": "Nikhil",
+      "engager": "NA",
+      "isCurrentMonth": true,
+      "monthLabel": "July 2026",
+      "lastPost": "1 day ago",
+      "lastPostDate": "Jul 1",
+      "lastPostFullDate": "2026-07-01",
+      "lastComment": "No activity yet",
+      "lastCommentDate": "—",
+      "lastCommentFullDate": null,
+      "postStatus": "green",
+      "postLabel": "On time",
+      "postWidth": 90,
+      "commentStatus": "red",
+      "commentLabel": "No activity",
+      "commentWidth": 15,
+      "postsMTD": "1 / 12",
+      "commentsMTD": "0 / NA",
+      "flag": {
+        "type": "green",
+        "text": "On track — 1 day ago"
+      },
+      "target": "Target: 12 posts/mo · NA comments/mo",
+      "posts": [
+        {
+          "date": "Jul 1",
+          "full_date": "2026-07-01",
+          "title": "Toyota Motor Corporation has a building in Toyota city where key field failures of Toyota products since 1938 are displa",
+          "likes": 158,
+          "comments": 17,
+          "shares": 6,
+          "url": "https://www.linkedin.com/posts/janakmehta12345_quality-tqmi-organisation-activity-7477941575948599296-FVlI",
+          "post_type": "regular"
+        }
+      ],
+      "commentDays": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "commentLog": []
+    },
+    {
       "id": "c16",
       "name": "Bharat Rungta",
       "initials": "BR",
@@ -2114,59 +2178,6 @@ const monthData = {
         0
       ],
       "commentLog": []
-    },
-    {
-      "id": "c19",
-      "name": "Janak Mehta",
-      "initials": "JM",
-      "color": "#8A6D3B",
-      "sub": "Retainer · target 12/mo",
-      "status": "active",
-      "writer": "Nikhil",
-      "engager": "NA",
-      "isCurrentMonth": true,
-      "monthLabel": "July 2026",
-      "lastPost": "1 day ago",
-      "lastPostDate": "Jul 1",
-      "lastPostFullDate": "2026-07-01",
-      "lastComment": "No activity yet",
-      "lastCommentDate": "—",
-      "lastCommentFullDate": null,
-      "postStatus": "green",
-      "postLabel": "On time",
-      "postWidth": 90,
-      "commentStatus": "red",
-      "commentLabel": "No activity",
-      "commentWidth": 15,
-      "postsMTD": "1 / 12",
-      "commentsMTD": "0 / NA",
-      "flag": {
-        "type": "green",
-        "text": "On track — 1 day ago"
-      },
-      "target": "Target: 12 posts/mo · NA comments/mo",
-      "posts": [
-        {
-          "date": "Jul 1",
-          "full_date": "2026-07-01",
-          "title": "Toyota Motor Corporation has a building in Toyota city where key field failures of Toyota products since 1938 are displa",
-          "likes": 158,
-          "comments": 17,
-          "shares": 6,
-          "url": "https://www.linkedin.com/posts/janakmehta12345_quality-tqmi-organisation-activity-7477941575948599296-FVlI",
-          "post_type": "regular"
-        }
-      ],
-      "commentDays": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "commentLog": []
     }
   ]
 };
@@ -2214,6 +2225,55 @@ function renderFilterOptions(){
   });
 }
 
+// ── ACTIVITY (RECENCY) FILTER ────────────────────────────────
+// Buckets a client's last post into one of five fixed categories based
+// on lastPostFullDate, only meaningful for the current month (past months
+// are frozen history, so "days ago" doesn't apply the same way — the
+// activity filter is skipped entirely on past-month tabs, see render()).
+function activityBucketForClient(c){
+  if(!c.lastPostFullDate) return 'none';
+  const today=new Date();today.setHours(0,0,0,0);
+  const d=new Date(c.lastPostFullDate+'T00:00:00');
+  if(isNaN(d.getTime())) return 'none';
+  const diff=Math.floor((today-d)/86400000);
+  if(diff<0) return 'scheduled';
+  if(diff===0) return 'today';
+  if(diff===1) return 'yesterday';
+  if(diff===2) return 'two';
+  return 'delayed'; // 3+ days
+}
+
+const ACTIVITY_BUCKETS = [
+  {key:'today',     label:'Posted today'},
+  {key:'yesterday', label:'1 day ago'},
+  {key:'two',       label:'2 days ago'},
+  {key:'delayed',   label:'3+ days ago (delayed)'},
+  {key:'none',      label:'No activity yet'},
+];
+
+let activeActivityBuckets = [];
+
+function renderActivityFilterOptions(){
+  const wrap = document.getElementById('activityFilterOptionsList');
+  if (!wrap) return;
+  const previouslyChecked = new Set(activeActivityBuckets);
+
+  wrap.innerHTML = ACTIVITY_BUCKETS.map(b => {
+    const checked = previouslyChecked.has(b.key) ? 'checked' : '';
+    return `<label class="filter-opt"><input type="checkbox" value="${b.key}" ${checked}> ${b.label}</label>`;
+  }).join('');
+
+  wrap.querySelectorAll('.filter-opt input').forEach(chk=>{
+    chk.addEventListener('change', ()=>{
+      activeActivityBuckets = Array.from(wrap.querySelectorAll('input:checked')).map(i=>i.value);
+      const countEl = document.getElementById('activityFilterCount');
+      if(activeActivityBuckets.length){ countEl.style.display='flex'; countEl.textContent = activeActivityBuckets.length; }
+      else { countEl.style.display='none'; }
+      render(activeWriters, document.getElementById('searchInput').value);
+    });
+  });
+}
+
 function renderMonthTabs(){
   const wrap = document.getElementById('monthTabs');
   if (!wrap) return;
@@ -2228,6 +2288,7 @@ function renderMonthTabs(){
       activeMonth = btn.dataset.month;
       renderMonthTabs();
       renderFilterOptions();
+      renderActivityFilterOptions();
       render(getActiveFilters(), searchInput ? searchInput.value : '');
     });
   });
@@ -2336,6 +2397,12 @@ function render(filterWriters, query){
   currentClientData.forEach(c=>{
     if(filterWriters && filterWriters.length && !filterWriters.includes(c.writer)) return;
     if(q && !(c.name.toLowerCase().includes(q) || c.writer.toLowerCase().includes(q) || c.engager.toLowerCase().includes(q))) return;
+    // Activity/recency filter only makes sense for the current month —
+    // past months are frozen history, "days ago" isn't meaningful there.
+    if(c.isCurrentMonth && activeActivityBuckets && activeActivityBuckets.length){
+      const bucket = activityBucketForClient(c);
+      if(!activeActivityBuckets.includes(bucket)) return;
+    }
 
     const row = document.createElement('tr');
     row.className = 'row' + (c.status === 'paused' ? ' is-paused' : '');
@@ -2449,9 +2516,20 @@ filterBtn.addEventListener('click', (e)=>{
   e.stopPropagation();
   filterPanel.classList.toggle('show');
 });
+
+const activityFilterBtn = document.getElementById('activityFilterBtn');
+const activityFilterPanel = document.getElementById('activityFilterPanel');
+activityFilterBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  activityFilterPanel.classList.toggle('show');
+});
+
 document.addEventListener('click', (e)=>{
   if(!filterPanel.contains(e.target) && e.target!==filterBtn){
     filterPanel.classList.remove('show');
+  }
+  if(!activityFilterPanel.contains(e.target) && e.target!==activityFilterBtn){
+    activityFilterPanel.classList.remove('show');
   }
 });
 
@@ -2463,6 +2541,7 @@ document.getElementById('searchInput').addEventListener('input', (e)=>{
 
 renderMonthTabs();
 renderFilterOptions();
+renderActivityFilterOptions();
 render([],'');
 updateSyncLabel();
 </script>
