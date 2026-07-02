@@ -124,6 +124,7 @@ def build_client_view(client, month_key, month, is_current_month):
         "writer": month.get("writer") or "Unassigned",
         "engager": month.get("engager") or "Unassigned",
         "isCurrentMonth": is_current_month,
+        "monthLabel": month_label(month_key),
         "lastPost": relative_label(last_post_days) if is_current_month else (posts[0]["date"] if posts else "—"),
         "lastPostDate": posts[0]["date"] if posts else "—",
         "lastPostFullDate": posts[0].get("full_date") if posts else None,
