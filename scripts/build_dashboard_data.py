@@ -123,10 +123,13 @@ def build_client_view(client, month_key, month, is_current_month):
         "status": client.get("status", "active"),
         "writer": month.get("writer") or "Unassigned",
         "engager": month.get("engager") or "Unassigned",
+        "isCurrentMonth": is_current_month,
         "lastPost": relative_label(last_post_days) if is_current_month else (posts[0]["date"] if posts else "—"),
         "lastPostDate": posts[0]["date"] if posts else "—",
+        "lastPostFullDate": posts[0].get("full_date") if posts else None,
         "lastComment": relative_label(last_comment_days) if is_current_month else (comments[0]["date"] if comments else "—"),
         "lastCommentDate": comments[0]["date"] if comments else "—",
+        "lastCommentFullDate": comments[0].get("full_date") if comments else None,
         "postStatus": post_status,
         "postLabel": post_label,
         "postWidth": post_width,
@@ -214,10 +217,20 @@ def build_month_data_js(clients_data):
     month_data_json = json.dumps(month_data, ensure_ascii=False, indent=2)
     labels_json = json.dumps(labels, ensure_ascii=False, indent=2)
 
+    # Most recent lastSyncedAt across all active clients
+    last_sync = None
+    for _c in clients_data.get("clients", []):
+        if _c.get("status") != "active":
+            continue
+        _s = _c.get("lastSyncedAt")
+        if _s and (last_sync is None or _s > last_sync):
+            last_sync = _s
+
     return (
         f"const monthData = {month_data_json};\n"
         f"const monthLabels = {labels_json};\n"
-        f"let activeMonth = \"{today_key}\";"
+        f"let activeMonth = \"{today_key}\";\n"
+        f"const lastSyncedAt = {json.dumps(last_sync)};"
     )
 
 
