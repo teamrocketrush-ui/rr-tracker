@@ -38,7 +38,7 @@ CLIENTS_PATH   = "data/clients.json"
 TEMPLATE_PATH  = "dashboard/tracker_template.html"
 DASHBOARD_PATH = "dashboard/tracker.html"
 
-MAX_POSTS_PER_PROFILE = 6   # safety ceiling only — postedLimitDate is the real limiter
+MAX_POSTS_PER_PROFILE = 25  # high enough to cover full month; real limiter is postedLimitDate
 
 # ── GITHUB ────────────────────────────────────────────────────────
 def gh_get(path):
@@ -116,24 +116,14 @@ def ensure_current_month(client):
 
 def compute_shared_cutoff_date(active_clients):
     """
-    This actor takes ONE postedLimitDate for the whole batch call, not
-    one per client. To make sure nobody's new post is missed, we use the
-    EARLIEST date needed across all clients (i.e. the oldest "latest
-    stored post" among them, or month start if any client has none yet).
-    Posts already stored get filtered out later by URL dedup, so using
-    an earlier-than-necessary cutoff for some clients just means a few
-    already-known posts get re-fetched (near-zero cost) — never missed data.
+    Always returns the 1st of the current month. This ensures:
+    - ALL posts for the month are fetched on every sync, not just new ones.
+    - Reactions (likes, comments, shares) on existing posts are refreshed
+      every sync so viral posts are detected in real time.
+    Near-zero extra cost: billing is per post delivered; re-fetching known
+    posts costs the same as fetching new ones and keeps counts current.
     """
-    dates = []
-    for c in active_clients:
-        d = latest_post_date(c)
-        if d:
-            dates.append(d)
-    if not dates:
-        return month_start_str()
-    # earliest of the "latest known" dates — the most conservative cutoff
-    earliest = min(dates)
-    return earliest
+    return month_start_str()
 
 # ── APIFY ─────────────────────────────────────────────────────────
 def apify_client():
@@ -232,32 +222,37 @@ def parse_post(item):
         "post_type": "regular",
     }
 
-def merge_posts(month_record, raw_items, cutoff_date):
-    cutoff = None
-    if cutoff_date:
-        try:
-            cutoff = datetime.strptime(cutoff_date, "%Y-%m-%d").date()
-        except ValueError:
-            pass
+def merge_posts(month_record, raw_items, cutoff_date=None):
+    """
+    Add new posts AND update reactions (likes, comments, shares) on existing
+    posts. Since we always scrape from month start, every sync refreshes
+    engagement counts — so you can track which posts are going viral.
+    cutoff_date param kept for backwards compatibility but no longer used.
+    """
+    existing_by_url = {}
+    for idx, p in enumerate(month_record.get("posts", [])):
+        url = p.get("url")
+        if url:
+            existing_by_url[url] = idx
 
-    existing_urls = {p.get("url") for p in month_record.get("posts", [])}
     added = 0
     for item in raw_items:
         p = parse_post(item)
         if not p:
             continue
-        if p["url"] and p["url"] in existing_urls:
+        if p["url"] and p["url"] in existing_by_url:
+            # Refresh reactions on existing post
+            idx = existing_by_url[p["url"]]
+            month_record["posts"][idx]["likes"] = p["likes"]
+            month_record["posts"][idx]["comments"] = p["comments"]
+            month_record["posts"][idx]["shares"] = p["shares"]
             continue
-        if cutoff:
-            try:
-                if datetime.strptime(p["full_date"], "%Y-%m-%d").date() <= cutoff:
-                    continue
-            except ValueError:
-                pass
+        # New post — add it
         month_record.setdefault("posts", []).append(p)
         if p["url"]:
-            existing_urls.add(p["url"])
+            existing_by_url[p["url"]] = len(month_record["posts"]) - 1
         added += 1
+
     month_record["posts"].sort(key=lambda x: x["full_date"], reverse=True)
     return added
 
@@ -330,13 +325,13 @@ def main():
     for c in active:
         username = username_from_url(c.get("linkedinUrl", ""))
         raw = by_username.get(username, [])
-        per_client_cutoff = latest_post_date(c)
         month_r = c["months"][current_month_key()]
-        added = merge_posts(month_r, raw, per_client_cutoff)
+        added = merge_posts(month_r, raw)
         total_added += added
         c["lastSyncedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         icon = "✅" if added > 0 else "—"
-        print(f"  {icon} {c['name']}: {added} new post(s)  ({len(raw)} returned)")
+        total_posts = len(month_r.get("posts", []))
+        print(f"  {icon} {c['name']}: {added} new, {total_posts} total  ({len(raw)} from Apify)")
 
     print()
     print(f"Total new posts added: {total_added}")
