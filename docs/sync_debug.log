@@ -1,0 +1,34 @@
+=== Sync failure 2026-07-02 ===
+Traceback (most recent call last):
+  File "/home/runner/work/rr-tracker/rr-tracker/scripts/sync_tracker.py", line 352, in <module>
+    main()
+  File "/home/runner/work/rr-tracker/rr-tracker/scripts/sync_tracker.py", line 319, in main
+    by_username = call_apify_search(active, cutoff_date, dry_run=args.dry_run)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/rr-tracker/rr-tracker/scripts/sync_tracker.py", line 182, in call_apify_search
+    run = ac.actor(ACTOR_ID).call(run_input=run_input)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/_logging.py", line 142, in wrapper
+    return fun(resource_client, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/_resource_clients/actor.py", line 350, in call
+    started_run = self.start(
+                  ^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/_logging.py", line 142, in wrapper
+    return fun(resource_client, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/_resource_clients/actor.py", line 285, in start
+    response = self._http_client.call(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/http_clients/_impit.py", line 152, in call
+    return self._retry_with_exp_backoff(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/http_clients/_impit.py", line 287, in _retry_with_exp_backoff
+    return func(stop_retrying, attempt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/http_clients/_impit.py", line 153, in <lambda>
+    lambda stop_retrying, attempt: self._make_request(
+                                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/apify_client/http_clients/_impit.py", line 248, in _make_request
+    raise ApifyApiError(response, attempt, method=method)
+apify_client.errors.InvalidRequestError: Input is not valid: Field input.authorUrls must NOT have more than 10 items
