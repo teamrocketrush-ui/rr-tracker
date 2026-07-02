@@ -477,6 +477,17 @@
           <div id="filterOptionsList"></div>
         </div>
       </div>
+      <div class="filter-wrap">
+        <button class="filter-btn" id="activityFilterBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+          Filter by activity
+          <span class="count" id="activityFilterCount" style="display:none;">0</span>
+        </button>
+        <div class="filter-panel" id="activityFilterPanel">
+          <h5>Show clients whose last post was</h5>
+          <div id="activityFilterOptionsList"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -645,6 +656,55 @@ function renderFilterOptions(){
   });
 }
 
+// ── ACTIVITY (RECENCY) FILTER ────────────────────────────────
+// Buckets a client's last post into one of five fixed categories based
+// on lastPostFullDate, only meaningful for the current month (past months
+// are frozen history, so "days ago" doesn't apply the same way — the
+// activity filter is skipped entirely on past-month tabs, see render()).
+function activityBucketForClient(c){
+  if(!c.lastPostFullDate) return 'none';
+  const today=new Date();today.setHours(0,0,0,0);
+  const d=new Date(c.lastPostFullDate+'T00:00:00');
+  if(isNaN(d.getTime())) return 'none';
+  const diff=Math.floor((today-d)/86400000);
+  if(diff<0) return 'scheduled';
+  if(diff===0) return 'today';
+  if(diff===1) return 'yesterday';
+  if(diff===2) return 'two';
+  return 'delayed'; // 3+ days
+}
+
+const ACTIVITY_BUCKETS = [
+  {key:'today',     label:'Posted today'},
+  {key:'yesterday', label:'1 day ago'},
+  {key:'two',       label:'2 days ago'},
+  {key:'delayed',   label:'3+ days ago (delayed)'},
+  {key:'none',      label:'No activity yet'},
+];
+
+let activeActivityBuckets = [];
+
+function renderActivityFilterOptions(){
+  const wrap = document.getElementById('activityFilterOptionsList');
+  if (!wrap) return;
+  const previouslyChecked = new Set(activeActivityBuckets);
+
+  wrap.innerHTML = ACTIVITY_BUCKETS.map(b => {
+    const checked = previouslyChecked.has(b.key) ? 'checked' : '';
+    return `<label class="filter-opt"><input type="checkbox" value="${b.key}" ${checked}> ${b.label}</label>`;
+  }).join('');
+
+  wrap.querySelectorAll('.filter-opt input').forEach(chk=>{
+    chk.addEventListener('change', ()=>{
+      activeActivityBuckets = Array.from(wrap.querySelectorAll('input:checked')).map(i=>i.value);
+      const countEl = document.getElementById('activityFilterCount');
+      if(activeActivityBuckets.length){ countEl.style.display='flex'; countEl.textContent = activeActivityBuckets.length; }
+      else { countEl.style.display='none'; }
+      render(activeWriters, document.getElementById('searchInput').value);
+    });
+  });
+}
+
 function renderMonthTabs(){
   const wrap = document.getElementById('monthTabs');
   if (!wrap) return;
@@ -659,6 +719,7 @@ function renderMonthTabs(){
       activeMonth = btn.dataset.month;
       renderMonthTabs();
       renderFilterOptions();
+      renderActivityFilterOptions();
       render(getActiveFilters(), searchInput ? searchInput.value : '');
     });
   });
@@ -767,6 +828,12 @@ function render(filterWriters, query){
   currentClientData.forEach(c=>{
     if(filterWriters && filterWriters.length && !filterWriters.includes(c.writer)) return;
     if(q && !(c.name.toLowerCase().includes(q) || c.writer.toLowerCase().includes(q) || c.engager.toLowerCase().includes(q))) return;
+    // Activity/recency filter only makes sense for the current month —
+    // past months are frozen history, "days ago" isn't meaningful there.
+    if(c.isCurrentMonth && activeActivityBuckets && activeActivityBuckets.length){
+      const bucket = activityBucketForClient(c);
+      if(!activeActivityBuckets.includes(bucket)) return;
+    }
 
     const row = document.createElement('tr');
     row.className = 'row' + (c.status === 'paused' ? ' is-paused' : '');
@@ -880,9 +947,20 @@ filterBtn.addEventListener('click', (e)=>{
   e.stopPropagation();
   filterPanel.classList.toggle('show');
 });
+
+const activityFilterBtn = document.getElementById('activityFilterBtn');
+const activityFilterPanel = document.getElementById('activityFilterPanel');
+activityFilterBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  activityFilterPanel.classList.toggle('show');
+});
+
 document.addEventListener('click', (e)=>{
   if(!filterPanel.contains(e.target) && e.target!==filterBtn){
     filterPanel.classList.remove('show');
+  }
+  if(!activityFilterPanel.contains(e.target) && e.target!==activityFilterBtn){
+    activityFilterPanel.classList.remove('show');
   }
 });
 
@@ -894,6 +972,7 @@ document.getElementById('searchInput').addEventListener('input', (e)=>{
 
 renderMonthTabs();
 renderFilterOptions();
+renderActivityFilterOptions();
 render([],'');
 updateSyncLabel();
 </script>
