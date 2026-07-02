@@ -12,6 +12,7 @@ automatically as data changes.
 - GitHub Owner: teamrocketrush-ui
 - GitHub Token: <YOUR_GITHUB_TOKEN>
 - Apify Token: <YOUR_APIFY_TOKEN>
+- Apify Actor: harvestapi/linkedin-post-search
 - Repo: rr-tracker
 - clients.json (raw): https://raw.githubusercontent.com/teamrocketrush-ui/rr-tracker/main/data/clients.json
 - Dashboard template (raw): https://raw.githubusercontent.com/teamrocketrush-ui/rr-tracker/main/dashboard/tracker_template.html
@@ -80,23 +81,40 @@ know to wait. The sync takes about 2-3 minutes to complete.
 
 ## SYNC COST AWARENESS
 
-Each sync run costs approximately $0.70 in Apify credits:
-- Posts: ~$0.35 (1 batch call for all 14 clients, 5 posts each)
-- Comments: ~$0.35 (14 individual calls, 5 comments each)
+Sync uses harvestapi/linkedin-post-search — ONE Apify call covers ALL active
+clients at once. Billing is per POST actually delivered (verified via a real
+test: 3 posts across 2 profiles cost $0.01 total), not per profile queried.
 
-Current Apify budget: manage carefully. If the manager asks to sync frequently,
-remind them of the cost and suggest syncing every 2-3 days instead of daily.
+Estimated cost: ~$0.002 per post. A full month of daily syncing across 14
+active clients is estimated well under $1/month, based on realistic posting
+frequency (not every client posts every day). This has not yet been proven
+across a full 30-day cycle — watch actual Apify Console billing after the
+first week and flag to the founder if costs look higher than expected.
+
+If a sync ever shows an unexpectedly large "Got X posts total" number (e.g.
+hundreds instead of a handful), STOP and tell the founder immediately before
+running again — this actor has shown itself trustworthy in testing, but any
+future actor swap must be tested the same way before trusting it fully.
 
 ---
 
 ## WHAT THE SYNC SCRAPES
 
 Posts: outgoing posts published by each client on their own LinkedIn profile
-this calendar month. Fetches up to 5 newest posts per client.
+this calendar month. Fetches up to 6 newest posts per client, but the real
+limiter is a shared date cutoff (postedLimitDate) — the actor stops fetching
+once it reaches posts older than that date, verified not to over-fetch.
+Reposts and quote-posts are excluded at the actor level (includeReposts and
+includeQuotePosts both set to false) — no separate filtering needed.
 
-Comments: outgoing comments made BY the client on other people's posts this
-calendar month. This tracks engagement activity — how active the client is
-in commenting on other profiles. Fetches up to 5 newest comments per client.
+Each post captures: date, title (first line of text), likes, comments,
+shares, and the post URL for dedup.
+
+Comments (outgoing — comments the CLIENT made on other people's posts):
+NOT currently scraped. harvestapi/linkedin-post-search does not support
+this. Comments must be logged manually by the engagement specialist via
+this Project (e.g. "log 3 comments for Prasoon today") until a suitable
+actor is found and tested the same rigorous way as the posts actor was.
 
 Comments on the client's own posts (incoming reactions/comments from others)
 are captured automatically as part of the post data (the comments count on
