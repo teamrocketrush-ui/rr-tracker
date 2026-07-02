@@ -80,7 +80,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/prasoongupta/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-01 08:14:13",
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Garvita",
@@ -116,7 +116,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/dhawalphadke/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -131,7 +131,18 @@
           "engager": "NA",
           "postsTarget": "8",
           "commentsTarget": "NA",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Jul 2",
+              "full_date": "2026-07-02",
+              "title": "Blinkit got denied a trading licence in Meghalaya because people do not want to lose their jobs.",
+              "likes": 0,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/dhawalphadke_blinkit-got-denied-a-trading-licence-in-meghalaya-activity-7478426773924507649-Qvga",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
       }
@@ -142,7 +153,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-01 08:14:38",
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -178,7 +189,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -193,7 +204,38 @@
           "engager": "NA",
           "postsTarget": "12-16",
           "commentsTarget": "NA",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Jul 2",
+              "full_date": "2026-07-02",
+              "title": "This one spreadsheet has probably generated more business for me than any sales strategy.",
+              "likes": 1,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/abhishektalwar_hexaview-networking-activity-7478432869372239872-pqqW",
+              "post_type": "regular"
+            },
+            {
+              "date": "Jul 2",
+              "full_date": "2026-07-02",
+              "title": "This one spreadsheet has probably generated more business for me than any sales strategy.",
+              "likes": 0,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/abhishektalwar_hexaview-networking-activity-7478432875294650369-7zHZ",
+              "post_type": "regular"
+            },
+            {
+              "date": "Jul 1",
+              "full_date": "2026-07-01",
+              "title": "I'm personally investing $100K each in 5 first-generation founders.",
+              "likes": 55,
+              "comments": 4,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/abhishektalwar_hexaview-angelinvesting-startups-activity-7478070132154675200-d3XU",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
       }
@@ -204,7 +246,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/praveenkumardk/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -230,7 +272,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/michail-chopra-856a0335/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -256,7 +298,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/shrutiagrawalcfa/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -282,7 +324,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-kumar-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -308,7 +350,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -334,7 +376,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/harishmenon/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -349,7 +391,18 @@
           "engager": "Chirag",
           "postsTarget": "20",
           "commentsTarget": "250",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Jul 2",
+              "full_date": "2026-07-02",
+              "title": "The number of startups adding AI to their pitch has increased dramatically over the last two years. Investor decks menti",
+              "likes": 9,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/harishmenon_the-number-of-startups-adding-ai-to-their-activity-7478303952267272192-lrvv",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
       }
@@ -360,7 +413,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashish-padiyar-59608914/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -375,7 +428,18 @@
           "engager": "Garvita",
           "postsTarget": "12",
           "commentsTarget": "90",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Jul 2",
+              "full_date": "2026-07-02",
+              "title": "How did I lose ₹6 lakh in taxes when my portfolio was in profit?\"",
+              "likes": 3,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/ashish-padiyar-59608914_are-you-paying-too-much-tax-find-out-in-activity-7478323776309624832-86Ib",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
       }
@@ -386,7 +450,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-01 08:16:31",
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -422,7 +486,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/yashpal-singh-parmar-473976b7/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": null,
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -437,7 +501,18 @@
           "engager": "NA",
           "postsTarget": "12",
           "commentsTarget": "NA",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Jul 2",
+              "full_date": "2026-07-02",
+              "title": "India's next billion-dollar businesses won't be built in Bengaluru, Mumbai, or Delhi. That's one reason I chose Indore. ",
+              "likes": 6,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/yashpal-singh-parmar-473976b7_indias-next-billion-dollar-businesses-wont-activity-7478303947707883520-S2sX",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
       }
@@ -526,7 +601,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-01 08:16:56",
+      "lastSyncedAt": "2026-07-02 13:16:57",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
