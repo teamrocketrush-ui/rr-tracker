@@ -318,9 +318,9 @@ def main():
     print()
 
     cutoff_date = compute_shared_cutoff_date(active)
-    print(f"Shared cutoff date for this batch: {cutoff_date}")
-    print(f"(earliest 'latest known post' across all active clients — "
-          f"ensures nobody's new post is missed)")
+    print(f"Cutoff date for this sync: {cutoff_date} (always month start — "
+          f"re-scans full month so existing posts' likes/comments/shares "
+          f"get refreshed, not just new posts added)")
     print()
 
     by_username = call_apify_search(active, cutoff_date, dry_run=args.dry_run)
