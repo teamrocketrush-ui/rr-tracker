@@ -682,7 +682,9 @@ function relativeLabel(fullDate){
 function updateSyncLabel(){
   const el=document.getElementById('syncLabel');
   if(!el||typeof lastSyncedAt==='undefined'||!lastSyncedAt)return;
-  const dt=new Date(lastSyncedAt.replace(' ','T'));
+  // Append 'Z' so the browser knows the stored time is UTC and converts
+  // it correctly to the viewer's local timezone (e.g. IST = UTC+5:30)
+  const dt=new Date(lastSyncedAt.replace(' ','T')+'Z');
   if(isNaN(dt.getTime()))return;
   const timeStr=dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
   const dateStr=dt.toLocaleDateString('en-US',{day:'numeric',month:'short',year:'numeric'});
