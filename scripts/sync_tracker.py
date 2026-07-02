@@ -211,6 +211,9 @@ def parse_post(item):
     text = (item.get("content") or "").strip()
     hook = text.split("\n")[0][:120] if text else "(no text)"
 
+    raw_url = item.get("linkedinUrl", "")
+    clean_url = raw_url.split("?")[0].rstrip("/") if raw_url else ""
+
     return {
         "date":      f"{dt.strftime('%b')} {dt.day}",
         "full_date": dt.strftime("%Y-%m-%d"),
@@ -218,7 +221,7 @@ def parse_post(item):
         "likes":     engagement.get("likes", 0),
         "comments":  engagement.get("comments", 0),
         "shares":    engagement.get("shares", 0),
-        "url":       item.get("linkedinUrl", ""),
+        "url":       clean_url,
         "post_type": "regular",
     }
 
@@ -231,8 +234,10 @@ def merge_posts(month_record, raw_items, cutoff_date=None):
     """
     existing_by_url = {}
     for idx, p in enumerate(month_record.get("posts", [])):
-        url = p.get("url")
+        url = p.get("url", "").split("?")[0].rstrip("/")
         if url:
+            # Normalise stored URL in-place (strips old UTM params)
+            p["url"] = url
             existing_by_url[url] = idx
 
     added = 0
