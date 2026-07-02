@@ -81,34 +81,43 @@ know to wait. The sync takes about 2-3 minutes to complete.
 
 ## SYNC COST AWARENESS
 
-Sync uses harvestapi/linkedin-post-search — ONE Apify call covers ALL active
-clients at once. Billing is per POST actually delivered (verified via a real
-test: 3 posts across 2 profiles cost $0.01 total), not per profile queried.
+Sync uses harvestapi/linkedin-post-search. It's called in BATCHES OF 10
+PROFILES (the actor's hard limit per call) — with 14 active clients, that's
+2 batch calls per sync, not 14 separate calls. Billing is per POST actually
+delivered (verified via real test: 3 posts across 2 profiles cost $0.01
+total), not per profile queried or per page fetched internally.
 
-Estimated cost: ~$0.002 per post. A full month of daily syncing across 14
-active clients is estimated well under $1/month, based on realistic posting
-frequency (not every client posts every day). This has not yet been proven
-across a full 30-day cycle — watch actual Apify Console billing after the
-first week and flag to the founder if costs look higher than expected.
+IMPORTANT — every sync ALWAYS scrapes from the 1st of the current month
+through today, on every single run, never an incremental "only new posts"
+cutoff. This is intentional: it means already-known posts get their
+likes/comments/shares REFRESHED every sync (so a post that had 21 likes on
+day 1 correctly shows 68 likes by day 2 if that's how many it really has
+now), not frozen at whatever number was captured the first time. Cost stays
+low regardless because billing is per-post, and realistic monthly posting
+volume per client (a handful of posts) keeps this well under $1/month total
+even with full-month rescanning every time.
 
 If a sync ever shows an unexpectedly large "Got X posts total" number (e.g.
 hundreds instead of a handful), STOP and tell the founder immediately before
-running again — this actor has shown itself trustworthy in testing, but any
-future actor swap must be tested the same way before trusting it fully.
+running again.
 
 ---
 
 ## WHAT THE SYNC SCRAPES
 
 Posts: outgoing posts published by each client on their own LinkedIn profile
-this calendar month. Fetches up to 6 newest posts per client, but the real
-limiter is a shared date cutoff (postedLimitDate) — the actor stops fetching
-once it reaches posts older than that date, verified not to over-fetch.
+this calendar month. Always scrapes from month start to today (see cost
+section above) — this is required for engagement-refresh, not a bug.
 Reposts and quote-posts are excluded at the actor level (includeReposts and
 includeQuotePosts both set to false) — no separate filtering needed.
 
 Each post captures: date, title (first line of text), likes, comments,
-shares, and the post URL for dedup.
+shares, and the post URL (normalised — query params and trailing slash
+stripped — for reliable duplicate matching across syncs).
+
+On every sync: if a post's URL is already stored, its likes/comments/shares
+are UPDATED in place to the latest numbers. If it's a new URL, it's added.
+Posts are never duplicated and never skipped for refreshing.
 
 Comments (outgoing — comments the CLIENT made on other people's posts):
 NOT currently scraped. harvestapi/linkedin-post-search does not support
@@ -220,6 +229,18 @@ It regenerates ALL month tabs at once. Never update only the current month.
 
 After any clients.json change, always rebuild and push tracker.html so the
 live dashboard reflects the latest data.
+
+---
+
+## IF THE MANAGER REPORTS STALE-LOOKING DATA
+
+GitHub Pages and browsers cache aggressively. If the manager says the
+dashboard shows old numbers, an old "Synced" timestamp, or a wrong month
+label right after a sync completed, first ask them to hard-refresh their
+browser (Ctrl+Shift+R on Windows, Cmd+Shift+R on Mac) before assuming
+there's a data bug. Confirm the real current state yourself by fetching
+clients.json fresh and checking the actual stored values — if those are
+correct, it's a caching issue, not a sync issue.
 
 ---
 
