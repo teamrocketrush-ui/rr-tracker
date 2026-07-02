@@ -211,6 +211,13 @@ def build_month_data_js(clients_data):
             if month is None:
                 continue  # this client has no record for this month — skip
             views.append(build_client_view(client, month_key, month, is_current))
+
+        # Sort: active clients first, paused clients next, removed last.
+        # Within each group, original clients.json order is preserved
+        # (Python's sort is stable) so writers/dates still read naturally.
+        status_priority = {"active": 0, "paused": 1, "removed": 2}
+        views.sort(key=lambda v: status_priority.get(v.get("status"), 1))
+
         month_data[month_key] = views
 
     labels = {k: month_label(k) for k in sorted_keys}
