@@ -173,7 +173,7 @@
             {
               "date": "Jul 1",
               "full_date": "2026-07-01",
-              "title": "“𝗔𝗹𝗰𝗼𝗵𝗼𝗹 helps you sleep faster, then quietly destroys the quality of your sleep\"",
+              "title": "\u201c\ud835\uddd4\ud835\uddf9\ud835\uddf0\ud835\uddfc\ud835\uddf5\ud835\uddfc\ud835\uddf9 helps you sleep faster, then quietly destroys the quality of your sleep\"",
               "likes": 8,
               "comments": 2,
               "shares": 0,
@@ -272,7 +272,7 @@
       "id": "c8",
       "name": "Michail",
       "linkedinUrl": "https://www.linkedin.com/in/michail-chopra-856a0335/",
-      "status": "active",
+      "status": "paused",
       "engagementType": "Retainer",
       "lastSyncedAt": "2026-07-03 06:38:46",
       "months": {
@@ -434,7 +434,7 @@
             {
               "date": "Jul 2",
               "full_date": "2026-07-02",
-              "title": "How did I lose ₹6 lakh in taxes when my portfolio was in profit?\"",
+              "title": "How did I lose \u20b96 lakh in taxes when my portfolio was in profit?\"",
               "likes": 4,
               "comments": 0,
               "shares": 0,
@@ -550,7 +550,7 @@
       "id": "c17",
       "name": "Manvi Bansal",
       "linkedinUrl": "https://www.linkedin.com/in/manvibansal99/",
-      "status": "paused",
+      "status": "active",
       "engagementType": "Pilot",
       "lastSyncedAt": null,
       "months": {
