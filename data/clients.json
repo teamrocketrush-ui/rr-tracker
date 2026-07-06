@@ -99,7 +99,7 @@
             {
               "date": "Jul 3",
               "full_date": "2026-07-03",
-              "title": "UP & Bihar sell chaulai for ₹10. We buy kale for ₹370.",
+              "title": "UP & Bihar sell chaulai for \u20b910. We buy kale for \u20b9370.",
               "likes": 527,
               "comments": 21,
               "shares": 16,
@@ -183,7 +183,7 @@
             {
               "date": "Jul 6",
               "full_date": "2026-07-06",
-              "title": "Your dinner doesn’t have all the vitamins, so Multivitamins are compulsory. This is False. Multivitamins do not make peo",
+              "title": "Your dinner doesn\u2019t have all the vitamins, so Multivitamins are compulsory. This is False. Multivitamins do not make peo",
               "likes": 5,
               "comments": 3,
               "shares": 1,
@@ -193,7 +193,7 @@
             {
               "date": "Jul 3",
               "full_date": "2026-07-03",
-              "title": "‘Stretch before exercise or you’ll get injured’ is false. A 2002 study found static stretching before exercise has ZERO ",
+              "title": "\u2018Stretch before exercise or you\u2019ll get injured\u2019 is false. A 2002 study found static stretching before exercise has ZERO ",
               "likes": 9,
               "comments": 0,
               "shares": 0,
@@ -203,7 +203,7 @@
             {
               "date": "Jul 1",
               "full_date": "2026-07-01",
-              "title": "“𝗔𝗹𝗰𝗼𝗵𝗼𝗹 helps you sleep faster, then quietly destroys the quality of your sleep\"",
+              "title": "\u201c\ud835\uddd4\ud835\uddf9\ud835\uddf0\ud835\uddfc\ud835\uddf5\ud835\uddfc\ud835\uddf9 helps you sleep faster, then quietly destroys the quality of your sleep\"",
               "likes": 8,
               "comments": 2,
               "shares": 0,
@@ -307,7 +307,7 @@
             {
               "date": "Jul 6",
               "full_date": "2026-07-06",
-              "title": "35 to 40% of the HR professionals resign within first year of their hire. ",
+              "title": "35 to 40% of the HR professionals resign within first year of their hire.\u00a0",
               "likes": 5,
               "comments": 0,
               "shares": 0,
@@ -380,7 +380,7 @@
             {
               "date": "Jul 3",
               "full_date": "2026-07-03",
-              "title": "“How many bank accounts should a couple have?” ",
+              "title": "\u201cHow many bank accounts should a couple have?\u201d ",
               "likes": 14,
               "comments": 1,
               "shares": 0,
@@ -395,7 +395,7 @@
     {
       "id": "c10",
       "name": "Piyush",
-      "linkedinUrl": "https://www.linkedin.com/in/piyush-kumar-a748b527/",
+      "linkedinUrl": "https://www.linkedin.com/in/piyush-dokania-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
       "lastSyncedAt": "2026-07-06 07:00:09",
@@ -537,7 +537,7 @@
             {
               "date": "Jul 2",
               "full_date": "2026-07-02",
-              "title": "How did I lose ₹6 lakh in taxes when my portfolio was in profit?\"",
+              "title": "How did I lose \u20b96 lakh in taxes when my portfolio was in profit?\"",
               "likes": 9,
               "comments": 0,
               "shares": 0,
@@ -574,7 +574,7 @@
             {
               "date": "Jul 6",
               "full_date": "2026-07-06",
-              "title": "“We’ll do it later” is the most expensive sentence in middle-class homes.",
+              "title": "\u201cWe\u2019ll do it later\u201d is the most expensive sentence in middle-class homes.",
               "likes": 10,
               "comments": 2,
               "shares": 1,
@@ -584,7 +584,7 @@
             {
               "date": "Jul 3",
               "full_date": "2026-07-03",
-              "title": "The housewarming happens, the relatives congratulate you, and everyone says the same thing: “Finally, you have your own ",
+              "title": "The housewarming happens, the relatives congratulate you, and everyone says the same thing: \u201cFinally, you have your own ",
               "likes": 14,
               "comments": 2,
               "shares": 0,
