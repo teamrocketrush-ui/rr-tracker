@@ -80,7 +80,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/prasoongupta/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Garvita",
@@ -100,9 +100,9 @@
               "date": "Jul 3",
               "full_date": "2026-07-03",
               "title": "UP & Bihar sell chaulai for ₹10. We buy kale for ₹370.",
-              "likes": 494,
-              "comments": 20,
-              "shares": 15,
+              "likes": 527,
+              "comments": 21,
+              "shares": 16,
               "url": "https://www.linkedin.com/posts/prasoongupta_up-bihar-sell-chaulai-for-10-we-buy-kale-activity-7478699372034019329-9FwE",
               "post_type": "regular"
             },
@@ -110,7 +110,7 @@
               "date": "Jul 1",
               "full_date": "2026-07-01",
               "title": "I turned 40 this year.",
-              "likes": 77,
+              "likes": 82,
               "comments": 4,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/prasoongupta_i-turned-40-this-year-and-i-did-something-activity-7477939483502383104-OybV",
@@ -127,7 +127,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/dhawalphadke/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -147,7 +147,7 @@
               "date": "Jul 2",
               "full_date": "2026-07-02",
               "title": "Blinkit got denied a trading licence in Meghalaya because people do not want to lose their jobs.",
-              "likes": 3,
+              "likes": 4,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/dhawalphadke_blinkit-got-denied-a-trading-licence-in-meghalaya-activity-7478426773924507649-Qvga",
@@ -164,7 +164,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -181,10 +181,20 @@
           "commentsTarget": "150",
           "posts": [
             {
+              "date": "Jul 6",
+              "full_date": "2026-07-06",
+              "title": "Your dinner doesn’t have all the vitamins, so Multivitamins are compulsory. This is False. Multivitamins do not make peo",
+              "likes": 5,
+              "comments": 3,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_your-dinner-doesnt-have-all-the-vitamins-activity-7479770801341210624-34ZB",
+              "post_type": "regular"
+            },
+            {
               "date": "Jul 3",
               "full_date": "2026-07-03",
               "title": "‘Stretch before exercise or you’ll get injured’ is false. A 2002 study found static stretching before exercise has ZERO ",
-              "likes": 8,
+              "likes": 9,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_stretch-before-exercise-or-youll-get-injured-activity-7478794788646023171-szSK",
@@ -211,7 +221,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -231,7 +241,7 @@
               "date": "Jul 3",
               "full_date": "2026-07-03",
               "title": "I have no idea what time most of my employees log in. And I don't even care. They can start at 7:00 AM or 3:00 PM.",
-              "likes": 72,
+              "likes": 86,
               "comments": 1,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_workplaceculture-leadership-trustatwork-activity-7478794967713513472-4zwx",
@@ -251,7 +261,7 @@
               "date": "Jul 2",
               "full_date": "2026-07-02",
               "title": "This one spreadsheet has probably generated more business for me than any sales strategy.",
-              "likes": 50,
+              "likes": 53,
               "comments": 2,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_hexaview-networking-activity-7478432875294650369-7zHZ",
@@ -261,8 +271,8 @@
               "date": "Jul 1",
               "full_date": "2026-07-01",
               "title": "I'm personally investing $100K each in 5 first-generation founders.",
-              "likes": 64,
-              "comments": 5,
+              "likes": 69,
+              "comments": 6,
               "shares": 2,
               "url": "https://www.linkedin.com/posts/abhishektalwar_hexaview-angelinvesting-startups-activity-7478070132154675200-d3XU",
               "post_type": "regular"
@@ -278,7 +288,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/praveenkumardk/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -295,10 +305,20 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Jul 6",
+              "full_date": "2026-07-06",
+              "title": "35 to 40% of the HR professionals resign within first year of their hire. ",
+              "likes": 5,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/praveenkumardk_35-to-40-of-the-hr-professionals-resign-activity-7479753610583797760-Ltc6",
+              "post_type": "regular"
+            },
+            {
               "date": "Jul 4",
               "full_date": "2026-07-04",
               "title": "Is there really a talent shortage, or are we simply looking for talent the wrong way?",
-              "likes": 7,
+              "likes": 8,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/praveenkumardk_is-there-really-a-talent-shortage-or-are-activity-7479033700769341440-Xc_v",
@@ -341,7 +361,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/shrutiagrawalcfa/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -378,7 +398,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-kumar-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -404,7 +424,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -421,12 +441,22 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Jul 6",
+              "full_date": "2026-07-06",
+              "title": "When I joined the Tata Group as a young engineer, I was entering one of India's largest business enterprises. ",
+              "likes": 35,
+              "comments": 4,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_when-i-joined-the-tata-group-as-a-young-engineer-activity-7479753517998501889-VSru",
+              "post_type": "regular"
+            },
+            {
               "date": "Jul 3",
               "full_date": "2026-07-03",
               "title": "(no text)",
-              "likes": 20,
+              "likes": 34,
               "comments": 4,
-              "shares": 2,
+              "shares": 4,
               "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_activity-7478747327940218880-1KFV",
               "post_type": "regular"
             }
@@ -441,7 +471,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/harishmenon/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -461,7 +491,7 @@
               "date": "Jul 4",
               "full_date": "2026-07-04",
               "title": "When India's first lockdown was announced, thousands of founders stopped thinking about growth and started calculating s",
-              "likes": 8,
+              "likes": 14,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/harishmenon_when-indias-first-lockdown-was-announced-activity-7479028787888893952-KfLs",
@@ -488,7 +518,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashish-padiyar-59608914/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -508,7 +538,7 @@
               "date": "Jul 2",
               "full_date": "2026-07-02",
               "title": "How did I lose ₹6 lakh in taxes when my portfolio was in profit?\"",
-              "likes": 8,
+              "likes": 9,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/ashish-padiyar-59608914_are-you-paying-too-much-tax-find-out-in-activity-7478323776309624832-86Ib",
@@ -525,7 +555,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -542,11 +572,21 @@
           "commentsTarget": "100",
           "posts": [
             {
+              "date": "Jul 6",
+              "full_date": "2026-07-06",
+              "title": "“We’ll do it later” is the most expensive sentence in middle-class homes.",
+              "likes": 10,
+              "comments": 2,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/ashokdevanampriya_well-do-it-later-is-the-most-expensive-activity-7479769787997478912-Tz3i",
+              "post_type": "regular"
+            },
+            {
               "date": "Jul 3",
               "full_date": "2026-07-03",
               "title": "The housewarming happens, the relatives congratulate you, and everyone says the same thing: “Finally, you have your own ",
-              "likes": 13,
-              "comments": 1,
+              "likes": 14,
+              "comments": 2,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/ashokdevanampriya_the-housewarming-happens-the-relatives-congratulate-activity-7478779766112894977-CWnI",
               "post_type": "regular"
@@ -572,7 +612,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/yashpal-singh-parmar-473976b7/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -588,6 +628,16 @@
           "postsTarget": "12",
           "commentsTarget": "NA",
           "posts": [
+            {
+              "date": "Jul 6",
+              "full_date": "2026-07-06",
+              "title": "Most people retire from sport in their 20s and that's when my real training started. ",
+              "likes": 1,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/yashpal-singh-parmar-473976b7_most-people-retire-from-sport-in-their-20s-activity-7479753507148013568-W8rj",
+              "post_type": "regular"
+            },
             {
               "date": "Jul 4",
               "full_date": "2026-07-04",
@@ -645,7 +695,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/manvibansal99/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -708,7 +758,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-04 13:18:16",
+      "lastSyncedAt": "2026-07-06 07:00:09",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -728,9 +778,9 @@
               "date": "Jul 1",
               "full_date": "2026-07-01",
               "title": "Toyota Motor Corporation has a building in Toyota city where key field failures of Toyota products since 1938 are displa",
-              "likes": 190,
+              "likes": 205,
               "comments": 21,
-              "shares": 7,
+              "shares": 9,
               "url": "https://www.linkedin.com/posts/janakmehta12345_quality-tqmi-organisation-activity-7477941575948599296-FVlI",
               "post_type": "regular"
             }
