@@ -41,8 +41,10 @@ DASHBOARD_PATH = "dashboard/tracker.html"
 MAX_POSTS_PER_PROFILE = 25  # high enough to cover full month; real limiter is postedLimitDate
 
 # ── GITHUB ────────────────────────────────────────────────────────
-def gh_get(path):
-    url = f"https://api.github.com/repos/{GITHUB_OWNER}/{GITHUB_REPO}/contents/{path}"
+def gh_get(path, owner=None, repo=None):
+    owner = owner or GITHUB_OWNER
+    repo = repo or GITHUB_REPO
+    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path}"
     req = urllib.request.Request(url, headers={
         "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github+json"})
@@ -50,8 +52,10 @@ def gh_get(path):
         data = json.loads(r.read())
     return base64.b64decode(data["content"]).decode(), data["sha"]
 
-def gh_put(path, content_str, message, sha=None):
-    url = f"https://api.github.com/repos/{GITHUB_OWNER}/{GITHUB_REPO}/contents/{path}"
+def gh_put(path, content_str, message, sha=None, owner=None, repo=None):
+    owner = owner or GITHUB_OWNER
+    repo = repo or GITHUB_REPO
+    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path}"
     payload = {"message": message,
                "content": base64.b64encode(content_str.encode()).decode()}
     if sha:
@@ -275,6 +279,22 @@ def rebuild_and_push_dashboard(clients_data):
         print(f"  ✅ https://{GITHUB_OWNER}.github.io/{GITHUB_REPO}/dashboard/tracker.html")
     except Exception as e:
         print(f"  ⚠  Dashboard rebuild failed: {e}")
+        return
+
+    # Also deploy to the primary live domain (teamrocketrush-ui.github.io),
+    # since GitHub Pages on rr-tracker got stuck after a visibility toggle
+    # on 2026-07-11 and this repo is now the canonical live URL.
+    try:
+        PAGES_REPO = "teamrocketrush-ui.github.io"
+        try:
+            _, live_sha = gh_get("index.html", repo=PAGES_REPO)
+        except Exception:
+            live_sha = None
+        gh_put("index.html", updated,
+               f"Sync dashboard — {date.today()}", live_sha, repo=PAGES_REPO)
+        print(f"  ✅ https://{GITHUB_OWNER}.github.io/")
+    except Exception as e:
+        print(f"  ⚠  Live domain deploy failed: {e}")
 
 # ── MAIN ──────────────────────────────────────────────────────────
 def main():
