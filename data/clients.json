@@ -1559,6 +1559,24 @@
           "comments": []
         }
       }
+    },
+    {
+      "id": "c21",
+      "name": "Sambhav Jain",
+      "linkedinUrl": "https://www.linkedin.com/in/sabsambhavhain/",
+      "status": "active",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-07": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
     }
   ]
 }
