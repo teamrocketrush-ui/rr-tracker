@@ -30,6 +30,9 @@ from pathlib import Path
 
 GITHUB_TOKEN = os.environ.get("GH_PAT", "")
 APIFY_TOKEN  = os.environ.get("APIFY_TOKEN", "")
+APIFY_TOKEN_2 = os.environ.get("APIFY_TOKEN_2", "")  # fallback account, used only
+                                                       # if primary hits its monthly
+                                                       # usage hard limit mid-sync
 
 GITHUB_OWNER   = "teamrocketrush-ui"
 GITHUB_REPO    = "rr-tracker"
@@ -130,13 +133,23 @@ def compute_shared_cutoff_date(active_clients):
     return month_start_str()
 
 # ── APIFY ─────────────────────────────────────────────────────────
-def apify_client():
+def _make_client(token):
+    from apify_client import ApifyClient
+    return ApifyClient(token)
+
+def apify_client(token=None):
     try:
-        from apify_client import ApifyClient
+        from apify_client import ApifyClient  # noqa: F401 (import check)
     except ImportError:
         print("ERROR: pip install apify-client")
         sys.exit(1)
-    return ApifyClient(APIFY_TOKEN)
+    return _make_client(token or APIFY_TOKEN)
+
+def _is_hard_limit_error(exc):
+    """True if this Apify error is the 'Monthly usage hard limit exceeded'
+    account-quota error (vs. some other failure we shouldn't silently swallow)."""
+    from apify_client.errors import ApifyApiError
+    return isinstance(exc, ApifyApiError) and "hard limit" in str(exc).lower()
 
 BATCH_SIZE = 10  # harvestapi/linkedin-post-search hard limit
 
@@ -144,6 +157,12 @@ def call_apify_search(active_clients, cutoff_date, dry_run=False):
     """
     Calls the actor in batches of BATCH_SIZE (actor limit: 10 profiles/call).
     Returns dict: { username: [raw_post_item, ...] }
+
+    Account fallback: tries APIFY_TOKEN first. If that account hits its
+    "Monthly usage hard limit exceeded" error mid-sync, switches to
+    APIFY_TOKEN_2 (if configured) for the rest of this run and all
+    subsequent batches — drains account A fully before ever touching
+    account B, rather than alternating randomly.
     """
     author_urls = [c["linkedinUrl"] for c in active_clients if c.get("linkedinUrl")]
     if not author_urls:
@@ -156,7 +175,10 @@ def call_apify_search(active_clients, cutoff_date, dry_run=False):
               f"maxPosts={MAX_POSTS_PER_PROFILE}")
         return {}
 
-    ac = apify_client()
+    tokens_to_try = [t for t in (APIFY_TOKEN, APIFY_TOKEN_2) if t]
+    current = 0  # index into tokens_to_try; sticky once we switch
+    ac = apify_client(tokens_to_try[current])
+
     by_username = {}
     batches = [author_urls[i:i+BATCH_SIZE] for i in range(0, len(author_urls), BATCH_SIZE)]
 
@@ -178,8 +200,19 @@ def call_apify_search(active_clients, cutoff_date, dry_run=False):
         }
         print(f"  → Apify batch {batch_num}/{len(batches)}: "
               f"{len(batch_urls)} profiles, cutoff={cutoff_date}, "
-              f"max {MAX_POSTS_PER_PROFILE}/profile")
-        run = ac.actor(ACTOR_ID).call(run_input=run_input)
+              f"max {MAX_POSTS_PER_PROFILE}/profile "
+              f"(account #{current+1}/{len(tokens_to_try)})")
+        try:
+            run = ac.actor(ACTOR_ID).call(run_input=run_input)
+        except Exception as e:
+            if _is_hard_limit_error(e) and current + 1 < len(tokens_to_try):
+                current += 1
+                print(f"  ⚠ Account #{current} hit its monthly hard limit — "
+                      f"switching to account #{current+1} for the rest of this sync.")
+                ac = apify_client(tokens_to_try[current])
+                run = ac.actor(ACTOR_ID).call(run_input=run_input)
+            else:
+                raise
         dataset_id = (run["defaultDatasetId"] if isinstance(run, dict)
                       else run.default_dataset_id)
         items = list(ac.dataset(dataset_id).iterate_items())
