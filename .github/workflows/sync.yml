@@ -19,6 +19,7 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          APIFY_TOKEN_2: ${{ secrets.APIFY_TOKEN_2 }}
           CLIENT_ID: ${{ github.event.inputs.client_id }}
         run: |
           if [ -n "$CLIENT_ID" ]; then
