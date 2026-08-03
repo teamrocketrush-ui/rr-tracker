@@ -80,7 +80,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/prasoongupta/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Garvita",
@@ -228,6 +228,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Garvita",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "Have you ever wondered why some people seem to have endless energy while others constantly struggle with fatigue, stress",
+              "likes": 5,
+              "comments": 0,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/prasoongupta_have-you-ever-wondered-why-some-people-seem-activity-7489896741446811648-VFx8",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -237,7 +256,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/dhawalphadke/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -325,6 +344,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "8",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -334,7 +361,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -472,6 +499,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Rohit",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "150",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "Muscle soreness is not proof of a successful workout. Fitness experts convinced people that a workout only counts if the",
+              "likes": 31,
+              "comments": 24,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_muscle-soreness-is-not-proof-of-a-successful-activity-7489886673229471744-AOjg",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -481,7 +527,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -739,6 +785,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Bhawana",
+          "engager": "NA",
+          "postsTarget": "12-16",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -748,7 +802,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/praveenkumardk/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -886,6 +940,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "One thing I've realised about GCCs is that they don't just change where you work. ",
+              "likes": 3,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/praveenkumardk_one-thing-ive-realised-about-gccs-is-that-activity-7489904966913146881-NNk8",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -912,6 +985,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "4",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -921,7 +1002,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/shrutiagrawalcfa/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -1009,6 +1090,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -1018,7 +1107,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-dokania-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -1136,6 +1225,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "We refused to dispatch makhana that had already passed our New York client’s inspection.",
+              "likes": 21,
+              "comments": 5,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_we-refused-to-dispatch-makhana-that-had-already-activity-7489891273638715392-cXmI",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -1145,7 +1253,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -1303,6 +1411,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "When people ask young children what they want to become when they grow up, they usually expect the answer to be a profes",
+              "likes": 51,
+              "comments": 8,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_when-people-ask-young-children-what-they-activity-7489900384984113153-MsU9",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -1312,7 +1439,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/harishmenon/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -1480,6 +1607,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Kanishka",
+          "engager": "Chirag",
+          "postsTarget": "20",
+          "commentsTarget": "250",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -1489,7 +1624,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashish-padiyar-59608914/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -1527,6 +1662,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "90",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -1536,7 +1679,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -1684,6 +1827,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Rohit",
+          "engager": "Adee",
+          "postsTarget": "12-16",
+          "commentsTarget": "100",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "The most hardworking person in Indian homes still has the least Financial Ownership.",
+              "likes": 19,
+              "comments": 5,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/ashokdevanampriya_the-most-hardworking-person-in-indian-homes-activity-7489888820969033728-VfyT",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -1693,7 +1855,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/yashpal-singh-parmar-473976b7/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -1911,6 +2073,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "For years, India's gold market was discussed almost entirely through the lens of culture.",
+              "likes": 0,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/yashpal-singh-parmar-473976b7_for-years-indias-gold-market-was-discussed-activity-7489900367330091008-HIfh",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -1920,7 +2101,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/bharat-rungta-041b654/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -2008,6 +2189,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -2017,7 +2206,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/manvibansal99/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -2145,6 +2334,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Aditya",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -2154,7 +2351,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/snehal-bandekar-706b5558/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -2242,6 +2439,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Aug 3",
+              "full_date": "2026-08-03",
+              "title": "Ask a jewellery manufacturer what makes their quality different.",
+              "likes": 3,
+              "comments": 2,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/snehal-bandekar-706b5558_ask-a-jewellery-manufacturer-what-makes-their-activity-7489900411370467328-d2Tx",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -2251,7 +2467,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -2319,6 +2535,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -2328,7 +2552,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/kalraujwal/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -2408,6 +2632,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-08": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -2417,7 +2649,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/sabsambhavhain/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-07-30 07:53:38",
+      "lastSyncedAt": "2026-08-03 08:51:22",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -2486,6 +2718,14 @@
               "post_type": "regular"
             }
           ],
+          "comments": []
+        },
+        "2026-08": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [],
           "comments": []
         }
       }
