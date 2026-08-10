@@ -271,7 +271,15 @@ def inject_into_dashboard(dashboard_html, new_data_block):
             "Could not find monthData placeholder block in dashboard HTML. "
             "Make sure dashboard/tracker_template.html has the month-tabs update applied."
         )
-    dashboard_html = month_block_pattern.sub(new_data_block, dashboard_html, count=1)
+    # NOTE: new_data_block is passed as a *function*, not a plain string.
+    # re.sub() with a plain-string replacement interprets backslash sequences
+    # in it as regex escapes/backreferences (\1, \g<name>, and literal \n \r \t
+    # get converted into real control characters) — which silently corrupts
+    # any JSON-escaped content (e.g. a post title containing \r from a
+    # multi-line LinkedIn post) into raw control bytes, breaking the emitted
+    # JS syntax. A replacement function's return value is inserted literally,
+    # with no escape processing, avoiding this entirely.
+    dashboard_html = month_block_pattern.sub(lambda m: new_data_block, dashboard_html, count=1)
 
     return dashboard_html
 
