@@ -3635,6 +3635,24 @@
           "comments": []
         }
       }
+    },
+    {
+      "id": "c24",
+      "name": "Preety Singh",
+      "linkedinUrl": "https://www.linkedin.com/in/singhpreety/",
+      "status": "active",
+      "engagementType": "Pilot",
+      "lastSyncedAt": null,
+      "months": {
+        "2026-08": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": 16,
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        }
+      }
     }
   ]
 }
