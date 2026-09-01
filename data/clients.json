@@ -382,7 +382,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -629,6 +629,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Rohit",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "150",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -638,7 +646,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -1155,6 +1163,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "12-16",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Sep 1",
+              "full_date": "2026-09-01",
+              "title": "This simple meeting hack has saved me hundreds of wasted hours. ",
+              "likes": 10,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/abhishektalwar_meetinghack-hexaview-activity-7500538083885416448-TGi1",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -1164,7 +1191,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/praveenkumardk/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -1461,6 +1488,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -1495,6 +1530,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "4",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -1504,7 +1547,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/shrutiagrawalcfa/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -1701,6 +1744,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Garvita",
+          "engager": "Garvita",
+          "postsTarget": "16",
+          "commentsTarget": "100",
+          "posts": [
+            {
+              "date": "Sep 1",
+              "full_date": "2026-09-01",
+              "title": "“I don't want to profit from things I don't believe in.”",
+              "likes": 8,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/shrutiagrawalcfa_i-dont-want-to-profit-from-things-i-dont-activity-7500420952917172224-DbOr",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -1710,7 +1772,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-dokania-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -1927,6 +1989,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -1936,7 +2006,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -2243,6 +2313,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -2252,7 +2330,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/harishmenon/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -2579,6 +2657,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Kanishka",
+          "engager": "Chirag",
+          "postsTarget": "20",
+          "commentsTarget": "250",
+          "posts": [
+            {
+              "date": "Sep 1",
+              "full_date": "2026-09-01",
+              "title": "I was teaching a session on family businesses at a business school when one of the students asked me a question that sta",
+              "likes": 11,
+              "comments": 1,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/harishmenon_i-was-teaching-a-session-on-family-businesses-activity-7500409773163614208-sMbN",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -2588,7 +2685,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashish-padiyar-59608914/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -2655,6 +2752,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "90",
+          "posts": [
+            {
+              "date": "Sep 1",
+              "full_date": "2026-09-01",
+              "title": "So a friend of mine has invested in more than 70 startups. A few have done extremely well. Many have quietly gone nowher",
+              "likes": 20,
+              "comments": 1,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/ashish-padiyar-59608914_so-a-friend-of-mine-has-invested-in-more-activity-7500409706818211841-Cj7l",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -2664,7 +2780,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -2921,6 +3037,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Rohit",
+          "engager": "Aditya",
+          "postsTarget": "12-16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -2930,7 +3054,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/yashpal-singh-parmar-473976b7/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -3257,6 +3381,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -3266,7 +3398,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/bharat-rungta-041b654/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -3413,6 +3545,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -3422,7 +3562,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/manvibansal99/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -3629,6 +3769,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Aditya",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -3638,7 +3786,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/snehal-bandekar-706b5558/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -3865,6 +4013,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -3874,7 +4030,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -3971,6 +4127,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -3980,7 +4144,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/kalraujwal/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -4169,6 +4333,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -4178,7 +4350,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/sabsambhavhain/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -4337,6 +4509,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -4346,7 +4526,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-goyal-13734334/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-08": {
           "writer": "Manasvi",
@@ -4466,6 +4646,14 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Manasvi",
+          "engager": "Aditya",
+          "postsTarget": 16,
+          "commentsTarget": 250,
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -4475,7 +4663,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/gazder/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-08": {
           "writer": "Nikhil",
@@ -4615,6 +4803,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-09": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": 16,
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Sep 1",
+              "full_date": "2026-09-01",
+              "title": "Over two decades of designing commercial kitchens across 52 countries, one mistake keeps repeating:",
+              "likes": 6,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/gazder_over-two-decades-of-designing-commercial-activity-7500545665295556610-9yBW",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -4624,7 +4831,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/singhpreety/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-08-31 11:29:12",
+      "lastSyncedAt": "2026-09-01 14:45:36",
       "months": {
         "2026-08": {
           "writer": "Kanishka",
@@ -4673,6 +4880,14 @@
               "post_type": "regular"
             }
           ],
+          "comments": []
+        },
+        "2026-09": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": 16,
+          "commentsTarget": "NA",
+          "posts": [],
           "comments": []
         }
       }
