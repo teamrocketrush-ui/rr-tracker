@@ -24,7 +24,7 @@ zero-post-day test. Watch actual costs in Apify Console after first runs.
 CREDENTIALS from GitHub Actions secrets (GH_PAT + APIFY_TOKEN).
 """
 
-import json, os, sys, base64, urllib.request, urllib.error
+import json, os, sys, base64, time, urllib.request, urllib.error
 from datetime import datetime, date, timedelta
 from pathlib import Path
 
@@ -152,11 +152,56 @@ def _is_hard_limit_error(exc):
     return isinstance(exc, ApifyApiError) and "hard limit" in str(exc).lower()
 
 BATCH_SIZE = 10  # harvestapi/linkedin-post-search hard limit
+MAX_FETCH_RETRIES = 2   # extra attempts for profiles that come back with 0 posts
+RETRY_DELAY_SECONDS = 10  # backoff between retry attempts (actor-side timeouts are
+                           # usually transient LinkedIn/actor congestion, not real
+                           # "this profile has no posts" — a short pause clears most)
+
+def _run_batch(ac, batch_urls, cutoff_date):
+    """One actor call for a batch of profile URLs. Returns dict:
+    { author_publicIdentifier: [raw_post_item, ...] }"""
+    run_input = {
+        "authorUrls":                  batch_urls,
+        "maxPosts":                    MAX_POSTS_PER_PROFILE,
+        "postedLimitDate":             cutoff_date,
+        "sortBy":                      "date",
+        "scrapeComments":              False,
+        "scrapeReactions":             False,
+        "postNestedComments":          False,
+        "postNestedReactions":         False,
+        "profileScraperMode":          "short",
+        "commentsProfileScraperMode":  "short",
+        "reactionsProfileScraperMode": "short",
+        "includeReposts":              False,
+        "includeQuotePosts":           False,
+    }
+    run = ac.actor(ACTOR_ID).call(run_input=run_input)
+    dataset_id = (run["defaultDatasetId"] if isinstance(run, dict)
+                  else run.default_dataset_id)
+    items = list(ac.dataset(dataset_id).iterate_items())
+    result = {}
+    for item in items:
+        author = item.get("author", {}).get("publicIdentifier", "")
+        if author:
+            result.setdefault(author, []).append(item)
+    return result
 
 def call_apify_search(active_clients, cutoff_date, dry_run=False):
     """
     Calls the actor in batches of BATCH_SIZE (actor limit: 10 profiles/call).
-    Returns dict: { username: [raw_post_item, ...] }
+    Returns (by_username, failed_usernames):
+      - by_username: { username: [raw_post_item, ...] }
+      - failed_usernames: set of usernames that returned 0 posts on every
+        attempt, including retries — i.e. we could NOT confirm their current
+        data (as opposed to a profile that genuinely has 0 posts this month).
+
+    RELIABILITY: harvestapi/linkedin-post-search intermittently times out on
+    individual profiles within an otherwise-successful batch call (seen live
+    2026-09-29: 10/17 profiles returned 0 posts from "Request timed out"
+    errors inside the actor, with no exception raised to us — the batch call
+    itself succeeds, so this is invisible unless you check per-profile counts).
+    We retry any profile that comes back empty, up to MAX_FETCH_RETRIES times,
+    scoped to just the empty profiles (cheap — billing is per post delivered).
 
     Account fallback: tries APIFY_TOKEN first. If that account hits its
     "Monthly usage hard limit exceeded" error mid-sync, switches to
@@ -164,67 +209,87 @@ def call_apify_search(active_clients, cutoff_date, dry_run=False):
     subsequent batches — drains account A fully before ever touching
     account B, rather than alternating randomly.
     """
-    author_urls = [c["linkedinUrl"] for c in active_clients if c.get("linkedinUrl")]
+    url_by_username = {}
+    author_urls = []
+    for c in active_clients:
+        url = c.get("linkedinUrl")
+        if not url:
+            continue
+        author_urls.append(url)
+        url_by_username[username_from_url(url)] = url
+
     if not author_urls:
-        return {}
+        return {}, set()
 
     if dry_run:
         batches = [author_urls[i:i+BATCH_SIZE] for i in range(0, len(author_urls), BATCH_SIZE)]
         print(f"  [DRY RUN] Would call {ACTOR_ID} in {len(batches)} batch(es) "
               f"for {len(author_urls)} profiles, cutoff={cutoff_date}, "
               f"maxPosts={MAX_POSTS_PER_PROFILE}")
-        return {}
+        return {}, set()
 
     tokens_to_try = [t for t in (APIFY_TOKEN, APIFY_TOKEN_2) if t]
     current = 0  # index into tokens_to_try; sticky once we switch
     ac = apify_client(tokens_to_try[current])
 
-    by_username = {}
-    batches = [author_urls[i:i+BATCH_SIZE] for i in range(0, len(author_urls), BATCH_SIZE)]
-
-    for batch_num, batch_urls in enumerate(batches, 1):
-        run_input = {
-            "authorUrls":                  batch_urls,
-            "maxPosts":                    MAX_POSTS_PER_PROFILE,
-            "postedLimitDate":             cutoff_date,
-            "sortBy":                      "date",
-            "scrapeComments":              False,
-            "scrapeReactions":             False,
-            "postNestedComments":          False,
-            "postNestedReactions":         False,
-            "profileScraperMode":          "short",
-            "commentsProfileScraperMode":  "short",
-            "reactionsProfileScraperMode": "short",
-            "includeReposts":              False,
-            "includeQuotePosts":           False,
-        }
-        print(f"  → Apify batch {batch_num}/{len(batches)}: "
-              f"{len(batch_urls)} profiles, cutoff={cutoff_date}, "
-              f"max {MAX_POSTS_PER_PROFILE}/profile "
-              f"(account #{current+1}/{len(tokens_to_try)})")
+    def call_with_fallback(batch_urls):
+        nonlocal ac, current
         try:
-            run = ac.actor(ACTOR_ID).call(run_input=run_input)
+            return _run_batch(ac, batch_urls, cutoff_date)
         except Exception as e:
             if _is_hard_limit_error(e) and current + 1 < len(tokens_to_try):
                 current += 1
                 print(f"  ⚠ Account #{current} hit its monthly hard limit — "
                       f"switching to account #{current+1} for the rest of this sync.")
                 ac = apify_client(tokens_to_try[current])
-                run = ac.actor(ACTOR_ID).call(run_input=run_input)
-            else:
-                raise
-        dataset_id = (run["defaultDatasetId"] if isinstance(run, dict)
-                      else run.default_dataset_id)
-        items = list(ac.dataset(dataset_id).iterate_items())
-        print(f"  → Batch {batch_num}: got {len(items)} posts")
-        for item in items:
-            author = item.get("author", {}).get("publicIdentifier", "")
-            if author:
-                by_username.setdefault(author, []).append(item)
+                return _run_batch(ac, batch_urls, cutoff_date)
+            raise
+
+    by_username = {}
+    batches = [author_urls[i:i+BATCH_SIZE] for i in range(0, len(author_urls), BATCH_SIZE)]
+
+    for batch_num, batch_urls in enumerate(batches, 1):
+        print(f"  → Apify batch {batch_num}/{len(batches)}: "
+              f"{len(batch_urls)} profiles, cutoff={cutoff_date}, "
+              f"max {MAX_POSTS_PER_PROFILE}/profile "
+              f"(account #{current+1}/{len(tokens_to_try)})")
+        result = call_with_fallback(batch_urls)
+        for username, items in result.items():
+            by_username.setdefault(username, []).extend(items)
+        print(f"  → Batch {batch_num}: got {sum(len(v) for v in result.values())} posts")
+
+        empty_usernames = [username_from_url(u) for u in batch_urls
+                            if username_from_url(u) not in result]
+        attempt = 0
+        while empty_usernames and attempt < MAX_FETCH_RETRIES:
+            attempt += 1
+            print(f"    ⚠ {len(empty_usernames)} profile(s) returned 0 posts "
+                  f"(likely actor-side timeout) — retry {attempt}/{MAX_FETCH_RETRIES} "
+                  f"in {RETRY_DELAY_SECONDS}s: {', '.join(empty_usernames)}")
+            time.sleep(RETRY_DELAY_SECONDS)
+            retry_urls = [url_by_username[u] for u in empty_usernames]
+            retry_result = call_with_fallback(retry_urls)
+            for username, items in retry_result.items():
+                by_username.setdefault(username, []).extend(items)
+            recovered = [u for u in empty_usernames if u in retry_result]
+            if recovered:
+                print(f"    ✅ Recovered on retry: {', '.join(recovered)}")
+            empty_usernames = [u for u in empty_usernames if u not in retry_result]
+
+        if empty_usernames:
+            print(f"    ❌ Still 0 posts after {MAX_FETCH_RETRIES} retries — "
+                  f"treating as FAILED FETCH (not '0 new posts'): "
+                  f"{', '.join(empty_usernames)}")
+
+    failed_usernames = {username_from_url(u) for u in author_urls
+                         if username_from_url(u) not in by_username}
 
     total = sum(len(v) for v in by_username.values())
     print(f"  → Total across all batches: {total} posts")
-    return by_username
+    if failed_usernames:
+        print(f"  ❌ {len(failed_usernames)} profile(s) could not be fetched this sync: "
+              f"{', '.join(sorted(failed_usernames))}")
+    return by_username, failed_usernames
 
 def parse_post(item):
     """Parse one raw item into our dashboard post format — schema confirmed
@@ -376,9 +441,10 @@ def main():
           f"get refreshed, not just new posts added)")
     print()
 
-    by_username = call_apify_search(active, cutoff_date, dry_run=args.dry_run)
+    by_username, failed_usernames = call_apify_search(active, cutoff_date, dry_run=args.dry_run)
 
     total_added = 0
+    sync_failures = []  # clients whose fetch failed this run — data may be stale
     print()
     for c in active:
         username = username_from_url(c.get("linkedinUrl", ""))
@@ -386,9 +452,23 @@ def main():
         month_r = c["months"][current_month_key()]
         added = merge_posts(month_r, raw)
         total_added += added
-        c["lastSyncedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        icon = "✅" if added > 0 else "—"
         total_posts = len(month_r.get("posts", []))
+
+        if username in failed_usernames and not args.dry_run:
+            # Could not confirm this profile's data this run (actor-side
+            # failure after retries) — do NOT stamp lastSyncedAt, so the
+            # dashboard/roster honestly shows the last time we actually
+            # confirmed data, not just the last time we attempted to.
+            sync_failures.append(c["name"])
+            c["syncIssue"] = (f"Fetch failed on {date.today()} after "
+                               f"{MAX_FETCH_RETRIES + 1} attempts — showing "
+                               f"last confirmed data from {c.get('lastSyncedAt', 'unknown')}.")
+            icon = "❌"
+        else:
+            c["lastSyncedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            c.pop("syncIssue", None)
+            icon = "✅" if added > 0 else "—"
+
         print(f"  {icon} {c['name']}: {added} new, {total_posts} total  ({len(raw)} from Apify)")
 
     print()
@@ -396,6 +476,12 @@ def main():
     est_cost = total_added * 0.002
     print(f"Estimated Apify cost:  ~${est_cost:.3f} (based on $2/1000 posts, "
           f"actual results delivered)")
+    if sync_failures:
+        print()
+        print(f"⚠  SYNC FAILURES — {len(sync_failures)} client(s) could not be "
+              f"fetched this run, data left unchanged: {', '.join(sync_failures)}")
+        print("   Their lastSyncedAt was NOT updated, and clients.json now carries "
+              "a syncIssue note for each — check them manually or re-run the sync.")
 
     if not args.dry_run:
         print()
