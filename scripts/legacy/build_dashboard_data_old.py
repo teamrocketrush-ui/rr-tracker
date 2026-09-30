@@ -22,7 +22,6 @@ USAGE:
 """
 
 import json
-import statistics
 import sys
 import re
 from datetime import datetime, date
@@ -102,50 +101,6 @@ def build_client_view(client, month_key, month, is_current_month):
         except (ValueError, KeyError):
             continue
 
-
-    # ---- PREVIEW: new performance fields ----
-    def _lo(t):
-        m_ = re.findall(r"\d+", str(t))
-        return int(m_[0]) if m_ else 0
-    lo = _lo(month.get("postsTarget"))
-    likes = [p.get("likes", 0) for p in posts]
-    y_, mo_ = map(int, month_key.split("-"))
-    py_, pm_ = (y_, mo_ - 1) if mo_ > 1 else (y_ - 1, 12)
-    prev_posts = client.get("months", {}).get(f"{py_}-{pm_:02d}", {}).get("posts", [])
-    prev_likes = [p.get("likes", 0) for p in prev_posts]
-    avg_likes = round(sum(likes) / len(likes)) if likes else None
-    med_likes = round(statistics.median(likes)) if likes else None
-    trend = None
-    if len(likes) >= 4 and len(prev_likes) >= 4:
-        pm_med = statistics.median(prev_likes)
-        if pm_med > 0:
-            trend = round(100 * (statistics.median(likes) - pm_med) / pm_med)
-    best_week = None
-    if is_current_month:
-        wk = [p["likes"] for p in posts if (days_since(p.get("full_date")) is not None and days_since(p.get("full_date")) < 7)]
-        best_week = max(wk) if wk else None
-    best_post = None
-    if posts:
-        bp = max(posts, key=lambda p: p.get("likes", 0))
-        best_post = {"likes": bp.get("likes", 0), "title": (bp.get("title") or "")[:70], "url": bp.get("url")}
-    delivery = round(100 * len(posts) / lo) if lo else None
-    reasons = []
-    if client.get("status") == "paused":
-        remark = {"level": "paused", "text": "Paused"}
-    else:
-        if delivery is not None and delivery < 70:
-            reasons.append("posts")
-        if trend is not None and trend <= -30:
-            reasons.append("likes")
-        if is_current_month and last_post_days is not None and last_post_days >= 7:
-            reasons.append("inactive")
-        if reasons:
-            remark = {"level": "attn", "text": "Need attention: " + " · ".join(reasons)}
-        elif delivery is not None and delivery < 100:
-            remark = {"level": "good", "text": "Going good"}
-        else:
-            remark = {"level": "perfect", "text": "Perfect"}
-
     initials = "".join(w[0] for w in client["name"].split()[:2]).upper()
     color_idx = sum(ord(ch) for ch in client["id"]) % len(INITIAL_COLORS)
 
@@ -164,7 +119,7 @@ def build_client_view(client, month_key, month, is_current_month):
         "name": client["name"],
         "initials": initials,
         "color": INITIAL_COLORS[color_idx],
-        "sub": f"{client.get('engagementType','Retainer')}",
+        "sub": f"{client.get('engagementType','Retainer')} · target {posts_target}/mo",
         "status": client.get("status", "active"),
         "writer": month.get("writer") or "Unassigned",
         "engager": month.get("engager") or "Unassigned",
@@ -185,17 +140,9 @@ def build_client_view(client, month_key, month, is_current_month):
         "postsMTD": f"{len(posts)} / {posts_target}",
         "commentsMTD": f"{len(comments)} / {comments_target}",
         "flag": {"type": flag_type, "text": flag_text},
-        "target": f"Target: {posts_target} posts/mo",
+        "target": f"Target: {posts_target} posts/mo · {comments_target} comments/mo",
         "posts": posts,
         "commentDays": comment_days,
-        "targetLo": lo,
-        "deliveryPct": delivery,
-        "avgLikes": avg_likes,
-        "medianLikes": med_likes,
-        "trendPct": trend,
-        "bestWeek": best_week,
-        "bestPost": best_post,
-        "remark": remark,
         "commentLog": comments[:5],
     }
 
@@ -269,8 +216,7 @@ def build_month_data_js(clients_data):
         # Within each group, original clients.json order is preserved
         # (Python's sort is stable) so writers/dates still read naturally.
         status_priority = {"active": 0, "paused": 1, "removed": 2}
-        rk = {"attn": 0, "good": 1, "perfect": 2, "paused": 3}
-        views.sort(key=lambda v: (status_priority.get(v.get("status"), 1), rk.get(v["remark"]["level"], 3), v["deliveryPct"] if v["deliveryPct"] is not None else 999))
+        views.sort(key=lambda v: status_priority.get(v.get("status"), 1))
 
         month_data[month_key] = views
 

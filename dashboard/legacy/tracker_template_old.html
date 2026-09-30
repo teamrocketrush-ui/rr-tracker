@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RocketRush — Client Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --frame:#3A4A40;
@@ -33,7 +33,7 @@
   body{
     margin:0;
     background:var(--frame);
-    font-family:'Poppins',sans-serif;
+    font-family:'Inter',sans-serif;
     color:var(--ink);
     padding:20px;
     min-height:100vh;
@@ -110,7 +110,7 @@
   }
   .search input{
     border:none;outline:none;font-size:13.5px;width:100%;
-    background:transparent;color:var(--ink);font-family:'Poppins',sans-serif;
+    background:transparent;color:var(--ink);font-family:'Inter',sans-serif;
   }
   .search input::placeholder{color:#A4A89E;}
   .search svg{flex-shrink:0;color:#A4A89E;}
@@ -191,7 +191,7 @@
   .client-avatar{
     width:32px;height:32px;border-radius:9px;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;
-    font-family:'Poppins',sans-serif;font-weight:700;font-size:12.5px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;
     color:#fff;
   }
   .client-name{font-weight:600;font-size:13.5px;line-height:1.2;}
@@ -203,7 +203,7 @@
     background:var(--track);
     display:flex;align-items:center;justify-content:center;
     font-size:10px;font-weight:700;color:var(--frame);
-    font-family:'Poppins',sans-serif;
+    font-family:'Space Grotesk',sans-serif;
   }
 
   .since{font-weight:600;}
@@ -280,7 +280,10 @@
     grid-template-columns:1.4fr 1fr;
     gap:18px;
   }
-  
+  @media(max-width:1100px){
+    thead th:nth-child(6),tbody td:nth-child(6),
+    thead th:nth-child(8),tbody td:nth-child(8){display:none;}
+  }
   @media (max-width:880px){.panel-grid{grid-template-columns:1fr;}}
 
   .subcard{
@@ -432,152 +435,6 @@
     .mcard .post-item{grid-template-columns:56px 1fr 44px 44px 24px;gap:6px;font-size:12px;}
     .mcard .subcard{padding:12px 12px 6px;}
   }
-
-  /* ---------- v1 additions ---------- */
-  thead th{padding:16px 7px !important;}
-  tbody tr.row td{padding:12px 7px !important;}
-  .client-name{white-space:nowrap;} .client-sub{white-space:nowrap;}
-  .remark small{white-space:normal;max-width:210px;}
-  .client-sub{display:none;}
-  thead th{white-space:normal !important;line-height:1.25;vertical-align:bottom;}
-  .sum-card{padding:10px 14px;} .sum-card b{font-size:22px;}
-  .summary{margin-bottom:14px;}
-  .toggle-label{min-width:0;}
-  .summary{display:grid;grid-template-columns:repeat(3,minmax(110px,1fr)) 2fr;gap:12px;margin:0 0 18px;}
-  .sum-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px 16px;box-shadow:var(--shadow);}
-  .sum-card b{display:block;font-family:'Poppins',sans-serif;font-size:26px;line-height:1.1;}
-  .sum-card span{font-size:11.5px;color:var(--muted);font-weight:600;}
-  .sum-card.rk-perfect b{color:var(--green);} .sum-card.rk-good b{color:#3F6470;} .sum-card.rk-attn b{color:var(--red);}
-  @media(max-width:880px){.summary{grid-template-columns:repeat(3,1fr);} .sum-card.wide{grid-column:1/-1;}}
-  .remark{display:inline-flex;flex-direction:column;gap:1px;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:10px;white-space:nowrap;}
-  .remark small{font-weight:500;font-size:10.5px;}
-  .remark.rk-perfect{background:var(--green-soft);color:var(--green);}
-  .remark.rk-good{background:#E6EEF0;color:#3F6470;}
-  .remark.rk-attn{background:var(--red-soft);color:var(--red);}
-  .remark.rk-paused{background:#F1F2F4;color:#6B7280;}
-  .trend{font-weight:700;font-size:12.5px;} .trend small{display:block;font-weight:400;color:var(--muted);font-size:10.5px;}
-  .trend.up{color:var(--green);} .trend.down{color:var(--red);} .trend.na{color:var(--muted);font-weight:600;}
-  a.bestpost,.bestpost{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);}
-  .bestpost b{font-weight:700;}
-  .bestpost .arr{width:20px;height:20px;border-radius:6px;background:var(--line-soft);display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:var(--frame);}
-  a.bestpost:hover .arr{background:var(--frame);color:#fff;}
-  .lc-wrap{margin-top:6px;}
-  .lc-plot{position:relative;height:170px;}
-  .lc-bars{position:absolute;inset:0;display:flex;gap:4px;}
-  .lc-col{flex:1;min-width:0;display:flex;flex-direction:column;padding:16px 0 14px;text-decoration:none;position:relative;}
-  .lc-zone{flex:1;display:flex;align-items:flex-end;}
-  .lc-bar{position:relative;width:100%;border-radius:3px 3px 0 0;min-height:2px;}
-  .lc-num{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:var(--frame);white-space:nowrap;}
-  .lc-bar.hi{background:var(--green);} .lc-bar.lo{background:#C5CCC3;}
-  .lc-bar.best{background:var(--frame);}
-  .lc-bar.clip{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.55) 0 3px,transparent 3px 6px);}
-  .lc-day{font-size:8.5px;color:#9AA096;height:14px;line-height:14px;text-align:center;margin-bottom:-14px;}
-  .lc-col:hover .lc-bar{opacity:.8;}
-  .lc-overlay{position:absolute;left:0;right:0;top:16px;bottom:14px;pointer-events:none;z-index:2;}
-  .lc-median{position:absolute;left:0;right:0;border-top:1.5px dashed #B0562F;}
-  .lc-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:10.5px;color:var(--muted);padding:8px 0 4px;}
-  .lc-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px;}
-  .lc-legend i.hi{background:var(--green);} .lc-legend i.lo{background:#C5CCC3;}
-  .lc-legend i.clipped{background:repeating-linear-gradient(135deg,var(--green) 0 2px,#fff 2px 4px);}
-  .lc-legend i.dash{background:none;border-top:1.5px dashed #B0562F;height:0;width:12px;border-radius:0;vertical-align:3px;}
-  .chart-empty{font-size:12px;color:var(--muted);padding:30px 0;text-align:center;}
-
-  /* ---------- v2: Poppins + declutter ---------- */
-  body,input,button,td,th,h1,h2,h3,h4,h5,small,b,span,div,a,.client-avatar{font-family:'Poppins',sans-serif !important;}
-  .hero h1{font-size:30px;margin-bottom:2px;}
-  .hero p{margin:0 0 14px;font-size:12.5px;}
-  .summary{grid-template-columns:repeat(3,auto) auto;justify-content:start;gap:10px;margin:0 0 14px;}
-  .sum-card{padding:8px 16px;display:flex;align-items:baseline;gap:8px;box-shadow:none;}
-  .sum-card b{font-size:20px;display:inline;line-height:1;} .sum-card b em{font-style:normal;font-weight:500;color:var(--muted);font-size:14px;}
-  .sum-card span{font-size:11.5px;}
-  @media(max-width:880px){.summary{grid-template-columns:repeat(2,auto);} .sum-card.wide{grid-column:auto;}}
-  thead th{font-size:10.5px;padding:14px 6px !important;}
-  tbody tr.row td{padding:10px 6px !important;font-size:12.5px;}
-  .client-name{font-size:13px;}
-  .client-avatar{width:30px;height:30px;font-size:11.5px;}
-  .since small{font-size:10.5px;}
-  .tally{font-weight:600;font-size:13px;}
-  .dbar{height:4px;border-radius:99px;background:var(--track);margin-top:5px;width:54px;overflow:hidden;}
-  .dbar i{display:block;height:100%;border-radius:99px;background:var(--muted);}
-  .dbar i.green{background:var(--green);} .dbar i.amber{background:var(--amber);} .dbar i.red{background:var(--red);}
-  .trend{font-size:12px;}
-  a.bestpost,.bestpost{display:inline-flex;align-items:center;gap:6px;font-weight:600;max-width:none;text-decoration:none;color:var(--ink);}
-  .bestpost .arr{width:20px;height:20px;border-radius:6px;background:var(--line-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--frame);font-size:12px;}
-  a.bestpost:hover .arr{background:var(--frame);color:#fff;}
-  .remark{font-size:11px;padding:4px 9px;border-radius:9px;}
-  .remark small{font-size:10px;max-width:none;white-space:nowrap;}
-  .status-wrap{min-width:70px;} .status-text{font-size:10.5px;}
-  .toggle-label{display:none;}
-  .lc-legend{font-size:10px;gap:10px;padding:6px 0 2px;}
-  .subcard h4{font-size:11.5px;}
-
-  /* ---------- v3: modern layout ---------- */
-  :root{--page:#F3F4F6;--ink:#141B17;--muted:#7A8189;--line:#E8EAEE;--line-soft:#F0F2F4;}
-  body{background:var(--page);padding:0;}
-  .shell{max-width:1560px;background:transparent;box-shadow:none;border-radius:0;padding:22px 36px 48px;}
-  .topbar{margin-bottom:18px;}
-  .pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
-  .pagehead .hero h1{font-size:26px;margin:0;letter-spacing:-.01em;}
-  .pagehead .hero p{margin:2px 0 0;font-size:12.5px;color:var(--muted);}
-  .month-tabs{display:inline-flex;gap:2px;background:#E7EAEE;padding:4px;border-radius:13px;}
-  .month-tab{border:0 !important;background:transparent !important;box-shadow:none !important;padding:7px 14px !important;border-radius:10px !important;font-size:12.5px !important;font-weight:600 !important;color:var(--muted) !important;}
-  .month-tab.active{background:#fff !important;color:var(--ink) !important;box-shadow:0 1px 3px rgba(20,27,23,.12) !important;}
-  .summary{display:grid;grid-template-columns:1fr 1.25fr 1.25fr 1fr;gap:14px;margin:0 0 20px;justify-content:stretch;}
-  .kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:0 1px 2px rgba(20,27,23,.03);}
-  .kpi h6{margin:0 0 8px;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;}
-  .kpi .big{font-size:28px;font-weight:700;line-height:1.1;letter-spacing:-.02em;}
-  .kpi .big em{font-size:14px;color:var(--muted);font-weight:500;font-style:normal;letter-spacing:0;}
-  .kbar{height:8px;border-radius:99px;background:#EDEFF2;overflow:hidden;display:flex;gap:2px;margin-top:12px;}
-  .kbar i{display:block;height:100%;border-radius:99px;}
-  .kbar.single i{background:var(--green);}
-  .kbar i.perfect{background:var(--green);} .kbar i.good{background:#7FA3AE;} .kbar i.attn{background:var(--red);}
-  .ksub{font-size:12px;color:var(--muted);margin-top:8px;font-weight:500;}
-  .klegend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;font-weight:500;color:#4B535B;}
-  .klegend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
-  .klegend i.perfect{background:var(--green);} .klegend i.good{background:#7FA3AE;} .klegend i.attn{background:var(--red);}
-  .names{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
-  .nm{background:var(--red-soft);color:var(--red);font-weight:600;font-size:12px;padding:6px 11px;border-radius:99px;}
-  .nm.more{background:#F1F2F4;color:#6B7280;}
-  .delta{font-weight:600;} .delta.up{color:var(--green);} .delta.down{color:var(--red);}
-  .toolbar{margin-bottom:12px;}
-  .chips{display:inline-flex;gap:2px;background:#E7EAEE;padding:4px;border-radius:13px;}
-  .chip{border:0;background:transparent;padding:7px 13px;border-radius:10px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;}
-  .chip b{margin-left:7px;font-size:11px;background:#fff;border-radius:99px;padding:1px 7px;color:var(--ink);}
-  .chip.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(20,27,23,.12);} .chip.on b{background:var(--frame);color:#fff;}
-  .chip.ck-attn.on b{background:var(--red);}
-  .search,.filter-btn{background:#fff !important;border:1px solid var(--line) !important;border-radius:12px !important;box-shadow:none !important;}
-  /* floating-row table */
-  .card{background:transparent;box-shadow:none;border:0 !important;border-radius:0;overflow:visible;}
-  .table-wrap{overflow:visible;}
-  table{border-collapse:separate;border-spacing:0 8px;}
-  thead th{border:0;padding:4px 12px !important;font-size:10.5px;letter-spacing:.06em;font-weight:600;color:var(--muted);}
-  tbody tr.row{border:0;}
-  tbody tr.row td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 12px !important;}
-  tbody tr.row td:first-child{border-left:1px solid var(--line);border-radius:16px 0 0 16px;padding-left:14px !important;}
-  tbody tr.row td:last-child{border-right:1px solid var(--line);border-radius:0 16px 16px 0;padding-right:16px !important;}
-  tbody tr.row:hover td{background:#FCFCFB;}
-  tbody tr.row.open td{background:#fff;}
-  tbody tr.row.open td:first-child{border-radius:16px 0 0 0;} tbody tr.row.open td:last-child{border-radius:0 16px 0 0;}
-  tbody tr.row.lvl-attn td:first-child{box-shadow:inset 3px 0 0 var(--red);}
-  tbody tr.row.lvl-perfect td:first-child{box-shadow:inset 3px 0 0 var(--green);}
-  tbody tr.row.lvl-good td:first-child{box-shadow:inset 3px 0 0 #7FA3AE;}
-  tbody tr.row.is-paused td{opacity:.55;}
-  tr.panel-row td{background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;}
-  .panel{background:#fff;padding:0 20px 22px 20px;}
-  .panel-head{padding:6px 0 14px;}
-  .subcard{background:#FAFBFA;border:1px solid var(--line);border-radius:14px;}
-  .client-cell{gap:12px;} .client-avatar{width:34px;height:34px;border-radius:11px;}
-  .client-name{font-weight:600;font-size:13.5px;} .client-writer{font-size:11.5px;color:var(--muted);margin-top:1px;}
-  .lp{font-weight:600;font-size:12.5px;} .lp.green{color:var(--green);} .lp.amber{color:#B5841F;} .lp.red{color:var(--red);} .lp.neutral{color:#6B7280;}
-  .lpd{font-size:10.5px;color:var(--muted);margin-top:1px;}
-  .num{font-weight:600;font-size:13.5px;}
-  .spark{display:flex;align-items:flex-end;gap:2px;height:26px;width:84px;}
-  .spark i{flex:none;width:5px;border-radius:2px 2px 0 0;min-height:2px;} .spark i.hi{background:var(--green);} .spark i.lo{background:#CDD3CB;}
-  .dbar{width:64px;}
-  .legend-desktop{background:transparent;border:0;padding:8px 4px;}
-  @media(max-width:1250px){thead th:nth-child(8),tbody td:nth-child(8){display:none;}}
-  @media(max-width:1100px){thead th:nth-child(5),tbody td:nth-child(5),thead th:nth-child(9),tbody td:nth-child(9){display:none;}}
-  @media(max-width:980px){.summary{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -593,16 +450,18 @@
     </div>
   </div>
 
-  <div class="pagehead">
-    <div class="hero"><h1>Client Activity Tracker</h1><p>Deliveries and performance, worst first</p></div>
+  <div class="hero">
+    <h1>Client Activity Tracker</h1>
+    <p>Live status of every client's last post and last comment, sorted by what needs attention.</p>
+  </div>
+
+  <div class="month-tabs-wrap">
+    <div class="month-tabs-label">Viewing Month</div>
     <div class="month-tabs" id="monthTabs"></div>
   </div>
 
-  <div class="summary" id="summaryStrip"></div>
-
   <div class="toolbar">
     <div class="toolbar-left">
-      <div class="chips" id="remarkChips"></div>
       <div class="search">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input placeholder="Search by client or writer name…" id="searchInput" />
@@ -637,18 +496,17 @@
       <table>
         <thead>
           <tr>
-            <th style="width:30px;"></th>
+            <th style="width:32px;"></th>
             <th>Client</th>
-            <th title="Posts done / target">Delivery</th>
-            <th>Last post</th>
-            <th title="Average likes per post">Avg</th>
-            <th title="Middle post - one viral post cannot skew it">Typical</th>
-            <th title="Change in typical likes vs last month (needs 4+ posts in both months)">vs last mo.</th>
-            <th title="One bar per post this month, green = at or above typical">Likes / post</th>
-            <th title="Highest likes on a post in the last 7 days">Week best</th>
-            <th title="Highest-liked post this month - click to open it">Best post</th>
-            <th>Remark</th>
-            <th style="text-align:right;">Active</th>
+            <th>Writer</th>
+            <th>Engagement</th>
+            <th>Last Post</th>
+            <th>Last Comment</th>
+            <th>Post Status</th>
+            <th>Comment Status</th>
+            <th>Posts MTD</th>
+            <th>Comments MTD</th>
+            <th>Active</th>
           </tr>
         </thead>
         <tbody id="tableBody">
@@ -657,14 +515,14 @@
     </div>
     <div class="legend legend-desktop">
       <span><i class="green"></i>On time</span>
-      <span><i class="amber"></i>Watch — 2–3 days since last post</span>
+      <span><i class="amber"></i>Watch — 2–3 days since last activity</span>
       <span><i class="red"></i>Flagged — 3+ days overdue (weekends excluded)</span>
     </div>
   </div>
 
   <div class="legend legend-mobile">
     <span><i class="green"></i>On time</span>
-    <span><i class="amber"></i>Watch — 2–3 days since last post</span>
+    <span><i class="amber"></i>Watch — 2–3 days since last activity</span>
     <span><i class="red"></i>Flagged — 3+ days overdue (weekends excluded)</span>
   </div>
 
@@ -932,64 +790,6 @@ function commentLogHTML(log){
   return log.map(c=>`<div class="clog-item"><span class="cdate">${c.date}</span><span class="ctext">${c.text}</span></div>`).join('');
 }
 
-function nz(v){ return (v===null||v===undefined) ? '—' : v; }
-function deliveryText(c){
-  if(c.deliveryPct===null||c.deliveryPct===undefined) return 'no target';
-  return c.deliveryPct>100 ? '100%+ delivered' : c.deliveryPct+'% delivered';
-}
-function postsCell(c){
-  const pct=Math.min(100,c.deliveryPct||0);
-  const cls=c.deliveryPct==null?'':(c.deliveryPct>=100?'green':(c.deliveryPct>=70?'amber':'red'));
-  return `<div class="tally">${c.postsMTD}</div><div class="dbar" title="${deliveryText(c)}"><i class="${cls}" style="width:${pct}%"></i></div>`;
-}
-function trendHTML(p){
-  if(p===null||p===undefined) return '<div class="trend na" title="Needs 4+ posts in both months">n/a</div>';
-  const up=p>=0;
-  return `<div class="trend ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(p)}%</div>`;
-}
-function bestPostHTML(b){
-  if(!b) return '<div class="tally">—</div>';
-  const tip=(b.title||'').replace(/"/g,'&quot;');
-  return b.url ? `<a class="bestpost" href="${b.url}" target="_blank" rel="noopener" title="${tip}" onclick="event.stopPropagation()"><b>${b.likes}</b><span class="arr">↗</span></a>` : `<div class="bestpost" title="${tip}"><b>${b.likes}</b></div>`;
-}
-function remarkHTML(r){
-  if(!r) return '';
-  const parts=r.text.split(': ');
-  return `<span class="remark rk-${r.level}">${parts[0]}${parts[1]?`<small>${parts[1]}</small>`:''}</span>`;
-}
-function likesChartHTML(c){
-  const P=[...c.posts].sort((a,b)=>(a.full_date||'').localeCompare(b.full_date||''));
-  if(!P.length) return '<div class="chart-empty">No posts yet this month</div>';
-  const med=c.medianLikes||0;
-  const cap=Math.max(med*3,10);
-  const maxL=Math.max(...P.map(p=>p.likes));
-  const bestL=c.bestPost?c.bestPost.likes:maxL;
-  const bars=P.map(p=>{
-    const clipped=p.likes>cap;
-    const h=p.likes===0?3:Math.max(4,Math.min(100,(p.likes/cap)*100));
-    const cls=(p.likes>=med?'hi':'lo')+(p.likes===bestL?' best':'')+(clipped?' clip':'');
-    const d=(p.full_date||'').slice(8);
-    const tip=(p.title||'').replace(/"/g,'&quot;').slice(0,80)+' — '+p.likes+' likes, '+p.comments+' comments';
-    const inner=`<div class="lc-zone"><div class="lc-bar ${cls}" style="height:${h}%;"><span class="lc-num">${p.likes}</span></div></div><span class="lc-day">${d}</span>`;
-    return p.url ? `<a class="lc-col" href="${p.url}" target="_blank" rel="noopener" title="${tip}" onclick="event.stopPropagation()">${inner}</a>` : `<div class="lc-col" title="${tip}">${inner}</div>`;
-  }).join('');
-  const line=Math.min(100,(med/cap)*100);
-  return `<div class="lc-wrap"><div class="lc-plot"><div class="lc-bars">${bars}</div><div class="lc-overlay"><div class="lc-median" style="bottom:${line}%;"></div></div></div>
-    <div class="lc-legend"><span><i class="hi"></i>above typical</span><span><i class="lo"></i>below</span><span><i class="dash"></i>typical</span><span><i class="clipped"></i>cut off (viral)</span></div></div>`;
-}
-function top3HTML(c){
-  const T=[...c.posts].sort((a,b)=>b.likes-a.likes).slice(0,3);
-  if(!T.length) return '';
-  return T.map((p,i)=>`
-    <div class="post-item">
-      <span class="pdate">#${i+1}</span>
-      <span class="ptitle" title="${(p.title||'').replace(/"/g,'&quot;')}">${(p.title||'').replace(/</g,'&lt;')}</span>
-      <span class="pmetric">${p.likes} ❤</span>
-      <span class="pmetric">${p.comments} 💬</span>
-      ${p.url ? `<a class="plink" href="${p.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗</a>` : '<span class="plink" style="opacity:.3;">↗</span>'}
-    </div>`).join('');
-}
-
 function panelHTML(c){
   const initialLimit = 5;
   const needsMore = c.posts.length > initialLimit;
@@ -1005,73 +805,22 @@ function panelHTML(c){
           ${postListHTML(c.posts, initialLimit)}
         </div>
         ${needsMore ? `<div class="view-more" data-id="${c.id}">View all ${c.posts.length} posts</div>` : ''}
+        <div class="post-foot"><span>${c.postsMTD.split('/')[0].trim()} of ${c.postsMTD.split('/')[1].trim()} posted</span><span>Streak tracked daily</span></div>
       </div>
       <div class="subcard">
-        <h4>Likes per post <small>typical ${nz(c.medianLikes)} ❤</small></h4>
-        ${likesChartHTML(c)}
+        <h4>Comments this month</h4>
+        ${barsHTML(c.commentDays)}
         <div class="comment-log">
-          <h5>Top 3 posts this month</h5>
-          ${top3HTML(c)}
+          <h5>Latest entries</h5>
+          ${commentLogHTML(c.commentLog)}
         </div>
       </div>
     </div>
   `;
 }
 
-function fmt(n){ return Number(n).toLocaleString('en-US'); }
-function likesTotal(list){ return list.reduce((s,c)=>s+c.posts.reduce((a,p)=>a+(p.likes||0),0),0); }
-function renderSummary(){
-  const list=(monthData[activeMonth]||[]).filter(c=>c.status==='active');
-  const cnt={perfect:0,good:0,attn:0};
-  let done=0,tgt=0;
-  list.forEach(c=>{ if(cnt[c.remark.level]!==undefined) cnt[c.remark.level]++; if(c.targetLo){ done+=Math.min(c.posts.length,c.targetLo); tgt+=c.targetLo; } });
-  const pct=tgt?Math.round(100*done/tgt):0;
-  const n=list.length||1;
-  const attn=list.filter(c=>c.remark.level==='attn');
-  const names=attn.slice(0,3).map(c=>`<span class="nm">${c.name}</span>`).join('')+(attn.length>3?`<span class="nm more">+${attn.length-3} more</span>`:'');
-  // total likes vs previous month (only meaningful once the month is nearly complete)
-  const keys=Object.keys(monthData).sort(); const pk=keys[keys.indexOf(activeMonth)-1];
-  const isCur=list.length&&list[0].isCurrentMonth;
-  let delta='';
-  if(pk && (!isCur || new Date().getDate()>=25)){
-    const ids=new Set(list.map(c=>c.id));
-    const prev=likesTotal((monthData[pk]||[]).filter(c=>ids.has(c.id)));
-    const cur=likesTotal(list);
-    if(prev>0){ const d=Math.round(100*(cur-prev)/prev); delta=`<span class="delta ${d>=0?'up':'down'}">${d>=0?'▲':'▼'} ${Math.abs(d)}% vs last month</span>`; }
-  }
-  document.getElementById('summaryStrip').innerHTML=`
-    <div class="kpi"><h6>Posts delivered</h6>
-      <div class="big">${done}<em> / ${tgt}</em></div>
-      <div class="kbar single"><i style="width:${pct}%"></i></div>
-      <div class="ksub">${pct}% of target</div></div>
-    <div class="kpi"><h6>Client health</h6>
-      <div class="big">${list.length}<em> active clients</em></div>
-      <div class="kbar"><i class="perfect" style="width:${100*cnt.perfect/n}%"></i><i class="good" style="width:${100*cnt.good/n}%"></i><i class="attn" style="width:${100*cnt.attn/n}%"></i></div>
-      <div class="klegend"><span><i class="perfect"></i>${cnt.perfect} Perfect</span><span><i class="good"></i>${cnt.good} Going good</span><span><i class="attn"></i>${cnt.attn} Need attention</span></div></div>
-    <div class="kpi"><h6>Needs attention</h6>
-      <div class="names">${names||'<span class="ksub">All clients are on track</span>'}</div></div>
-    <div class="kpi"><h6>Total likes</h6>
-      <div class="big">${fmt(likesTotal(list))}</div>
-      <div class="ksub">${delta||'this month so far'}</div></div>`;
-  renderChips(cnt,list.length);
-}
-function renderChips(cnt,total){
-  const el=document.getElementById('remarkChips'); if(!el) return;
-  const defs=[['','All',total],['attn','Need attention',cnt.attn],['good','Going good',cnt.good],['perfect','Perfect',cnt.perfect]];
-  el.innerHTML=defs.map(d=>`<button class="chip ${activeRemark===d[0]?'on':''} ck-${d[0]||'all'}" data-k="${d[0]}">${d[1]}<b>${d[2]}</b></button>`).join('');
-  el.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{ activeRemark=b.dataset.k; render(activeWriters, document.getElementById('searchInput').value); }));
-}
-function sparkHTML(c){
-  const P=[...c.posts].sort((a,b)=>(a.full_date||'').localeCompare(b.full_date||'')).slice(-14);
-  if(!P.length) return '<span class="num" style="color:var(--muted)">—</span>';
-  const med=c.medianLikes||0, cap=Math.max(med*3,10);
-  const bars=P.map(p=>`<i class="${p.likes>=med?'hi':'lo'}" style="height:${Math.max(8,Math.min(100,100*p.likes/cap))}%"></i>`).join('');
-  return `<div class="spark" title="Likes per post (last ${P.length} posts) — green = at or above typical">${bars}</div>`;
-}
-
 function render(filterWriters, query){
   tableBody.innerHTML = '';
-  renderSummary();
   mobileList.innerHTML = '';
   const q = (query||'').toLowerCase();
   const currentClientData = monthData[activeMonth] || [];
@@ -1079,7 +828,6 @@ function render(filterWriters, query){
   currentClientData.forEach(c=>{
     if(filterWriters && filterWriters.length && !filterWriters.includes(c.writer)) return;
     if(q && !(c.name.toLowerCase().includes(q) || c.writer.toLowerCase().includes(q) || c.engager.toLowerCase().includes(q))) return;
-    if(activeRemark && (!c.remark || c.remark.level!==activeRemark)) return;
     // Activity/recency filter only makes sense for the current month —
     // past months are frozen history, "days ago" isn't meaningful there.
     if(c.isCurrentMonth && activeActivityBuckets && activeActivityBuckets.length){
@@ -1088,31 +836,31 @@ function render(filterWriters, query){
     }
 
     const row = document.createElement('tr');
-    row.className = 'row lvl-'+c.remark.level + (c.status === 'paused' ? ' is-paused' : '');
+    row.className = 'row' + (c.status === 'paused' ? ' is-paused' : '');
     row.dataset.target = 'p-'+c.id;
     const isActive = c.status !== 'paused';
     row.innerHTML = `
       <td><div class="chev"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div></td>
-      <td><div class="client-cell"><div class="client-avatar" style="background:${c.color};">${c.initials}</div><div><div class="client-name">${c.name}</div><div class="client-writer">${c.writer}</div></div></div></td>
-      <td>${postsCell(c)}</td>
-      <td><div class="lp ${c.postStatus}" title="${c.postLabel}">${c.isCurrentMonth?relativeLabel(c.lastPostFullDate):c.lastPost}</div><div class="lpd">${c.lastPostDate}</div></td>
-      <td><div class="num">${nz(c.avgLikes)}</div></td>
-      <td><div class="num">${nz(c.medianLikes)}</div></td>
-      <td>${trendHTML(c.trendPct)}</td>
-      <td>${sparkHTML(c)}</td>
-      <td><div class="num">${nz(c.bestWeek)}</div></td>
-      <td>${bestPostHTML(c.bestPost)}</td>
-      <td>${remarkHTML(c.remark)}</td>
-      <td style="text-align:right;">
-        <div class="toggle-wrap" data-toggle="${c.id}" style="justify-content:flex-end;">
+      <td><div class="client-cell"><div class="client-avatar" style="background:${c.color};">${c.initials}</div><div><div class="client-name">${c.name}</div><div class="client-sub">${c.sub}</div></div></div></td>
+      <td><div class="writer"><div class="dot">${c.writer[0]}</div>${c.writer}</div></td>
+      <td><div class="writer"><div class="dot">${c.engager[0]}</div>${c.engager}</div></td>
+      <td><div class="since">${c.isCurrentMonth?relativeLabel(c.lastPostFullDate):c.lastPost}<small>${c.lastPostDate}</small></div></td>
+      <td><div class="since">${c.isCurrentMonth?relativeLabel(c.lastCommentFullDate):c.lastComment}<small>${c.lastCommentDate}</small></div></td>
+      <td>${statusWrap(c.postStatus,c.postLabel,c.postWidth)}</td>
+      <td>${statusWrap(c.commentStatus,c.commentLabel,c.commentWidth)}</td>
+      <td><div class="tally">${c.postsMTD}<small>posts</small></div></td>
+      <td><div class="tally">${c.commentsMTD}<small>comments</small></div></td>
+      <td>
+        <div class="toggle-wrap" data-toggle="${c.id}">
           <div class="toggle-switch ${isActive ? 'on' : ''}"><div class="knob"></div></div>
+          <span class="toggle-label ${isActive ? 'active' : ''}">${isActive ? 'Active' : 'Paused'}</span>
         </div>
       </td>
     `;
     const panelRow = document.createElement('tr');
     panelRow.className = 'panel-row';
     panelRow.id = 'p-'+c.id;
-    panelRow.innerHTML = `<td colspan="12"><div class="panel">${panelHTML(c)}</div></td>`;
+    panelRow.innerHTML = `<td colspan="11"><div class="panel">${panelHTML(c)}</div></td>`;
 
     tableBody.appendChild(row);
     tableBody.appendChild(panelRow);
@@ -1126,16 +874,13 @@ function render(filterWriters, query){
       </div>
       <div class="mcard-meta">
         <div>Writer<b>${c.writer}</b></div>
+        <div>Engagement<b>${c.engager}</b></div>
         <div>Last post<b>${c.lastPost}</b></div>
-        <div>Posts MTD<b>${c.postsMTD} · ${deliveryText(c)}</b></div>
-        <div>Typical likes<b>${nz(c.medianLikes)}</b></div>
-        <div>Avg likes<b>${nz(c.avgLikes)}</b></div>
-        <div>vs last month<b>${c.trendPct==null?'n/a':(c.trendPct>=0?'▲':'▼')+Math.abs(c.trendPct)+'%'}</b></div>
+        <div>Last comment<b>${c.lastComment}</b></div>
+        <div>Posts MTD<b>${c.postsMTD}</b></div>
+        <div>Comments MTD<b>${c.commentsMTD}</b></div>
       </div>
       <div class="mcard-status">
-        ${remarkHTML(c.remark)}
-      </div>
-      <div class="mcard-status" style="display:none">
         ${statusWrap(c.postStatus,c.postLabel,c.postWidth)}
         ${statusWrap(c.commentStatus,c.commentLabel,c.commentWidth)}
       </div>
@@ -1219,7 +964,6 @@ document.addEventListener('click', (e)=>{
   }
 });
 
-let activeRemark = '';
 let activeWriters = [];
 
 document.getElementById('searchInput').addEventListener('input', (e)=>{
