@@ -32,6 +32,12 @@ STATUS_GREEN = "green"
 STATUS_AMBER = "amber"
 STATUS_RED = "red"
 
+# "Need attention" rule for likes: flag when a client's average likes per
+# post this month is at or below this number. (Previously this was a
+# trend-based rule — 30%+ drop in median likes vs. last month — replaced
+# 2026-09-30 per manager request with a flat, absolute threshold.)
+LIKES_ATTENTION_THRESHOLD = 60
+
 INITIAL_COLORS = ["#3A4A40", "#8A6D3B", "#5C7A68", "#6B5B95", "#4A6670", "#7A5C4A"]
 
 
@@ -135,7 +141,7 @@ def build_client_view(client, month_key, month, is_current_month):
     else:
         if delivery is not None and delivery < 70:
             reasons.append("posts")
-        if trend is not None and trend <= -30:
+        if avg_likes is not None and avg_likes <= LIKES_ATTENTION_THRESHOLD:
             reasons.append("likes")
         if is_current_month and last_post_days is not None and last_post_days >= 7:
             reasons.append("inactive")
