@@ -382,7 +382,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-01 07:53:43",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -764,6 +764,25 @@
               "comments": 154,
               "shares": 76,
               "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_you-do-not-need-to-spend-money-on-detox-activity-7500787746626707456-pNa6",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
+        },
+        "2026-10": {
+          "writer": "Rohit",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "150",
+          "posts": [
+            {
+              "date": "Oct 1",
+              "full_date": "2026-10-01",
+              "title": "‘Shaving makes your hair grow back quicker and thicker’ is heard in almost every Indian household has heard. Science say",
+              "likes": 58,
+              "comments": 25,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_shaving-makes-your-hair-grow-back-quicker-activity-7510925965443850240-NDxX",
               "post_type": "regular"
             }
           ],
@@ -1583,8 +1602,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "12-16",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c7",
@@ -1988,8 +2016,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c8",
@@ -2024,6 +2061,14 @@
           "comments": []
         },
         "2026-09": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "4",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
+        },
+        "2026-10": {
           "writer": "Manasvi",
           "engager": "NA",
           "postsTarget": "4",
@@ -2365,8 +2410,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Garvita",
+          "engager": "Garvita",
+          "postsTarget": "16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c10",
@@ -2374,7 +2428,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-dokania-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-01 07:53:43",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -2726,6 +2780,25 @@
               "comments": 1,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_if-i-were-buying-makhana-today-i-would-ask-activity-7501510243332554753-IJpU",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
+        },
+        "2026-10": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Oct 1",
+              "full_date": "2026-10-01",
+              "title": "I have learned more about manufacturing from client complaints than from compliments.",
+              "likes": 19,
+              "comments": 20,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_i-have-learned-more-about-manufacturing-from-activity-7510927121410740225-9mxT",
               "post_type": "regular"
             }
           ],
@@ -3215,8 +3288,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c12",
@@ -3600,8 +3682,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Kanishka",
+          "engager": "Chirag",
+          "postsTarget": "20",
+          "commentsTarget": "250",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c13",
@@ -3745,8 +3836,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "90",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c14",
@@ -4150,8 +4250,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Rohit",
+          "engager": "Aditya",
+          "postsTarget": "12-16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c15",
@@ -4720,8 +4829,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c17",
@@ -4944,6 +5062,14 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Aditya",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       }
     },
@@ -4953,7 +5079,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/snehal-bandekar-706b5558/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-01 07:53:43",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -5289,6 +5415,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Oct 1",
+              "full_date": "2026-10-01",
+              "title": "A jewellery factory can hit one quality ceiling with existing resources. Breaking the next ceiling may require investmen",
+              "likes": 5,
+              "comments": 1,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/snehal-bandekar-706b5558_a-jewellery-factory-can-hit-one-quality-ceiling-activity-7511273915835568128-mc6N",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -5298,7 +5443,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-01 07:53:43",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -5450,6 +5595,25 @@
               "comments": 32,
               "shares": 16,
               "url": "https://www.linkedin.com/posts/janakmehta12345_every-senior-management-executive-at-sail-activity-7505121100503109632-X7cL",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
+        },
+        "2026-10": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Oct 1",
+              "full_date": "2026-10-01",
+              "title": "Chung Ju-yung took Hyundai Motor Company into crushing debt to build cars the Korean market could not even absorb yet, b",
+              "likes": 24,
+              "comments": 6,
+              "shares": 3,
+              "url": "https://www.linkedin.com/posts/janakmehta12345_chung-ju-yung-took-hyundai-motor-company-activity-7511281445038940160-BeIg",
               "post_type": "regular"
             }
           ],
@@ -5771,8 +5935,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c21",
@@ -6038,8 +6211,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c22",
@@ -6047,7 +6229,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-goyal-13734334/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-01 07:53:43",
       "months": {
         "2026-08": {
           "writer": "Manasvi",
@@ -6306,6 +6488,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Manasvi",
+          "engager": "Aditya",
+          "postsTarget": 16,
+          "commentsTarget": 250,
+          "posts": [
+            {
+              "date": "Oct 1",
+              "full_date": "2026-10-01",
+              "title": "I have given business advices that has earned me exactly ₹0.",
+              "likes": 1,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_i-have-given-business-advices-that-has-earned-activity-7511277546466947072-73ZS",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -6494,8 +6695,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": 16,
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c24",
@@ -6642,8 +6852,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-10": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": 16,
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-01 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     }
   ]
 }
