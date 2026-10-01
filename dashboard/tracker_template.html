@@ -46,6 +46,7 @@
     border-radius:28px;
     padding:28px 28px 40px;
     box-shadow:0 30px 80px -30px rgba(0,0,0,0.45);
+    zoom:0.88;
   }
 
   /* ---------- topbar ---------- */
@@ -1020,6 +1021,7 @@ function panelHTML(c){
 
 function fmt(n){ return Number(n).toLocaleString('en-US'); }
 function likesTotal(list){ return list.reduce((s,c)=>s+c.posts.reduce((a,p)=>a+(p.likes||0),0),0); }
+function reasonsOf(c){ return c.remark.level==='attn' ? c.remark.text.replace('Need attention: ','').split('·').map(s=>s.trim()) : []; }
 function renderSummary(){
   const list=(monthData[activeMonth]||[]).filter(c=>c.status==='active');
   const cnt={perfect:0,good:0,attn:0};
@@ -1046,8 +1048,8 @@ function renderSummary(){
       <div class="ksub">${pct}% of target</div></div>
     <div class="kpi"><h6>Client health</h6>
       <div class="big">${list.length}<em> active clients</em></div>
-      <div class="kbar"><i class="perfect" style="width:${100*cnt.perfect/n}%"></i><i class="good" style="width:${100*cnt.good/n}%"></i><i class="attn" style="width:${100*cnt.attn/n}%"></i></div>
-      <div class="klegend"><span><i class="perfect"></i>${cnt.perfect} Perfect</span><span><i class="good"></i>${cnt.good} Going good</span><span><i class="attn"></i>${cnt.attn} Need attention</span></div></div>
+      <div class="kbar"><i class="perfect" style="width:${100*(cnt.perfect+cnt.good)/n}%"></i><i class="attn" style="width:${100*cnt.attn/n}%"></i></div>
+      <div class="klegend"><span><i class="perfect"></i>${cnt.perfect+cnt.good} Perfect</span><span><i class="attn"></i>${cnt.attn} Need attention</span></div></div>
     <div class="kpi"><h6>Needs attention</h6>
       <div class="names">${names||'<span class="ksub">All clients are on track</span>'}</div></div>
     <div class="kpi"><h6>Total likes</h6>
@@ -1057,9 +1059,13 @@ function renderSummary(){
 }
 function renderChips(cnt,total){
   const el=document.getElementById('remarkChips'); if(!el) return;
-  const defs=[['','All',total],['attn','Need attention',cnt.attn],['good','Going good',cnt.good],['perfect','Perfect',cnt.perfect]];
+  const list=(monthData[activeMonth]||[]).filter(c=>c.status==='active');
+  const cntPost=list.filter(c=>reasonsOf(c).includes('posts')).length;
+  const cntLikes=list.filter(c=>reasonsOf(c).includes('likes')).length;
+  const cntPerfect=cnt.perfect+cnt.good; // "Going good" folded into Perfect — no separate bucket
+  const defs=[['','All',total],['post','NA (post)',cntPost],['likes','NA (like)',cntLikes],['perfect','Perfect',cntPerfect]];
   el.innerHTML=defs.map(d=>`<button class="chip ${activeRemark===d[0]?'on':''} ck-${d[0]||'all'}" data-k="${d[0]}">${d[1]}<b>${d[2]}</b></button>`).join('');
-  el.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{ activeRemark=b.dataset.k; render(activeWriters, document.getElementById('searchInput').value); }));
+  el.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{ activeRemark = activeRemark===b.dataset.k ? '' : b.dataset.k; render(activeWriters, document.getElementById('searchInput').value); }));
 }
 function sparkHTML(c){
   const P=[...c.posts].sort((a,b)=>(a.full_date||'').localeCompare(b.full_date||'')).slice(-14);
@@ -1079,7 +1085,9 @@ function render(filterWriters, query){
   currentClientData.forEach(c=>{
     if(filterWriters && filterWriters.length && !filterWriters.includes(c.writer)) return;
     if(q && !(c.name.toLowerCase().includes(q) || c.writer.toLowerCase().includes(q) || c.engager.toLowerCase().includes(q))) return;
-    if(activeRemark && (!c.remark || c.remark.level!==activeRemark)) return;
+    if(activeRemark==='post' && !reasonsOf(c).includes('posts')) return;
+    if(activeRemark==='likes' && !reasonsOf(c).includes('likes')) return;
+    if(activeRemark==='perfect' && c.remark && c.remark.level==='attn') return;
     // Activity/recency filter only makes sense for the current month —
     // past months are frozen history, "days ago" isn't meaningful there.
     if(c.isCurrentMonth && activeActivityBuckets && activeActivityBuckets.length){
