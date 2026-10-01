@@ -89,7 +89,18 @@ def build_client_view(client, month_key, month, is_current_month):
     posts_target = month.get("postsTarget") or 0
     comments_target = month.get("commentsTarget") or 0
 
-    last_post_days = days_since(posts[0]["full_date"]) if posts else None
+    if posts:
+        last_post_days = days_since(posts[0]["full_date"])
+    elif is_current_month:
+        # No post yet THIS month — don't instantly read as "no activity".
+        # Give the same grace the day-buffer formula gives mid-month: count
+        # from the 1st of the month instead, so day 1-3 of a new month waits
+        # for the first post rather than flagging red immediately. The moment
+        # a post lands this month, the `if posts` branch above takes over and
+        # counts from that post's actual date instead.
+        last_post_days = date.today().day - 1
+    else:
+        last_post_days = None
     last_comment_days = days_since(comments[0]["full_date"]) if comments else None
 
     if is_current_month:
@@ -146,8 +157,13 @@ def build_client_view(client, month_key, month, is_current_month):
     if client.get("status") == "paused":
         remark = {"level": "paused", "text": "Paused"}
     else:
-        if delivery is not None and delivery < 70:
-            reasons.append("posts")
+        # Post-count delivery (X of 12 this month) no longer drives "Need
+        # attention" — the manager tracks that directly via deliverables.
+        # Post RECENCY is a different thing: if nothing has gone out in more
+        # than the 3-day buffer, that still shows up here as "post", back in
+        # the remark badge where "likes" already lives.
+        if is_current_month and post_status == STATUS_RED:
+            reasons.append("post")
         likes_low = avg_likes is not None and avg_likes < LIKES_ATTENTION_THRESHOLD
         likes_dropped = trend is not None and trend <= LIKES_TREND_DROP_THRESHOLD
         if likes_low or likes_dropped:
