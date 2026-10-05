@@ -382,7 +382,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -776,10 +776,20 @@
           "commentsTarget": "150",
           "posts": [
             {
+              "date": "Oct 5",
+              "full_date": "2026-10-05",
+              "title": "“Breakfast is the most important meal of the day” rule is False. Kellogg's invented that idea to sell its cereal. And yo",
+              "likes": 46,
+              "comments": 13,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_breakfast-is-the-most-important-meal-of-activity-7512728140297867264-wAI7",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "‘Shaving makes your hair grow back quicker and thicker’ is heard in almost every Indian household has heard. Science say",
-              "likes": 64,
+              "likes": 65,
               "comments": 25,
               "shares": 1,
               "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_shaving-makes-your-hair-grow-back-quicker-activity-7510925965443850240-NDxX",
@@ -796,7 +806,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -1613,7 +1623,7 @@
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "A record month, stronger partnerships, more learning, and a fifth Inc. 5000 recognition. We had a lot to be grateful for",
-              "likes": 56,
+              "likes": 75,
               "comments": 1,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_quarterlyreview-hexaview-activity-7511409084856782848-9-Vx",
@@ -1630,7 +1640,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/praveenkumardk/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -2032,11 +2042,21 @@
           "engager": "NA",
           "postsTarget": "12",
           "commentsTarget": "NA",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Oct 5",
+              "full_date": "2026-10-05",
+              "title": "A GCC can have its office, entity and strategy ready....and still be six months late because of hiring.",
+              "likes": 12,
+              "comments": 0,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/praveenkumardk_a-gcc-can-have-its-office-entity-and-strategy-activity-7512732294261149696-7Vk_",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
-      },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      }
     },
     {
       "id": "c8",
@@ -2094,7 +2114,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/shrutiagrawalcfa/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -2426,11 +2446,31 @@
           "engager": "Garvita",
           "postsTarget": "16",
           "commentsTarget": "100",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Oct 5",
+              "full_date": "2026-10-05",
+              "title": "I am looking for a curious builder to intern with me (hybrid, Mumbai). Ideally somebody who is looking for a long-term i",
+              "likes": 27,
+              "comments": 3,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/shrutiagrawalcfa_i-am-looking-for-a-curious-builder-to-intern-activity-7512745107842924544-Yy5p",
+              "post_type": "regular"
+            },
+            {
+              "date": "Oct 3",
+              "full_date": "2026-10-03",
+              "title": "The biggest risk in a portfolio isn't always concentration in one stock. Sometimes, it's concentration on one idea.",
+              "likes": 20,
+              "comments": 4,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/shrutiagrawalcfa_the-biggest-risk-in-a-portfolio-isnt-always-activity-7512048114275348481-QFkn",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
-      },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      }
     },
     {
       "id": "c10",
@@ -2438,7 +2478,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-dokania-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -2802,6 +2842,16 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 5",
+              "full_date": "2026-10-05",
+              "title": "I told an American buyer, 'I can make any makhana look premium in photos.' Come to India to see our makhanas. He was pis",
+              "likes": 27,
+              "comments": 14,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_i-told-an-american-buyer-i-can-make-any-activity-7512727044154175488-I_N9",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "I have learned more about manufacturing from client complaints than from compliments.",
@@ -2822,7 +2872,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -3306,12 +3356,22 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 5",
+              "full_date": "2026-10-05",
+              "title": "What happens when an education designed for excellence does not prepare us to understand the world around us?",
+              "likes": 14,
+              "comments": 3,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_what-happens-when-an-education-designed-for-activity-7512730816381317120-jITT",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 3",
               "full_date": "2026-10-03",
               "title": "If you cannot find the right words, perhaps you do not yet understand the thought.",
-              "likes": 11,
-              "comments": 0,
-              "shares": 0,
+              "likes": 40,
+              "comments": 1,
+              "shares": 1,
               "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_if-you-cannot-find-the-right-words-perhaps-activity-7512006042239680513-5hV7",
               "post_type": "regular"
             }
@@ -3712,7 +3772,7 @@
           "comments": []
         }
       },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      "syncIssue": "Fetch failed on 2026-10-05 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c13",
@@ -3866,7 +3926,7 @@
           "comments": []
         }
       },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      "syncIssue": "Fetch failed on 2026-10-05 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c14",
@@ -3874,7 +3934,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-09-30 18:32:09",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -4276,11 +4336,21 @@
           "engager": "Aditya",
           "postsTarget": "12-16",
           "commentsTarget": "100",
-          "posts": [],
+          "posts": [
+            {
+              "date": "Oct 5",
+              "full_date": "2026-10-05",
+              "title": "Sonu Nigam made ₹3.7 crore without singing a single song. He literally did NOTHING.",
+              "likes": 19,
+              "comments": 6,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/ashokdevanampriya_sonu-nigam-made-37-crore-without-singing-activity-7512728746160721921-72HD",
+              "post_type": "regular"
+            }
+          ],
           "comments": []
         }
-      },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      }
     },
     {
       "id": "c15",
@@ -4653,7 +4723,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/bharat-rungta-041b654/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -4860,7 +4930,7 @@
               "date": "Oct 2",
               "full_date": "2026-10-02",
               "title": "Is counter thought or criticism of a view good or bad - even in a common forum. ",
-              "likes": 16,
+              "likes": 22,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/bharat-rungta-041b654_is-counter-thought-or-criticism-of-a-view-activity-7511652109587742720-Izty",
@@ -5465,7 +5535,8 @@
           ],
           "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-10-05 after 3 attempts — showing last confirmed data from 2026-10-03 06:55:51."
     },
     {
       "id": "c19",
@@ -5473,7 +5544,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -5640,9 +5711,9 @@
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "Chung Ju-yung took Hyundai Motor Company into crushing debt to build cars the Korean market could not even absorb yet, b",
-              "likes": 189,
-              "comments": 31,
-              "shares": 10,
+              "likes": 202,
+              "comments": 33,
+              "shares": 12,
               "url": "https://www.linkedin.com/posts/janakmehta12345_chung-ju-yung-took-hyundai-motor-company-activity-7511281445038940160-BeIg",
               "post_type": "regular"
             }
@@ -5657,7 +5728,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/kalraujwal/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -5976,7 +6047,7 @@
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "I received this yesterday from a fellow CPG founder. ",
-              "likes": 7,
+              "likes": 10,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/kalraujwal_i-received-this-yesterday-from-a-fellow-cpg-activity-7511410514930077697-CALF",
@@ -6261,7 +6332,7 @@
           "comments": []
         }
       },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      "syncIssue": "Fetch failed on 2026-10-05 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c22",
@@ -6269,7 +6340,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-goyal-13734334/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-03 06:55:51",
+      "lastSyncedAt": "2026-10-05 09:15:39",
       "months": {
         "2026-08": {
           "writer": "Manasvi",
@@ -6536,6 +6607,26 @@
           "commentsTarget": 250,
           "posts": [
             {
+              "date": "Oct 5",
+              "full_date": "2026-10-05",
+              "title": "The 5 unwritten rules of being a CHRO in corporate India:",
+              "likes": 1,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_the-5-unwritten-rules-of-being-a-chro-in-activity-7512769992057298944-61Wc",
+              "post_type": "regular"
+            },
+            {
+              "date": "Oct 3",
+              "full_date": "2026-10-03",
+              "title": "I was reading about an ancient Indian idea recently, and it reminded me of one of the biggest problems inside modern com",
+              "likes": 7,
+              "comments": 1,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_i-was-reading-about-an-ancient-indian-idea-activity-7512052651648503808-VPgW",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "I have given business advices that has earned me exactly ₹0.",
@@ -6745,7 +6836,7 @@
           "comments": []
         }
       },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      "syncIssue": "Fetch failed on 2026-10-05 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c24",
@@ -6902,7 +6993,7 @@
           "comments": []
         }
       },
-      "syncIssue": "Fetch failed on 2026-10-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      "syncIssue": "Fetch failed on 2026-10-05 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     }
   ]
 }
