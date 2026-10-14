@@ -7543,6 +7543,23 @@
         }
       },
       "syncIssue": "Fetch failed on 2026-10-14 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+    },
+    {
+      "id": "c25",
+      "name": "Nicholas Taylor",
+      "linkedinUrl": "https://www.linkedin.com/in/nicholas-taylor-4422303b/",
+      "status": "active",
+      "engagementType": "Pilot",
+      "months": {
+        "2026-10": {
+          "writer": "Manasvi",
+          "engager": null,
+          "postsTarget": "4",
+          "commentsTarget": null,
+          "posts": [],
+          "comments": []
+        }
+      }
     }
   ]
 }
