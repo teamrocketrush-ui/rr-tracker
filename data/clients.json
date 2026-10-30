@@ -382,7 +382,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -776,10 +776,20 @@
           "commentsTarget": "150",
           "posts": [
             {
+              "date": "Oct 30",
+              "full_date": "2026-10-30",
+              "title": "Anything with Protein is not automatically better. Adding 10 grams of protein does not turn junk food into healthy food.",
+              "likes": 6,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_anything-with-protein-is-not-automatically-activity-7521783043020431360-wNGl",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "Millions were sold a pill promising better memory. But the company’s own study failed to prove it worked better than a p",
-              "likes": 11,
+              "likes": 12,
               "comments": 0,
               "shares": 1,
               "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_millions-were-sold-a-pill-promising-better-activity-7521058619736498176-aUBL",
@@ -789,7 +799,7 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "Your mother will not like this post: going outside with wet hair does NOT give you a cold. ",
-              "likes": 11,
+              "likes": 12,
               "comments": 3,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_your-mother-will-not-like-this-post-going-activity-7520333528203415552-Q_zS",
@@ -879,7 +889,7 @@
               "date": "Oct 5",
               "full_date": "2026-10-05",
               "title": "“Breakfast is the most important meal of the day” rule is False. Kellogg's invented that idea to sell its cereal. And yo",
-              "likes": 672,
+              "likes": 673,
               "comments": 117,
               "shares": 26,
               "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_breakfast-is-the-most-important-meal-of-activity-7512728140297867264-wAI7",
@@ -906,7 +916,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -1720,10 +1730,30 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 29",
+              "full_date": "2026-10-29",
+              "title": "Yesterday, I hosted our Quarterly All Hands at Hexaview, an opportunity I always value because it brings our entire comp",
+              "likes": 39,
+              "comments": 2,
+              "shares": 4,
+              "url": "https://www.linkedin.com/posts/abhishektalwar_hexaview-quarterlyallhands-teamculture-activity-7521556967925129217-nJw1",
+              "post_type": "regular"
+            },
+            {
+              "date": "Oct 29",
+              "full_date": "2026-10-29",
+              "title": "Yesterday, I hosted our Quarterly All Hands at Hexaview, an opportunity I always value because it brings our entire comp",
+              "likes": 39,
+              "comments": 2,
+              "shares": 4,
+              "url": "https://www.linkedin.com/posts/abhishektalwar_hexaview-quarterlyallhands-teamculture-ugcPost-7521551817735024640--7MA",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "From Engineer to Entrepreneur to Educator to Social Worker.",
-              "likes": 22,
+              "likes": 32,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_leadership-entrepreneurship-education-activity-7521194220687175680-XJvx",
@@ -1733,7 +1763,7 @@
               "date": "Oct 27",
               "full_date": "2026-10-27",
               "title": "I have been a big fan of Anthropic and My Favourite AI tool is Claude, Still I won't apply for the Anthropic IPO",
-              "likes": 23,
+              "likes": 25,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_anthropic-claudeai-ipo-activity-7520834694322479104-561Y",
@@ -1743,7 +1773,7 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "I will NEVER adopt a foreign accent. No matter how long I live in a foreign country.",
-              "likes": 19,
+              "likes": 22,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_culturalidentity-authenticity-indianidentity-activity-7520469874557526016-LEnI",
@@ -1753,7 +1783,7 @@
               "date": "Oct 23",
               "full_date": "2026-10-23",
               "title": "If you sell the same way to Indians, Americans, Japanese and Arabs, you will lose more deals than you’ll win.",
-              "likes": 44,
+              "likes": 45,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_dealingacrosstheworld-hexaview-activity-7519381618202185728-_Vwx",
@@ -1763,8 +1793,8 @@
               "date": "Oct 22",
               "full_date": "2026-10-22",
               "title": "One thing I wish I could improve after 25 years of working is the commute.",
-              "likes": 21,
-              "comments": 2,
+              "likes": 22,
+              "comments": 3,
               "shares": 1,
               "url": "https://www.linkedin.com/posts/abhishektalwar_2minuteswithabhishek-hexaview-activity-7519018482496118784-2djR",
               "post_type": "regular"
@@ -1903,7 +1933,7 @@
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "A record month, stronger partnerships, more learning, and a fifth Inc. 5000 recognition. We had a lot to be grateful for",
-              "likes": 93,
+              "likes": 94,
               "comments": 1,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/abhishektalwar_quarterlyreview-hexaview-activity-7511409084856782848-9-Vx",
@@ -1920,7 +1950,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/praveenkumardk/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -2324,10 +2354,20 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 30",
+              "full_date": "2026-10-30",
+              "title": "What's the best time to join a GCC in India? ",
+              "likes": 9,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/praveenkumardk_whats-the-best-time-to-join-a-gcc-in-india-activity-7521793789951328257-hp0N",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 29",
               "full_date": "2026-10-29",
               "title": "Every global company setting up in India has an Excel sheet showing how much money they'll save. But when it comes to pa",
-              "likes": 7,
+              "likes": 13,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/praveenkumardk_every-global-company-setting-up-in-india-activity-7521427012423503872-XIE6",
@@ -2357,7 +2397,7 @@
               "date": "Oct 19",
               "full_date": "2026-10-19",
               "title": "InsourceIndia turns 7 today. It is 7 years of a journey I never saw coming.",
-              "likes": 94,
+              "likes": 95,
               "comments": 16,
               "shares": 3,
               "url": "https://www.linkedin.com/posts/praveenkumardk_insourceindia-turns-7-today-it-is-7-years-activity-7517839733377421312-Eeox",
@@ -2494,7 +2534,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/shrutiagrawalcfa/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -2831,8 +2871,8 @@
               "date": "Oct 29",
               "full_date": "2026-10-29",
               "title": "India has made UPI feel free. But someone still has to pay for the system that makes every scan and pay possible.",
-              "likes": 2,
-              "comments": 0,
+              "likes": 7,
+              "comments": 1,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/shrutiagrawalcfa_india-has-made-upi-feel-free-but-someone-activity-7521445763579613184-Y2tR",
               "post_type": "regular"
@@ -2841,7 +2881,7 @@
               "date": "Oct 23",
               "full_date": "2026-10-23",
               "title": "I was an average student through most of school.",
-              "likes": 43,
+              "likes": 45,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/shrutiagrawalcfa_i-was-an-average-student-through-most-of-activity-7519270311154839552-UFUE",
@@ -2901,7 +2941,7 @@
               "date": "Oct 5",
               "full_date": "2026-10-05",
               "title": "I am looking for a curious builder to intern with me (hybrid, Mumbai). Ideally somebody who is looking for a long-term i",
-              "likes": 108,
+              "likes": 107,
               "comments": 27,
               "shares": 3,
               "url": "https://www.linkedin.com/posts/shrutiagrawalcfa_i-am-looking-for-a-curious-builder-to-intern-activity-7512745107842924544-Yy5p",
@@ -2928,7 +2968,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-dokania-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -3292,10 +3332,20 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 30",
+              "full_date": "2026-10-30",
+              "title": "India controls most of the world’s makhana supply. Yet we still behave like suppliers, not market leaders.",
+              "likes": 9,
+              "comments": 4,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_india-controls-most-of-the-worlds-makhana-activity-7521783224092479488-xUN9",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "A London client said, 'Piyush, you are very expensive.' I told him, 'Then why did you come back to me?' He laughed. He’s",
-              "likes": 55,
+              "likes": 59,
               "comments": 7,
               "shares": 1,
               "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_a-london-client-said-piyush-you-are-very-activity-7521058288675733504-_fPe",
@@ -3305,7 +3355,7 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "An American client asked me a question about makhana that '99% of Indian traders would FAIL to answer.'",
-              "likes": 25,
+              "likes": 27,
               "comments": 2,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_an-american-client-asked-me-a-question-about-activity-7520333483047743488-EBqw",
@@ -3315,7 +3365,7 @@
               "date": "Oct 23",
               "full_date": "2026-10-23",
               "title": "'Variety dikhaiye bhaiya'. ",
-              "likes": 23,
+              "likes": 24,
               "comments": 2,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_variety-dikhaiye-bhaiya-why-indian-activity-7519309230449831936-NvZH",
@@ -3422,7 +3472,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -3909,9 +3959,9 @@
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "When I finished college in 1964, I wanted to help build a new India. I thought the way to do that was through the civil ",
-              "likes": 69,
-              "comments": 8,
-              "shares": 3,
+              "likes": 115,
+              "comments": 15,
+              "shares": 6,
               "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_when-i-finished-college-in-1964-i-wanted-activity-7521066174403690497-ZWzy",
               "post_type": "regular"
             },
@@ -3919,7 +3969,7 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "An organisation may have rules for dealing with employees and still fail to treat them fairly. ",
-              "likes": 69,
+              "likes": 71,
               "comments": 7,
               "shares": 4,
               "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_an-organisation-may-have-rules-for-dealing-activity-7520341428728803329-VbfU",
@@ -3959,7 +4009,7 @@
               "date": "Oct 12",
               "full_date": "2026-10-12",
               "title": "Are we educating people, or merely teaching them?",
-              "likes": 14,
+              "likes": 15,
               "comments": 5,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_are-we-educating-people-or-merely-teaching-activity-7515267518849110016-HJqD",
@@ -4009,7 +4059,7 @@
               "date": "Oct 3",
               "full_date": "2026-10-03",
               "title": "If you cannot find the right words, perhaps you do not yet understand the thought.",
-              "likes": 47,
+              "likes": 48,
               "comments": 1,
               "shares": 2,
               "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_if-you-cannot-find-the-right-words-perhaps-activity-7512006042239680513-5hV7",
@@ -4430,7 +4480,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashish-padiyar-59608914/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -4614,7 +4664,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -5018,10 +5068,20 @@
           "commentsTarget": "100",
           "posts": [
             {
+              "date": "Oct 30",
+              "full_date": "2026-10-30",
+              "title": "Leaving your child ₹100 crore is USELESS if you haven't taught them how to earn their first ₹1 crore.",
+              "likes": 4,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/ashokdevanampriya_leaving-your-child-100-crore-is-useless-activity-7521783177678364672-FbF1",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "Your retirement plan might make you wish you died early. This is the Dark Secret of Retirement Corpus.",
-              "likes": 15,
+              "likes": 17,
               "comments": 0,
               "shares": 1,
               "url": "https://www.linkedin.com/posts/ashokdevanampriya_your-retirement-plan-might-make-you-wish-activity-7521058592314220545-Eblj",
@@ -5031,7 +5091,7 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "Mukesh Ambani's ₹30,213 crore Jio IPO was fully subscribed in just 100 minutes.",
-              "likes": 102,
+              "likes": 103,
               "comments": 4,
               "shares": 1,
               "url": "https://www.linkedin.com/posts/ashokdevanampriya_mukesh-ambanis-30213-crore-jio-ipo-was-activity-7520333491759378432-ARkK",
@@ -5513,7 +5573,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/bharat-rungta-041b654/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -5720,7 +5780,7 @@
               "date": "Oct 29",
               "full_date": "2026-10-29",
               "title": "If everyone in the organisation has 4 priorities, they probably have none.",
-              "likes": 11,
+              "likes": 27,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/bharat-rungta-041b654_if-everyone-in-the-organisation-has-4-priorities-activity-7521413908331474944-A6ha",
@@ -5730,7 +5790,7 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "Unless one is saving a patient or trading in market, very little changes in 2 hours.",
-              "likes": 28,
+              "likes": 30,
               "comments": 6,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/bharat-rungta-041b654_unless-one-is-saving-a-patient-or-trading-activity-7520326138330804225-qcDT",
@@ -6009,7 +6069,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/snehal-bandekar-706b5558/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -6356,8 +6416,8 @@
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "Instagram has changed how people buy jewellery. 15 seconds....that's all it takes. ",
-              "likes": 8,
-              "comments": 2,
+              "likes": 10,
+              "comments": 3,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/snehal-bandekar-706b5558_instagram-has-changed-how-people-buy-jewellery-activity-7521072088187834368-_AGn",
               "post_type": "regular"
@@ -6366,8 +6426,8 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "There’s a fine line between being resourceful and being expected to perform magic on a manufacturing budget.",
-              "likes": 9,
-              "comments": 1,
+              "likes": 10,
+              "comments": 2,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/snehal-bandekar-706b5558_theres-a-fine-line-between-being-resourceful-activity-7520384205051281410-v7y0",
               "post_type": "regular"
@@ -6433,7 +6493,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/janakmehta12345/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-06": {
           "writer": "Nikhil",
@@ -6597,11 +6657,21 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 30",
+              "full_date": "2026-10-30",
+              "title": "“I would attribute everything to TQM.” I asked the leader of a Deming Grand Prize winner how much of CEAT's recovery cam",
+              "likes": 21,
+              "comments": 0,
+              "shares": 2,
+              "url": "https://www.linkedin.com/posts/janakmehta12345_i-would-attribute-everything-to-tqm-i-activity-7521790845830725632-_1HE",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "I came across an interesting story of miners of Rajasthan.",
-              "likes": 18,
-              "comments": 0,
+              "likes": 24,
+              "comments": 2,
               "shares": 1,
               "url": "https://www.linkedin.com/posts/janakmehta12345_i-came-across-an-interesting-story-of-miners-activity-7521066179650781184-y-V2",
               "post_type": "regular"
@@ -6610,8 +6680,8 @@
               "date": "Oct 26",
               "full_date": "2026-10-26",
               "title": "A genuine transformation in automotive manufacturing takes seven years. Most plant heads rotate out in four. And everyon",
-              "likes": 382,
-              "comments": 57,
+              "likes": 389,
+              "comments": 59,
               "shares": 18,
               "url": "https://www.linkedin.com/posts/janakmehta12345_a-genuine-transformation-in-automotive-manufacturing-activity-7520341409573400576-JBO-",
               "post_type": "regular"
@@ -6620,7 +6690,7 @@
               "date": "Oct 23",
               "full_date": "2026-10-23",
               "title": "This story is from my podcast with Dr. Ravichandran, former Executive Director Lucas TVS.",
-              "likes": 104,
+              "likes": 108,
               "comments": 6,
               "shares": 4,
               "url": "https://www.linkedin.com/posts/janakmehta12345_this-story-is-from-my-podcast-with-dr-ravichandran-activity-7519253856594210816-eKlQ",
@@ -6630,7 +6700,7 @@
               "date": "Oct 22",
               "full_date": "2026-10-22",
               "title": "When Anant Goenka joined CEAT Limited, two reports reached him every day.",
-              "likes": 285,
+              "likes": 287,
               "comments": 21,
               "shares": 8,
               "url": "https://www.linkedin.com/posts/janakmehta12345_when-anant-goenka-joined-ceat-limited-two-activity-7518891670751379456-yaZA",
@@ -6640,7 +6710,7 @@
               "date": "Oct 21",
               "full_date": "2026-10-21",
               "title": "This is a story of a 75 year old Japanese lady.",
-              "likes": 112,
+              "likes": 114,
               "comments": 10,
               "shares": 6,
               "url": "https://www.linkedin.com/posts/janakmehta12345_this-is-a-story-of-a-75-year-old-japanese-activity-7518529229999759360-bS5d",
@@ -6650,7 +6720,7 @@
               "date": "Oct 20",
               "full_date": "2026-10-20",
               "title": "Before CEAT Limited became the first tyre brand in the world to win the Deming Grand Prize, its own leaders gave the com",
-              "likes": 128,
+              "likes": 129,
               "comments": 3,
               "shares": 3,
               "url": "https://www.linkedin.com/posts/janakmehta12345_before-ceat-limited-became-the-first-tyre-activity-7518167259018616832-Z9wV",
@@ -6660,8 +6730,8 @@
               "date": "Oct 19",
               "full_date": "2026-10-19",
               "title": "Some of the worst quality failures I have seen passed every inspection the company had.",
-              "likes": 135,
-              "comments": 32,
+              "likes": 138,
+              "comments": 33,
               "shares": 8,
               "url": "https://www.linkedin.com/posts/janakmehta12345_some-of-the-worst-quality-failures-i-have-activity-7517804650738126848-aXnV",
               "post_type": "regular"
@@ -6690,7 +6760,7 @@
               "date": "Oct 15",
               "full_date": "2026-10-15",
               "title": "A customer told him it did not matter whether his company was there or not. The company he led became the first tyre bra",
-              "likes": 404,
+              "likes": 406,
               "comments": 9,
               "shares": 7,
               "url": "https://www.linkedin.com/posts/janakmehta12345_a-customer-told-him-it-did-not-matter-whether-activity-7516355180762710016-KGLg",
@@ -6727,7 +6797,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/kalraujwal/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -7043,12 +7113,22 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 29",
+              "full_date": "2026-10-29",
+              "title": "Every week, someone asks me - Can't we just use ChatGPT to reconcile all our invoices?",
+              "likes": 8,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/kalraujwal_every-week-someone-asks-me-cant-we-just-activity-7521557104344621056-MEbw",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "A candy startup had just 60 days of cash left. Its founder started posting 5 TikToks a day. Less than two years later, t",
-              "likes": 60,
-              "comments": 7,
-              "shares": 0,
+              "likes": 85,
+              "comments": 9,
+              "shares": 1,
               "url": "https://www.linkedin.com/posts/kalraujwal_a-candy-startup-had-just-60-days-of-cash-activity-7521212696655175680-v-Ns",
               "post_type": "regular"
             },
@@ -7056,7 +7136,7 @@
               "date": "Oct 27",
               "full_date": "2026-10-27",
               "title": "There are two kinds of CPG founders in America.",
-              "likes": 12,
+              "likes": 13,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/kalraujwal_there-are-two-kinds-of-cpg-founders-in-america-activity-7520831823963262976-Kboa",
@@ -7086,7 +7166,7 @@
               "date": "Oct 23",
               "full_date": "2026-10-23",
               "title": "This photograph means a lot to me today. Taking your startup to IPO is the dream of every founder and these guys did it.",
-              "likes": 135,
+              "likes": 138,
               "comments": 5,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/kalraujwal_ipo-startup-activity-7519404467289677824-4nW_",
@@ -7176,7 +7256,7 @@
               "date": "Oct 1",
               "full_date": "2026-10-01",
               "title": "I received this yesterday from a fellow CPG founder. ",
-              "likes": 13,
+              "likes": 14,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/kalraujwal_i-received-this-yesterday-from-a-fellow-cpg-activity-7511410514930077697-CALF",
@@ -7193,7 +7273,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/sabsambhavhain/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -7462,8 +7542,8 @@
               "date": "Oct 29",
               "full_date": "2026-10-29",
               "title": "Everyone was selling dry fruits to people who already wanted them. Happilo went after people who wanted chips instead.",
-              "likes": 5,
-              "comments": 0,
+              "likes": 11,
+              "comments": 3,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/sabsambhavhain_everyone-was-selling-dry-fruits-to-people-activity-7521431972578111488-pAB1",
               "post_type": "regular"
@@ -7472,7 +7552,7 @@
               "date": "Oct 27",
               "full_date": "2026-10-27",
               "title": "7 things nobody tells you about selling on Blinkit The 3rd one deserves a special place in hell😂",
-              "likes": 34,
+              "likes": 36,
               "comments": 3,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/sabsambhavhain_7-things-nobody-tells-you-about-selling-on-activity-7520839796718583808-rOZG",
@@ -7532,7 +7612,7 @@
               "date": "Oct 9",
               "full_date": "2026-10-09",
               "title": "One of the most interesting things I saw last month was Bombay Shaving Company launching Switch 4 blade. The founder lit",
-              "likes": 20,
+              "likes": 21,
               "comments": 1,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/sabsambhavhain_one-of-the-most-interesting-things-i-saw-activity-7514310688060702720-pJY1",
@@ -7579,7 +7659,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-goyal-13734334/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-08": {
           "writer": "Manasvi",
@@ -7846,10 +7926,20 @@
           "commentsTarget": 250,
           "posts": [
             {
+              "date": "Oct 30",
+              "full_date": "2026-10-30",
+              "title": "Hey CHROs, I need your help.",
+              "likes": 1,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_hey-chros-i-need-your-help-if-a-posh-complaint-activity-7521775636034674688-1Sme",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 29",
               "full_date": "2026-10-29",
               "title": "A few days back, I was talking to an old friend who had just approved a ₹3 lakh budget to replace a senior client relati",
-              "likes": 5,
+              "likes": 9,
               "comments": 0,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_a-few-days-back-i-was-talking-to-an-old-activity-7521425677443612672-wAKb",
@@ -7859,7 +7949,7 @@
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "We've reached a point where some companies have better Instagram reels about their culture than actual conversations wit",
-              "likes": 4,
+              "likes": 7,
               "comments": 4,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_weve-reached-a-point-where-some-companies-activity-7521060885063385088-wlAu",
@@ -7899,7 +7989,7 @@
               "date": "Oct 15",
               "full_date": "2026-10-15",
               "title": "Every Indian company has two HR departments. ",
-              "likes": 1160,
+              "likes": 1161,
               "comments": 76,
               "shares": 75,
               "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_every-indian-company-has-two-hr-departments-activity-7516339647996710913-rcSv",
@@ -8006,7 +8096,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/gazder/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-29 06:32:49",
+      "lastSyncedAt": "2026-10-30 06:36:49",
       "months": {
         "2026-08": {
           "writer": "Nikhil",
@@ -8193,11 +8283,21 @@
           "commentsTarget": "NA",
           "posts": [
             {
+              "date": "Oct 29",
+              "full_date": "2026-10-29",
+              "title": "There are two kinds of people in hotel design meetings.",
+              "likes": 9,
+              "comments": 3,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/gazder_kitchen-hotel-hospitality-activity-7521557433010315264-GY6x",
+              "post_type": "regular"
+            },
+            {
               "date": "Oct 28",
               "full_date": "2026-10-28",
               "title": "Unpopular opinion: Corporate executives don't always travel the world. Sometimes, they just travel between expensive hot",
-              "likes": 24,
-              "comments": 2,
+              "likes": 35,
+              "comments": 3,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/gazder_unpopular-opinion-corporate-executives-dont-activity-7521196086003195906-hSex",
               "post_type": "regular"
@@ -8216,7 +8316,7 @@
               "date": "Oct 23",
               "full_date": "2026-10-23",
               "title": "5 things hotel owners say that make kitchen designers question their career choices😤",
-              "likes": 6,
+              "likes": 8,
               "comments": 1,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/gazder_kitchen-hospitality-activity-7519384395129102336-7InF",
@@ -8236,7 +8336,7 @@
               "date": "Oct 21",
               "full_date": "2026-10-21",
               "title": "Every time a kitchen struggles after opening, I often hear the same argument.",
-              "likes": 13,
+              "likes": 14,
               "comments": 2,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/gazder_every-time-a-kitchen-struggles-after-opening-activity-7518658262754287616-lfCZ",
@@ -8256,8 +8356,8 @@
               "date": "Oct 20",
               "full_date": "2026-10-20",
               "title": "Every luxury hotel has two designers. ",
-              "likes": 76,
-              "comments": 21,
+              "likes": 77,
+              "comments": 22,
               "shares": 3,
               "url": "https://www.linkedin.com/posts/gazder_hospitality-hotel-architect-activity-7518295061126836226-G7eT",
               "post_type": "regular"
@@ -8276,7 +8376,7 @@
               "date": "Oct 16",
               "full_date": "2026-10-16",
               "title": "6 things nobody tells you about designing a 5-star hotel. The 4th is my personal nightmare😭",
-              "likes": 32,
+              "likes": 33,
               "comments": 7,
               "shares": 0,
               "url": "https://www.linkedin.com/posts/gazder_hospitality-hotel-kitchen-activity-7516845987580227584-3q5j",
@@ -8442,7 +8542,7 @@
           "comments": []
         }
       },
-      "syncIssue": "Fetch failed on 2026-10-29 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      "syncIssue": "Fetch failed on 2026-10-30 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c25",
