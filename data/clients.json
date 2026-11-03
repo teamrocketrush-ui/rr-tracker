@@ -382,7 +382,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-mehta-banking-professional/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -907,6 +907,35 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Rohit",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "150",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "“Sugar makes kids hyperactive” is the WORST Parenting myth. Science says it is 100% False.",
+              "likes": 8,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_sugar-makes-kids-hyperactive-is-the-worst-activity-7522877134303043585-VKrF",
+              "post_type": "regular"
+            },
+            {
+              "date": "Nov 1",
+              "full_date": "2026-11-01",
+              "title": "Anything with Protein is not automatically better. Adding 10 grams of protein does not turn junk food into healthy food.",
+              "likes": 18,
+              "comments": 1,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/rajiv-mehta-banking-professional_anything-with-protein-is-not-automatically-activity-7521783043020431360-wNGl",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -916,7 +945,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/abhishektalwar/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -1941,6 +1970,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "12-16",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "The day I realised that cutting-edge technology doesn't necessarily make a great product.",
+              "likes": 27,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/abhishektalwar_entrepreneurship-startups-lessonslearned-activity-7523006281817763841-nU8c",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -2475,8 +2523,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-11-03 after 3 attempts — showing last confirmed data from 2026-10-30 06:36:49."
     },
     {
       "id": "c8",
@@ -2959,8 +3016,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Garvita",
+          "engager": "Garvita",
+          "postsTarget": "16",
+          "commentsTarget": "100",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-11-03 after 3 attempts — showing last confirmed data from 2026-10-30 06:36:49."
     },
     {
       "id": "c10",
@@ -2968,7 +3034,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/piyush-dokania-a748b527/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -3463,6 +3529,35 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Rohit",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "The most dangerous person inside a factory is not an untrained worker. It is an owner who thinks “good enough” is good e",
+              "likes": 9,
+              "comments": 2,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_the-most-dangerous-person-inside-a-factory-activity-7522876084028350464-IIz7",
+              "post_type": "regular"
+            },
+            {
+              "date": "Nov 1",
+              "full_date": "2026-11-01",
+              "title": "India controls most of the world’s makhana supply. Yet we still behave like suppliers, not market leaders.",
+              "likes": 24,
+              "comments": 13,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/piyush-dokania-a748b527_india-controls-most-of-the-worlds-makhana-activity-7521783224092479488-xUN9",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -3472,7 +3567,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/arun-maira-5499711b4/",
       "status": "active",
       "engagementType": "Retainer",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-06": {
           "writer": "Kanishka",
@@ -4067,6 +4162,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "I once listened to a consultant describe how a client had gradually stopped inviting him to its meetings. ",
+              "likes": 13,
+              "comments": 5,
+              "shares": 2,
+              "url": "https://www.linkedin.com/posts/arun-maira-5499711b4_i-once-listened-to-a-consultant-describe-activity-7522885515566612480-Nd0O",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -4480,7 +4594,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashish-padiyar-59608914/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-06": {
           "writer": "Bhawana",
@@ -4655,6 +4769,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Bhawana",
+          "engager": "Garvita",
+          "postsTarget": "12",
+          "commentsTarget": "90",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "How to confuse your wealth manager?",
+              "likes": 23,
+              "comments": 0,
+              "shares": 3,
+              "url": "https://www.linkedin.com/posts/ashish-padiyar-59608914_how-to-confuse-your-wealth-manager-client-activity-7522934802539249664-eEtf",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -4664,7 +4797,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/ashokdevanampriya/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-06": {
           "writer": "Rohit",
@@ -5195,6 +5328,25 @@
               "comments": 12,
               "shares": 2,
               "url": "https://www.linkedin.com/posts/ashokdevanampriya_sonu-nigam-made-37-crore-without-singing-activity-7512728746160721921-72HD",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
+        },
+        "2026-11": {
+          "writer": "Rohit",
+          "engager": "Aditya",
+          "postsTarget": "12-16",
+          "commentsTarget": "100",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "Indian investors are the WORST at relationships. They divorce a stock at 20% profit, but stay married to a loss-making s",
+              "likes": 6,
+              "comments": 3,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/ashokdevanampriya_indian-investors-are-the-worst-at-relationships-activity-7522870389086298113-blDd",
               "post_type": "regular"
             }
           ],
@@ -5828,8 +5980,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-11-03 after 3 attempts — showing last confirmed data from 2026-10-30 06:36:49."
     },
     {
       "id": "c17",
@@ -6069,7 +6230,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/snehal-bandekar-706b5558/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-06": {
           "writer": "Manasvi",
@@ -6484,6 +6645,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Manasvi",
+          "engager": "NA",
+          "postsTarget": "10",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Nov 3",
+              "full_date": "2026-11-03",
+              "title": "I have a strange habit as a jewellery quality consultant.",
+              "likes": 5,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/snehal-bandekar-706b5558_i-have-a-strange-habit-as-a-jewellery-quality-activity-7523224523274518528-MItD",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -6788,8 +6968,17 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "12",
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
-      }
+      },
+      "syncIssue": "Fetch failed on 2026-11-03 after 3 attempts — showing last confirmed data from 2026-10-30 06:36:49."
     },
     {
       "id": "c20",
@@ -6797,7 +6986,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/kalraujwal/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -7264,6 +7453,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "6 things a CPG founder should NEVER say to their Finance Head. The 2nd one can ruin an entire quarter😂",
+              "likes": 8,
+              "comments": 1,
+              "shares": 1,
+              "url": "https://www.linkedin.com/posts/kalraujwal_6-things-a-cpg-founder-should-never-say-to-activity-7523012391371173888-aapL",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -7273,7 +7481,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/sabsambhavhain/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-07": {
           "writer": "Nikhil",
@@ -7650,6 +7858,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": "10-12",
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "How to make your finance head resign during a Zepto Diwali sale. In 5 simple steps. 😂",
+              "likes": 23,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/sabsambhavhain_how-to-make-your-finance-head-resign-during-activity-7523007233497169921-3aDo",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -7659,7 +7886,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/rajiv-goyal-13734334/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-08": {
           "writer": "Manasvi",
@@ -8087,6 +8314,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Manasvi",
+          "engager": "Aditya",
+          "postsTarget": 16,
+          "commentsTarget": 250,
+          "posts": [
+            {
+              "date": "Nov 3",
+              "full_date": "2026-11-03",
+              "title": "Imagine being a CFO approving ₹20 lakh for women's leadership development. Then discovering that one of your senior mana",
+              "likes": 1,
+              "comments": 0,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/rajiv-goyal-13734334_imagine-being-a-cfo-approving-20-lakh-for-activity-7523225529936953344-Xfgi",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -8096,7 +8342,7 @@
       "linkedinUrl": "https://www.linkedin.com/in/gazder/",
       "status": "active",
       "engagementType": "Pilot",
-      "lastSyncedAt": "2026-10-30 06:36:49",
+      "lastSyncedAt": "2026-11-03 11:46:05",
       "months": {
         "2026-08": {
           "writer": "Nikhil",
@@ -8384,6 +8630,25 @@
             }
           ],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Nikhil",
+          "engager": "NA",
+          "postsTarget": 16,
+          "commentsTarget": "NA",
+          "posts": [
+            {
+              "date": "Nov 2",
+              "full_date": "2026-11-02",
+              "title": "5 things hotel owners say that make kitchen designers question their career choices. 😂",
+              "likes": 24,
+              "comments": 6,
+              "shares": 0,
+              "url": "https://www.linkedin.com/posts/gazder_5-things-hotel-owners-say-that-make-kitchen-activity-7523006806588022784-d1y8",
+              "post_type": "regular"
+            }
+          ],
+          "comments": []
         }
       }
     },
@@ -8540,9 +8805,17 @@
           "commentsTarget": "NA",
           "posts": [],
           "comments": []
+        },
+        "2026-11": {
+          "writer": "Kanishka",
+          "engager": "NA",
+          "postsTarget": 16,
+          "commentsTarget": "NA",
+          "posts": [],
+          "comments": []
         }
       },
-      "syncIssue": "Fetch failed on 2026-10-30 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
+      "syncIssue": "Fetch failed on 2026-11-03 after 3 attempts — showing last confirmed data from 2026-09-30 18:32:09."
     },
     {
       "id": "c25",
